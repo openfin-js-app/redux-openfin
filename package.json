@@ -7,5 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "redux": "^4.0.0",
+    "redux-actions": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/redux-actions": "^2.3.0",
+    "copyfiles": "^2.0.0",
+    "fs-extra": "^6.0.1",
+    "rimraf": "^2.6.2"
+  }
 }

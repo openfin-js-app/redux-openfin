@@ -1,0 +1,11 @@
+{
+  "name": "redux-openfin",
+  "version": "0.30.10",
+  "description": "redux middleware for openfin",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

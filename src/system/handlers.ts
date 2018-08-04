@@ -15,11 +15,11 @@ export const getDeviceIdHandler = (params:ActionHandlerParams) => {
     const { action, fin, store:{ dispatch } }=params;
     const { callback, errorCallback } = action.payload;
 
-    const wrappedCallback = () => {
+    const wrappedCallback = (id:string) => {
         dispatch(
-            handlerActions.getDeviceIdRes({}) as any
+            handlerActions.getDeviceIdRes({id}) as any
         );
-        return callback();
+        return callback(id);
     };
 
     const wrappedErrorCallback = (e:Error) => {
@@ -42,11 +42,11 @@ export const getDeviceUserIdHandler = (params:ActionHandlerParams) => {
     const { action, fin, store:{ dispatch } }=params;
     const { callback, errorCallback } = action.payload;
 
-    const wrappedCallback = () => {
+    const wrappedCallback = (id:string) => {
         dispatch(
-            handlerActions.getDeviceUserIdRes({}) as any
+            handlerActions.getDeviceUserIdRes({id}) as any
         );
-        return callback();
+        return callback(id);
     };
 
     const wrappedErrorCallback = (e:Error) => {
@@ -69,11 +69,11 @@ export const getMonitorInfoHandler = (params:ActionHandlerParams) => {
     const { action, fin, store:{ dispatch } }=params;
     const { callback, errorCallback } = action.payload;
 
-    const wrappedCallback = () => {
+    const wrappedCallback = (monitorInfo:any) => {
         dispatch(
-            handlerActions.getMonitorInfoRes({}) as any
+            handlerActions.getMonitorInfoRes(monitorInfo) as any
         );
-        return callback();
+        return callback(monitorInfo);
     };
 
     const wrappedErrorCallback = (e:Error) => {
@@ -96,11 +96,11 @@ export const getVersionHandler = (params:ActionHandlerParams) => {
     const { action, fin, store:{ dispatch } }=params;
     const { callback, errorCallback } = action.payload;
 
-    const wrappedCallback = () => {
+    const wrappedCallback = (version:string) => {
         dispatch(
-            handlerActions.getVersionRes({}) as any
+            handlerActions.getVersionRes({version}) as any
         );
-        return callback();
+        return callback(version);
     };
 
     const wrappedErrorCallback = (e:Error) => {
@@ -123,11 +123,11 @@ export const getHostSpecsHandler = (params:ActionHandlerParams) => {
     const { action, fin, store:{ dispatch } }=params;
     const { callback, errorCallback } = action.payload;
 
-    const wrappedCallback = () => {
+    const wrappedCallback = (info:types.GetHostSpecsResPayload) => {
         dispatch(
-            handlerActions.getHostSpecsRes({}) as any
+            handlerActions.getHostSpecsRes(info) as any
         );
-        return callback();
+        return callback(info);
     };
 
     const wrappedErrorCallback = (e:Error) => {

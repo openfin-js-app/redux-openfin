@@ -8,4 +8,4 @@ export const Applcation:typeof _application = _application;
 export const Notification:typeof _notification = _notification;
 export const System:typeof _system = _system;
 export const Window:typeof _window = _window;
-export const createOpenfinMiddleware:typeof middlewareCreator;
+export const createOpenfinMiddleware:typeof middlewareCreator = middlewareCreator;

@@ -10,8 +10,7 @@ import * as  SystemHandlers from './system/handlers';
 import * as WindowActions from './window/actions/actionTypes';
 import * as  WindowHandlers from './window/handlers';
 
-import {getStateRes} from "./window/actions/handlerActionCreator";
-import {GetStateResPayload} from "./window/types";
+import registerDefaultListener from './event/registerDefaultListener';
 
 const actionHandlers:any = {
     [ApplicationActions.NEW_APPLICATION]:ApplicationHandlers.newApplicatoinHandler,
@@ -43,31 +42,10 @@ const actionHandlers:any = {
     [WindowActions.UPDATE_OPTIONS]:WindowHandlers.updateOptionsHandler,
 };
 
-function _do_reigister_listener(fin:any, store:Store<any>){
-    const finWindow = fin.desktop.Window.getCurrent();
-    const { dispatch } = store;
-
-    function _dispatch_getStateRes(event:any) {
-        if(event && event.type){
-            if (event.type == 'maximized'){
-                dispatch(getStateRes({state:'maximized'}) as any);
-            }else if (event.type == 'minimized'){
-                dispatch(getStateRes({state:'minimized'}) as any);
-            }else if (event.type == 'restored'){
-                dispatch(getStateRes({state:'restored'}) as any);
-            }
-        }
-    }
-
-    finWindow.addEventListener("maximized",_dispatch_getStateRes);
-    finWindow.addEventListener("minimized",_dispatch_getStateRes);
-    finWindow.addEventListener("restored",_dispatch_getStateRes);
-}
-
 export function middlewareCreator(fin: any):Middleware {
     return (
         (store:Store<any>) => {
-            _do_reigister_listener(fin,store);
+            registerDefaultListener(fin,store);
             return (next:Function) => (action:Action) => {
                 const actionHanlderParams : ActionHandlerParams = {
                     fin, store, next, action,

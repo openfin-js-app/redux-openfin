@@ -117,7 +117,7 @@ export interface SetBoundsResPayload extends BaseResponsePayload{
 }
 
 export interface UpdateOptionsPayload extends BaseRequestPayload{
-    options:WindowOptions
+    options:Partial<WindowOptions>
 }
 export interface UpdateOptionsResPayload extends BaseResponsePayload{
 

@@ -1,13 +1,18 @@
 {
-  "name": "redux-openfin",
-  "version": "0.30.10",
-  "description": "redux middleware for openfin",
+  "name": "@albertli/redux-openfin",
+  "version": "0.10.5",
+  "description": "redux middleware for openfin in typescript",
   "main": "index.js",
   "scripts": {
+    "build":"yarn prebuild && yarn build:es2015 && yarn build:copy-files",
+    "prebuild":"rimraf build",
+    "build:es2015":"tsc src/index.ts --outDir build -d --declarationDir build",
+    "build:copy-files":"node ./scripts/copy-files.js",
+    "release":"yarn build && npm publish build --registry=https://albertli.ddns.net:9004/repository/npm-private/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Wentao Li <liwentao90@yahoo.com>",
+  "license": "MIT",
   "dependencies": {
     "redux": "^4.0.0",
     "redux-actions": "^2.4.0"

@@ -16,7 +16,7 @@ const actionHandlers:any = {
     [ApplicationActions.NEW_APPLICATION]:ApplicationHandlers.newApplicatoinHandler,
     [ApplicationActions.RESTART]:ApplicationHandlers.restartHandler,
     [ApplicationActions.CLOSE]:ApplicationHandlers.closeHandler,
-    [NotificationActions.CREATE_NOTIFICATION_RES]:NotificationHandlers.createNotificationHandler,
+    [NotificationActions.CREATE_NOTIFICATION]:NotificationHandlers.createNotificationHandler,
     [SystemActions.GET_DEVICE_ID]:SystemHandlers.getDeviceIdHandler,
     [SystemActions.GET_DEVICE_USER_ID]:SystemHandlers.getDeviceUserIdHandler,
     [SystemActions.GET_MONITOR_INFO]:SystemHandlers.getMonitorInfoHandler,

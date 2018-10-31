@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Application pkg actions Request actions close action 1`] = `
+Array [
+  Object {
+    "error": false,
+    "payload": Object {
+      "callback": [Function],
+      "errorCallback": [Function],
+      "force": true,
+    },
+    "type": "REDUX_OPENFIN::CLOSE",
+  },
+]
+`;

@@ -10,7 +10,7 @@ import * as  SystemHandlers from './system/handlers';
 import * as WindowActions from './window/actions/actionTypes';
 import * as  WindowHandlers from './window/handlers';
 
-import registerDefaultListener from './event/registerDefaultListener';
+import init from './init';
 
 const actionHandlers:any = {
     [ApplicationActions.NEW_APPLICATION]:ApplicationHandlers.newApplicatoinHandler,
@@ -45,7 +45,7 @@ const actionHandlers:any = {
 export function middlewareCreator(fin: any):Middleware {
     return (
         (store:Store<any>) => {
-            registerDefaultListener(fin,store);
+            init(fin,store);
             return (next:Function) => (action:Action) => {
                 const actionHanlderParams : ActionHandlerParams = {
                     fin, store, next, action,

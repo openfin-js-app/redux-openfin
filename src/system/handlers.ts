@@ -1,14 +1,18 @@
 import {ActionHandlerParams} from "../GlobalTypes";
 import * as handlerActions from './actions/handlerActionCreator';
 import * as types from './types';
+import * as async from './async';
 
-const GET_DEVICE_ID_ERROR_MSG = 'OpenFin API call System.getDeviceid() failed.';
-const GET_DEVICE_USER_ID_ERROR_MSG = 'OpenFin API call System.getDeviceUserId() failed.';
-const GET_MONITOR_INFO_ERROR_MSG = 'OpenFin API call System.getMonitorInfo() failed.';
-const GET_VERSION_ERROR_MSG = 'OpenFin API call System.getVersion() failed.';
-const GET_HOST_SPECS_ERROR_MSG = 'OpenFin API call System.getHostSpecs() failed.';
-const GET_ENVIRONMENT_VARIABLE_ERROR_MSG = 'OpenFin API call System.getEnvironmentVariable() failed.';
-const CLEAR_CACHE_ERROR_MSG = 'OpenFin API call System.clearCache() failed.';
+import {
+    GET_DEVICE_ID_ERROR_MSG,
+    GET_DEVICE_USER_ID_ERROR_MSG,
+    GET_MONITOR_INFO_ERROR_MSG,
+    GET_VERSION_ERROR_MSG,
+    GET_HOST_SPECS_ERROR_MSG,
+    GET_ENVIRONMENT_VARIABLE_ERROR_MSG,
+    CLEAR_CACHE_ERROR_MSG,
+} from './types';
+import {Action} from "redux-actions";
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getDeviceId
 export const getDeviceIdHandler = (params:ActionHandlerParams) => {
@@ -147,29 +151,17 @@ export const getHostSpecsHandler = (params:ActionHandlerParams) => {
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getEnvironmentVariable
 export const getEnvironmentVariableHandler = (params:ActionHandlerParams) => {
-    const { action, fin, store:{ dispatch } }=params;
-    const { env, callback, errorCallback } = action.payload;
-
-    const wrappedCallback = (value:string) => {
-        dispatch(
-            handlerActions.getEnvironmentVariableRes({env,value}) as any
-        );
-        return callback(value);
-    };
-
-    const wrappedErrorCallback = (e:Error) => {
-        const errMsg = e && e.message
-            ? e.message
-            : GET_ENVIRONMENT_VARIABLE_ERROR_MSG;
-        const error = new Error(errMsg);
+    const { action, store:{ dispatch } }=params;
+    async.getEnvironmentVariable(action).then(
+        ((responseAction:Action<types.GetEnvironementVariableResPaylod>)=>{
+            dispatch(responseAction);
+        })
+    ).catch((error)=>{
         dispatch(handlerActions.getEnvironmentVariableRes({
             name:'Error',
             error
         } ) as any);
-        errorCallback(error);
-    };
-
-    fin.desktop.System.getEnvironmentVariable(env,wrappedCallback,wrappedErrorCallback);
+    });
 };
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.clearCache

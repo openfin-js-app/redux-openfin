@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
-    "outDir": "./build/",
+    "outDir": "./build",
+    "declaration": true,
+    "declarationDir": "./build",
     "sourceMap": true,
     "noImplicitAny": false,
     "module": "commonjs",
-    "target": "es5",
-    "lib": ["es6","dom"],
-    "allowJs": true
+    "target": "es6",
+    "lib": ["es6","dom"]
   },
   "include": [
     "./src/**/*"

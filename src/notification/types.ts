@@ -1,5 +1,7 @@
 import {BaseRequestPayload, BaseResponsePayload} from '../base/BasePayload';
 
+export const CREATE_NOTIFICATION_ERROR_MSG = 'OpenFin API call Notification.constructor failed.';
+
 export interface CreateNotificationPayload extends BaseRequestPayload{
     ignoreMouseOver:boolean;
     url:string;
@@ -15,5 +17,5 @@ export interface CreateNotificationPayload extends BaseRequestPayload{
 }
 
 export interface CreateNotificationResPayload extends BaseResponsePayload{
-
+    notification:any
 }

@@ -1,10 +1,10 @@
 import {ActionHandlerParams} from "../GlobalTypes";
-import * as async from './async';
+import * as asyncs from './asyncs';
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getDeviceId
 export const getDeviceIdHandler = (params:ActionHandlerParams) => {
     const { action }=params;
-    async.getDeviceId(action).catch((e)=>{
+    asyncs.getDeviceId(action).catch((e)=>{
         // eat the exception
     });
 };
@@ -12,7 +12,7 @@ export const getDeviceIdHandler = (params:ActionHandlerParams) => {
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getDeviceUserId
 export const getDeviceUserIdHandler = (params:ActionHandlerParams) => {
     const { action }=params;
-    async.getDeviceUserId(action).catch((e)=>{
+    asyncs.getDeviceUserId(action).catch((e)=>{
         // eat the exception
     });
 };
@@ -20,7 +20,7 @@ export const getDeviceUserIdHandler = (params:ActionHandlerParams) => {
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getMonitorInfo
 export const getMonitorInfoHandler = (params:ActionHandlerParams) => {
     const { action }=params;
-    async.getMonitorInfo(action).catch((e)=>{
+    asyncs.getMonitorInfo(action).catch((e)=>{
         // eat the exception
     });
 };
@@ -28,7 +28,7 @@ export const getMonitorInfoHandler = (params:ActionHandlerParams) => {
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getVersion
 export const getVersionHandler = (params:ActionHandlerParams) => {
     const { action }=params;
-    async.getVersion(action).catch((e)=>{
+    asyncs.getVersion(action).catch((e)=>{
         // eat the exception
     });
 };
@@ -36,7 +36,7 @@ export const getVersionHandler = (params:ActionHandlerParams) => {
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getHostSpecs
 export const getHostSpecsHandler = (params:ActionHandlerParams) => {
     const { action }=params;
-    async.getHostSpecs(action).catch((e)=>{
+    asyncs.getHostSpecs(action).catch((e)=>{
         // eat the exception
     });
 };
@@ -44,7 +44,7 @@ export const getHostSpecsHandler = (params:ActionHandlerParams) => {
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getEnvironmentVariable
 export const getEnvironmentVariableHandler = (params:ActionHandlerParams) => {
     const { action }=params;
-    async.getEnvironmentVariable(action).catch((e)=>{
+    asyncs.getEnvironmentVariable(action).catch((e)=>{
         // eat the exception
     });
 };
@@ -52,7 +52,7 @@ export const getEnvironmentVariableHandler = (params:ActionHandlerParams) => {
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.clearCache
 export const clearCacheHandler = (params:ActionHandlerParams) => {
     const { action }=params;
-    async.clearCache(action).catch((e)=>{
+    asyncs.clearCache(action).catch((e)=>{
         // eat the exception
     });
 };

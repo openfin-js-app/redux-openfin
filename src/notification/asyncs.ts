@@ -7,7 +7,6 @@ import createAsyncFun from '../utils/createAsyncFun'
 import {
     CREATE_NOTIFICATION_ERROR_MSG
 } from './types';
-import {GET_DEVICE_ID_ERROR_MSG} from "../system/types";
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Notification.html#Notification
 export async function createNotification(action:Action<types.CreateNotificationPayload>):Promise<Action<types.CreateNotificationResPayload>>{

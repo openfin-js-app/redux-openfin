@@ -1,6 +1,23 @@
 import { WindowOptions } from '../GlobalTypes';
 import { BaseRequestPayload, BaseResponsePayload } from '../base/BasePayload';
 
+export const NEW_WINDOW_ERROR_MSG = 'Openfin API call Window.constructor() failed.';
+export const CLOSE_ERROR_MSG = 'Openfin API call Window.close() failed.';
+export const FOCUS_ERROR_MSG = 'Openfin API call Window.focus() failed.';
+export const GET_BOUNDS_ERROR_MSG = 'Openfin API call Window.getBounds() failed.';
+export const GET_STATE_ERROR_MSG = 'Openfin API call Window.getState() failed.';
+export const GET_OPTIONS_ERROR_MSG = 'Openfin API call Window.getOptions() failed.';
+export const HIDE_ERROR_MSG = 'Openfin API call Window.hide() failed.';
+export const MAXIMIZE_ERROR_MSG = 'Openfin API call Window.maximize() failed.';
+export const MINIMIZE_ERROR_MSG = 'Openfin API call Window.minimize() failed.';
+export const MOVE_BY_ERROR_MSG = 'Openfin API call Window.moveBy() failed.';
+export const MOVE_TO_ERROR_MSG = 'Openfin API call Window.moveTo() failed.';
+export const RETORE_ERROR_MSG = 'Openfin API call Window.restore() failed.';
+export const SHOW_ERROR_MSG = 'Openfin API call Window.show() failed.';
+export const SET_AS_FOREGROUND_ERROR_MSG = 'Openfin API call Window.setForeground() failed.';
+export const SET_BOUNDS_ERROR_MSG = 'Openfin API call Window.setBounds() failed.';
+export const UPDATE_OPTIONS_ERROR_MSG = 'Openfin API call Window.updateOptions() failed.';
+
 export interface NewWindowPayload extends BaseRequestPayload, Partial<WindowOptions>{
 
 }

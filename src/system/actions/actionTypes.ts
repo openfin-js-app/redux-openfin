@@ -1,7 +1,7 @@
 import makeType from '../../utils/makeType';
 
-export const GET_DEVICE_ID = makeType('GET_DEVICE_ID');
-export const GET_DEVICE_ID_RES = makeType('GET_DEVICE_ID_RES');
+export const GET_MACHINE_ID = makeType('GET_MACHINE_ID');
+export const GET_MACHINE_ID_RES = makeType('GET_MACHINE_ID_RES');
 
 export const GET_DEVICE_USER_ID = makeType('GET_DEVICE_USER_ID');
 export const GET_DEVICE_USER_ID_RES = makeType('GET_DEVICE_USER_ID_RES');

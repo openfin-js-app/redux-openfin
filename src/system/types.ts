@@ -1,6 +1,6 @@
 import { BaseRequestPayload, BaseResponsePayload } from '../base/BasePayload';
 
-export const GET_DEVICE_ID_ERROR_MSG = 'OpenFin API call System.getDeviceid() failed.';
+export const GET_MACHINE_ID_ERROR_MSG = 'OpenFin API call System.getMachine() failed.';
 export const GET_DEVICE_USER_ID_ERROR_MSG = 'OpenFin API call System.getDeviceUserId() failed.';
 export const GET_MONITOR_INFO_ERROR_MSG = 'OpenFin API call System.getMonitorInfo() failed.';
 export const GET_VERSION_ERROR_MSG = 'OpenFin API call System.getVersion() failed.';
@@ -8,10 +8,10 @@ export const GET_HOST_SPECS_ERROR_MSG = 'OpenFin API call System.getHostSpecs() 
 export const GET_ENVIRONMENT_VARIABLE_ERROR_MSG = 'OpenFin API call System.getEnvironmentVariable() failed.';
 export const CLEAR_CACHE_ERROR_MSG = 'OpenFin API call System.clearCache() failed.';
 
-export interface GetDeviceIdPayload extends BaseRequestPayload {
+export interface GetMachineIdPayload extends BaseRequestPayload {
 
 }
-export interface GetDeviceIdResPayload extends BaseResponsePayload{
+export interface GetMachineIdResPayload extends BaseResponsePayload{
     id?:string;
 }
 

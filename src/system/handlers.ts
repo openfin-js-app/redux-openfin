@@ -1,8 +1,8 @@
 import {ActionHandlerParams} from "../GlobalTypes";
 import * as asyncs from './asyncs';
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getDeviceId
-export const getDeviceIdHandler = (params:ActionHandlerParams) => {
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getMachineId
+export const getMachineIdHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.getDeviceId(action).catch((e)=>{
         // eat the exception

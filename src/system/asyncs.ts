@@ -5,7 +5,7 @@ import * as handlerActions from './actions/handlerActionCreator';
 import createAsyncFun from '../utils/createAsyncFun'
 
 import {
-    GET_DEVICE_ID_ERROR_MSG,
+    GET_MACHINE_ID_ERROR_MSG,
     GET_DEVICE_USER_ID_ERROR_MSG,
     GET_MONITOR_INFO_ERROR_MSG,
     GET_VERSION_ERROR_MSG,
@@ -15,13 +15,13 @@ import {
 } from './types';
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getDeviceId
-export async function getDeviceId(action:Action<types.GetDeviceIdPayload>):Promise<Action<types.GetDeviceIdResPayload>>{
-    return createAsyncFun<types.GetDeviceIdPayload,types.GetDeviceIdResPayload>(
+export async function getDeviceId(action:Action<types.GetMachineIdPayload>):Promise<Action<types.GetMachineIdResPayload>>{
+    return createAsyncFun<types.GetMachineIdPayload,types.GetMachineIdResPayload>(
         action,
-        GET_DEVICE_ID_ERROR_MSG,
-        handlerActions.getDeviceIdRes,
+        GET_MACHINE_ID_ERROR_MSG,
+        handlerActions.getMachineIdRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            fin.desktop.System.getDeviceId(
+            fin.desktop.System.getMachineId(
                 (id:string)=>{
                     const responseAction = resActionCreator({id});
                     succCb(responseAction);

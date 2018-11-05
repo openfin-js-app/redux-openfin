@@ -2,7 +2,16 @@ import { Store } from 'redux';
 
 import registerDefaultListener from './event/registerDefaultListener';
 
+export enum ChannelType{
+    STANDALONE,
+    PROVIDER,
+    CLIENT,
+}
+
 export interface IConfig{
+    channelType:ChannelType,
+    channelClientId:string,
+    sharedActions:string[],
     ignoreStore?:boolean
 }
 

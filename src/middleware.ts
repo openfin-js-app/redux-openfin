@@ -14,6 +14,12 @@ import init, {
     IConfig
 } from './init';
 
+import {
+    default as initChannel,
+    sharedActionHandler,
+    sharedActionDict,
+} from './channel';
+
 const actionHandlers:any = {
     [ApplicationActions.NEW_APPLICATION]:ApplicationHandlers.newApplicatoinHandler,
     [ApplicationActions.RESTART]:ApplicationHandlers.restartHandler,
@@ -47,6 +53,9 @@ const actionHandlers:any = {
 export function middlewareCreator(fin: any, config:IConfig):Middleware {
     return (
         (store?:Store<any>) => {
+            initChannel(fin,config,store).catch(e=>{
+                throw e;
+            });
             init(fin,config,store);
             return (next:Function) => (action:Action) => {
                 const actionHanlderParams : ActionHandlerParams = {
@@ -55,6 +64,9 @@ export function middlewareCreator(fin: any, config:IConfig):Middleware {
                 const handler = actionHandlers[action.type];
                 if (handler){
                     handler(actionHanlderParams);
+                }else if (sharedActionDict.has(action.type)){
+                    sharedActionHandler(action);
+                    return next(action);
                 }else{
                     return next(action);
                 }

@@ -10,7 +10,9 @@ import * as  SystemHandlers from './system/handlers';
 import * as WindowActions from './window/actions/actionTypes';
 import * as  WindowHandlers from './window/handlers';
 
-import init from './init';
+import init, {
+    IConfig
+} from './init';
 
 const actionHandlers:any = {
     [ApplicationActions.NEW_APPLICATION]:ApplicationHandlers.newApplicatoinHandler,
@@ -42,10 +44,10 @@ const actionHandlers:any = {
     [WindowActions.UPDATE_OPTIONS]:WindowHandlers.updateOptionsHandler,
 };
 
-export function middlewareCreator(fin: any):Middleware {
+export function middlewareCreator(fin: any, config:IConfig):Middleware {
     return (
-        (store:Store<any>) => {
-            init(fin,store);
+        (store?:Store<any>) => {
+            init(fin,config,store);
             return (next:Function) => (action:Action) => {
                 const actionHanlderParams : ActionHandlerParams = {
                     fin, store, next, action,

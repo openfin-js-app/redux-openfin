@@ -18,6 +18,11 @@ export const addEventListener:ActionCreator<types.AddEventListenerPayload> = cre
     (options:types.AddEventListenerPayload) => <any> options
 );
 
+export const bringToFront:ActionCreator<types.BringToFrontPayload> = createFSA<types.BringToFrontPayload>(
+    actionTypes.BRING_TO_FRONT,
+    (options:types.BringToFrontPayload) => <any> options
+);
+
 export const newWindow:ActionCreator<types.NewWindowPayload> = createFSA<types.NewWindowPayload>(
     actionTypes.NEW_WINDOWS,
     (options:types.NewWindowPayload) => <any> options

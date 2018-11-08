@@ -39,6 +39,7 @@ const actionHandlers:any = {
     [WindowActions.GET_CURRENT]:WindowHandlers.getCurrentHandler,
     [WindowActions.WRAP]:WindowHandlers.wrapHandler,
     [WindowActions.ADD_EVENT_LISTENER]:WindowHandlers.addEventListenerHandler,
+    [WindowActions.BRING_TO_FRONT]:WindowHandlers.bringToFrontHandler,
     [WindowActions.NEW_WINDOWS]:WindowHandlers.newWindowHandler,
     [WindowActions.CLOSE]:WindowHandlers.closeHandler,
     [WindowActions.DISABLE_FRAME]:WindowHandlers.disableFrameHandler,

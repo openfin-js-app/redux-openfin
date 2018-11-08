@@ -18,6 +18,11 @@ export const addEventListenerRes:ActionCreator<types.AddEventListenerResPayload>
     (options:types.AddEventListenerResPayload) => <any> options
 );
 
+export const bringToFrontRes:ActionCreator<types.BringToFrontResPayload> = createFSA<types.BringToFrontResPayload>(
+    actionTypes.BRING_TO_FRONT_RES,
+    (options:types.BringToFrontResPayload) => <any> options
+);
+
 export const newWindowRes:ActionCreator<types.NewWindowResPayload> = createFSA<types.NewWindowResPayload>(
     actionTypes.NEW_WINDOWS_RES,
     (options:types.NewWindowResPayload) => <any> options

@@ -8,6 +8,7 @@ import {
     GET_CURRENT_ERROR_MSG,
     WRAP_ERROR_MSG,
     ADD_EVENT_LISTENER_ERROR_MSG,
+    BRING_TO_FRONT_ERROR_MSG,
     NEW_WINDOW_ERROR_MSG,
     CLOSE_ERROR_MSG,
     DISABLE_FRAME_ERROR_MSG,
@@ -72,6 +73,23 @@ export async function addEventListener(action:Action<types.AddEventListenerPaylo
         handlerActions.addEventListenerRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
             let window = new fin.desktop.addEventListener(type, listener,
+                ()=>{
+                    const responseAction = resActionCreator({});
+                    succCb(responseAction);
+                },errCb);
+        }
+    );
+}
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#bringToFront
+export async function bringToFront(action:Action<types.BringToFrontPayload>):Promise<Action<types.BringToFrontResPayload>>{
+    return createAsyncFun<types.BringToFrontPayload,types.BringToFrontResPayload>(
+        action,
+        BRING_TO_FRONT_ERROR_MSG,
+        handlerActions.bringToFrontRes,
+        (fin,action,resActionCreator,succCb,errCb)=>{
+            let currentWindow = fin.desktop.Window.getCurrent();
+            currentWindow.bringToFront(
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);

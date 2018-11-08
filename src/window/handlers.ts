@@ -10,8 +10,6 @@ export const getCurrentHandler = (params:ActionHandlerParams) => {
 };
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#.wrap
-
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#wrapHandler
 export const wrapHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.wrap(action).catch((e)=>{
@@ -28,7 +26,13 @@ export const addEventListenerHandler = (params:ActionHandlerParams) => {
     });
 };
 
-
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#bringToFront
+export const bringToFrontHandler = (params:ActionHandlerParams) => {
+    const { action }=params;
+    asyncs.bringToFront(action).catch((e)=>{
+        // eat the exception
+    });
+};
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#Window
 export const newWindowHandler = (params:ActionHandlerParams) => {

@@ -18,6 +18,9 @@ export const ENABLE_FRAME_RES = makeType('ENABLE_FRAME_RES');
 export const FOCUS = makeType('FOCUS');
 export const FOCUS_RES = makeType('FOCUS_RES');
 
+export const GET_GROUP = makeType('GET_GROUP');
+export const GET_GROUP_RES = makeType('GET_GROUP_RES');
+
 export const GET_BOUNDS = makeType('GET_BOUNDS');
 export const GET_BOUNDS_RES = makeType('GET_BOUNDS_RES');
 

@@ -38,6 +38,11 @@ export const getBounds:ActionCreator<types.GetBoundsPayload> = createFSA<types.G
     (options:types.GetBoundsPayload) => <any> options
 );
 
+export const getGroup:ActionCreator<types.GetGroupPayload> = createFSA<types.GetGroupPayload>(
+    actionTypes.GET_GROUP,
+    (options:types.GetGroupPayload) => <any> options
+);
+
 export const getState:ActionCreator<types.GetStatePayload> = createFSA<types.GetStatePayload>(
     actionTypes.GET_STATE,
     (options:types.GetStatePayload) => <any> options

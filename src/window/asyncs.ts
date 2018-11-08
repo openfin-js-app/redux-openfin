@@ -11,6 +11,7 @@ import {
     DISABLE_FRAME_ERROR_MSG,
     ENABLE_FRAME_ERROR_MSG,
     FOCUS_ERROR_MSG,
+    GET_GROUP_ERROR_MSG,
     GET_BOUNDS_ERROR_MSG,
     GET_STATE_ERROR_MSG,
     GET_OPTIONS_ERROR_MSG,
@@ -129,6 +130,24 @@ export async function focus(action:Action<types.FocusPayload>):Promise<Action<ty
         }
     );
 }
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#getGroup
+export async function getGroup(action:Action<types.GetGroupPayload>):Promise<Action<types.GetGroupResPayload>>{
+    return createAsyncFun<types.GetGroupPayload,types.GetGroupResPayload>(
+        action,
+        GET_GROUP_ERROR_MSG,
+        handlerActions.getGroupRes,
+        (fin,action,resActionCreator,succCb,errCb)=>{
+            let currentWindow = fin.desktop.Window.getCurrent();
+            currentWindow.getGroup(
+                (windows)=>{
+                    const responseAction = resActionCreator({windows});
+                    succCb(responseAction);
+                },errCb);
+        }
+    );
+}
+
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#getBounds
 export async function getBounds(action:Action<types.GetBoundsPayload>):Promise<Action<types.GetBoundsResPayload>>{

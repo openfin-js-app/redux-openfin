@@ -50,6 +50,14 @@ export const focusHandler = (params:ActionHandlerParams) => {
     });
 };
 
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#getGroup
+export const getGroupHandler =(params:ActionHandlerParams) => {
+    const { action }=params;
+    asyncs.getGroup(action).catch((e)=>{
+        // eat the exception
+    });
+};
+
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#getBounds
 export const getBoundsHandler = (params:ActionHandlerParams) => {
     const { action }=params;

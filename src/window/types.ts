@@ -7,6 +7,7 @@ export const CLOSE_ERROR_MSG = 'Openfin API call Window.close() failed.';
 export const DISABLE_FRAME_ERROR_MSG = 'Openfin API call Window.disableFrame() failed.';
 export const ENABLE_FRAME_ERROR_MSG = 'Openfin API call Window.enableFrame() failed.';
 export const FOCUS_ERROR_MSG = 'Openfin API call Window.focus() failed.';
+export const GET_GROUP_ERROR_MSG = 'Openfin API call Window.getGroup() failed.';
 export const GET_BOUNDS_ERROR_MSG = 'Openfin API call Window.getBounds() failed.';
 export const GET_STATE_ERROR_MSG = 'Openfin API call Window.getState() failed.';
 export const GET_OPTIONS_ERROR_MSG = 'Openfin API call Window.getOptions() failed.';
@@ -69,6 +70,12 @@ export interface GetBoundsResPayload extends BaseResponsePayload {
     width?:number,
     right?:number,
     bottom?:number,
+}
+
+export interface GetGroupPayload extends BaseRequestPayload{
+}
+export interface GetGroupResPayload extends BaseResponsePayload {
+    windows?:any[]
 }
 
 export interface GetStatePayload extends BaseRequestPayload{

@@ -3,6 +3,11 @@ import createFSA, {ActionCreator} from '../../utils/createFSA';
 import * as types from "../types";
 import * as actionTypes from "./actionTypes";
 
+export const addEventListener:ActionCreator<types.AddEventListenerPayload> = createFSA<types.AddEventListenerPayload>(
+    actionTypes.ADD_EVENT_LISTENER,
+    (options:types.AddEventListenerPayload) => <any> options
+);
+
 export const newWindow:ActionCreator<types.NewWindowPayload> = createFSA<types.NewWindowPayload>(
     actionTypes.NEW_WINDOWS,
     (options:types.NewWindowPayload) => <any> options

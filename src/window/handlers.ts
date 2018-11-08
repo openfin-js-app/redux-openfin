@@ -1,6 +1,15 @@
 import {ActionHandlerParams} from "../GlobalTypes";
 import * as asyncs from './asyncs';
 
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#addEventListener
+export const addEventListenerHandler = (params:ActionHandlerParams) => {
+    const { action }=params;
+    asyncs.addEventListener(action).catch((e)=>{
+        // eat the exception
+    });
+};
+
+
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#Window
 export const newWindowHandler = (params:ActionHandlerParams) => {
     const { action }=params;

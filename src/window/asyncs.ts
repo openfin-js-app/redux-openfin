@@ -5,6 +5,7 @@ import * as handlerActions from './actions/handlerActionCreator';
 import createAsyncFun from '../utils/createAsyncFun'
 
 import {
+    ADD_EVENT_LISTENER_ERROR_MSG,
     NEW_WINDOW_ERROR_MSG,
     CLOSE_ERROR_MSG,
     DISABLE_FRAME_ERROR_MSG,
@@ -23,6 +24,23 @@ import {
     SET_BOUNDS_ERROR_MSG,
     UPDATE_OPTIONS_ERROR_MSG,
 } from './types';
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#addEventListener
+export async function addEventListener(action:Action<types.AddEventListenerPayload>):Promise<Action<types.AddEventListenerResPayload>>{
+    const  { type, listener }  = action.payload;
+    return createAsyncFun<types.AddEventListenerPayload,types.AddEventListenerResPayload>(
+        action,
+        ADD_EVENT_LISTENER_ERROR_MSG,
+        handlerActions.addEventListenerRes,
+        (fin,action,resActionCreator,succCb,errCb)=>{
+            let window = new fin.desktop.addEventListener(type, listener,
+                ()=>{
+                    const responseAction = resActionCreator({});
+                    succCb(responseAction);
+                },errCb);
+        }
+    );
+}
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#Window
 export async function newWindow(action:Action<types.NewWindowPayload>):Promise<Action<types.NewWindowResPayload>>{

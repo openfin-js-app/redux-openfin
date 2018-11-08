@@ -1,6 +1,7 @@
 import { WindowOptions } from '../GlobalTypes';
 import { BaseRequestPayload, BaseResponsePayload } from '../base/BasePayload';
 
+export const ADD_EVENT_LISTENER_ERROR_MSG = 'Openfin API call Window.addEventListener() failed.';
 export const NEW_WINDOW_ERROR_MSG = 'Openfin API call Window.constructor() failed.';
 export const CLOSE_ERROR_MSG = 'Openfin API call Window.close() failed.';
 export const DISABLE_FRAME_ERROR_MSG = 'Openfin API call Window.disableFrame() failed.';
@@ -18,6 +19,13 @@ export const SHOW_ERROR_MSG = 'Openfin API call Window.show() failed.';
 export const SET_AS_FOREGROUND_ERROR_MSG = 'Openfin API call Window.setForeground() failed.';
 export const SET_BOUNDS_ERROR_MSG = 'Openfin API call Window.setBounds() failed.';
 export const UPDATE_OPTIONS_ERROR_MSG = 'Openfin API call Window.updateOptions() failed.';
+
+export interface AddEventListenerPayload extends BaseRequestPayload, Partial<WindowOptions>{
+    type:string,
+    listener: Function,
+}
+export interface AddEventListenerResPayload extends BaseResponsePayload{
+}
 
 export interface NewWindowPayload extends BaseRequestPayload, Partial<WindowOptions>{
 

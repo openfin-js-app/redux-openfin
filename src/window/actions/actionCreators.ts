@@ -58,6 +58,11 @@ export const hide:ActionCreator<types.HidePayload> = createFSA<types.HidePayload
     (options:types.HidePayload) => <any> options
 );
 
+export const joinGroup:ActionCreator<types.JoinGroupPayload> = createFSA<types.JoinGroupPayload>(
+    actionTypes.JOIN_GROUP,
+    (options:types.JoinGroupPayload) => <any> options
+);
+
 export const minimize:ActionCreator<types.MinimizePayload> = createFSA<types.MinimizePayload>(
     actionTypes.MINIMIZE,
     (options:types.MinimizePayload) => <any> options

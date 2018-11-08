@@ -12,6 +12,7 @@ export const GET_BOUNDS_ERROR_MSG = 'Openfin API call Window.getBounds() failed.
 export const GET_STATE_ERROR_MSG = 'Openfin API call Window.getState() failed.';
 export const GET_OPTIONS_ERROR_MSG = 'Openfin API call Window.getOptions() failed.';
 export const HIDE_ERROR_MSG = 'Openfin API call Window.hide() failed.';
+export const JOIN_GROUP_ERROR_MSG = 'Openfin API call Window.joinGroup() failed.';
 export const MAXIMIZE_ERROR_MSG = 'Openfin API call Window.maximize() failed.';
 export const MINIMIZE_ERROR_MSG = 'Openfin API call Window.minimize() failed.';
 export const MOVE_BY_ERROR_MSG = 'Openfin API call Window.moveBy() failed.';
@@ -96,6 +97,13 @@ export interface HidePayload extends BaseRequestPayload{
 
 }
 export interface HideResPayload extends BaseResponsePayload{
+
+}
+
+export interface JoinGroupPayload extends BaseRequestPayload{
+    target:any,
+}
+export interface JoinGroupResPayload extends BaseResponsePayload{
 
 }
 

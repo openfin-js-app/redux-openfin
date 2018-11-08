@@ -16,6 +16,7 @@ import {
     GET_STATE_ERROR_MSG,
     GET_OPTIONS_ERROR_MSG,
     HIDE_ERROR_MSG,
+    JOIN_GROUP_ERROR_MSG,
     MAXIMIZE_ERROR_MSG,
     MINIMIZE_ERROR_MSG,
     MOVE_BY_ERROR_MSG,
@@ -216,6 +217,25 @@ export async function hide(action:Action<types.HidePayload>):Promise<Action<type
         }
     );
 }
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#joinGroup
+export async function joinGroup(action:Action<types.JoinGroupPayload>):Promise<Action<types.JoinGroupResPayload>> {
+    const { target } = action.payload;
+    return createAsyncFun<types.JoinGroupPayload,types.JoinGroupResPayload>(
+        action,
+        JOIN_GROUP_ERROR_MSG,
+        handlerActions.joinGroupRes,
+        (fin,action,resActionCreator,succCb,errCb)=>{
+            let currentWindow = fin.desktop.Window.getCurrent();
+            currentWindow.joinGroup(target,
+                ()=>{
+                    const responseAction = resActionCreator({});
+                    succCb(responseAction);
+                },errCb);
+        }
+    );
+}
+
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#maximize
 export async function maximize(action:Action<types.MaximizePayload>):Promise<Action<types.MaximizeResPayload>>{

@@ -33,6 +33,9 @@ export const GET_OPTIONS_RES = makeType('GET_OPTIONS_RES');
 export const HIDE = makeType('HIDE');
 export const HIDE_RES = makeType('HIDE_RES');
 
+export const JOIN_GROUP = makeType('JOIN_GROUP');
+export const JOIN_GROUP_RES = makeType('JOIN_GROUP_RES');
+
 export const MINIMIZE = makeType('MINIMIZE');
 export const MINIMIZE_RES = makeType('MINIMIZE_RES');
 

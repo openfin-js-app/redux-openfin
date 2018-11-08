@@ -59,6 +59,11 @@ export const hideRes:ActionCreator<types.HideResPayload> = createFSA<types.HideR
     (options:types.HideResPayload) => <any> options
 );
 
+export const joinGroupRes:ActionCreator<types.JoinGroupResPayload> = createFSA<types.JoinGroupResPayload>(
+    actionTypes.JOIN_GROUP_RES,
+    (options:types.JoinGroupResPayload) => <any> options
+);
+
 export const minimizeRes:ActionCreator<types.MinimizeResPayload> = createFSA<types.MinimizeResPayload>(
     actionTypes.MINIMIZE_RES,
     (options:types.MinimizeResPayload) => <any> options

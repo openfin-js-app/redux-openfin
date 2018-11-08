@@ -90,6 +90,14 @@ export const hideHandler = (params:ActionHandlerParams) => {
     });
 };
 
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#joinGroup
+export const joinGroupHandler = (params:ActionHandlerParams) => {
+    const { action }=params;
+    asyncs.joinGroup(action).catch((e)=>{
+        // eat the exception
+    });
+};
+
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#maximize
 export const maximizeHandler = (params:ActionHandlerParams) => {
     const { action }=params;

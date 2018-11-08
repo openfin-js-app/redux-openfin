@@ -10,6 +10,8 @@ export enum ChannelType{
 
 export interface IConfig{
     channelType:ChannelType,
+    channelName?:string,
+    channelRandomSuffix?:boolean,
     channelClientId:string,
     sharedActions:string[],
     ignoreStore?:boolean

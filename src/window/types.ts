@@ -102,14 +102,15 @@ export interface HideResPayload extends BaseResponsePayload{
 }
 
 export interface JoinGroupPayload extends BaseRequestPayload{
-    secondWindow:any,
+    currentWindow:any,
+    targetWindow:any,
 }
 export interface JoinGroupResPayload extends BaseResponsePayload{
 
 }
 
 export interface LeaveGroupPayload extends BaseRequestPayload{
-    secondWindow:any,
+    currentWindow:any,
 }
 export interface LeaveGroupResPayload extends BaseResponsePayload{
 }

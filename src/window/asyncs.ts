@@ -221,14 +221,13 @@ export async function hide(action:Action<types.HidePayload>):Promise<Action<type
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#joinGroup
 export async function joinGroup(action:Action<types.JoinGroupPayload>):Promise<Action<types.JoinGroupResPayload>> {
-    const { secondWindow } = action.payload;
+    const { currentWindow, targetWindow } = action.payload;
     return createAsyncFun<types.JoinGroupPayload,types.JoinGroupResPayload>(
         action,
         JOIN_GROUP_ERROR_MSG,
         handlerActions.joinGroupRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            secondWindow.joinGroup(currentWindow,
+            currentWindow.joinGroup(targetWindow,
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);
@@ -239,13 +238,13 @@ export async function joinGroup(action:Action<types.JoinGroupPayload>):Promise<A
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#leaveGroup
 export async function leaveGroup(action:Action<types.LeaveGroupPayload>):Promise<Action<types.LeaveGroupResPayload>> {
-    const { secondWindow } = action.payload;
+    const { currentWindow } = action.payload;
     return createAsyncFun<types.LeaveGroupPayload,types.LeaveGroupResPayload>(
         action,
         LEAVE_GROUP_ERROR_MSG,
         handlerActions.leaveGroupRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            secondWindow.leaveGroup(
+            currentWindow.leaveGroup(
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);

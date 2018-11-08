@@ -3,6 +3,16 @@ import createFSA, {ActionCreator} from '../../utils/createFSA';
 import * as types from "../types";
 import * as actionTypes from "./actionTypes";
 
+export const getCurrentRes:ActionCreator<types.GetCurrentResPayload> = createFSA<types.GetCurrentResPayload>(
+    actionTypes.GET_CURRENT_RES,
+    (options:types.GetCurrentResPayload) => <any> options
+);
+
+export const wrapRes:ActionCreator<types.WrapResPayload> = createFSA<types.WrapResPayload>(
+    actionTypes.WRAP_RES,
+    (options:types.WrapResPayload) => <any> options
+);
+
 export const addEventListenerRes:ActionCreator<types.AddEventListenerResPayload> = createFSA<types.AddEventListenerResPayload>(
     actionTypes.ADD_EVENT_LISTENER_RES,
     (options:types.AddEventListenerResPayload) => <any> options

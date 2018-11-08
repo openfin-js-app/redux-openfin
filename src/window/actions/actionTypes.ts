@@ -1,5 +1,11 @@
 import makeType from '../../utils/makeType';
 
+export const GET_CURRENT = makeType('GET_CURRENT');
+export const GET_CURRENT_RES = makeType('GET_CURRENT_RES');
+
+export const WRAP = makeType('WRAP');
+export const WRAP_RES = makeType('WRAP_RES');
+
 export const ADD_EVENT_LISTENER = makeType('ADD_EVENT_LISTENER');
 export const ADD_EVENT_LISTENER_RES = makeType('ADD_EVENT_LISTENER_RES');
 

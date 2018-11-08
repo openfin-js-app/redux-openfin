@@ -1,6 +1,25 @@
 import {ActionHandlerParams} from "../GlobalTypes";
 import * as asyncs from './asyncs';
 
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#.getCurrent
+export const getCurrentHandler = (params:ActionHandlerParams) => {
+    const { action }=params;
+    asyncs.getCurrent(action).catch((e)=>{
+        // eat the exception
+    });
+};
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#.wrap
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#wrapHandler
+export const wrapHandler = (params:ActionHandlerParams) => {
+    const { action }=params;
+    asyncs.wrap(action).catch((e)=>{
+        // eat the exception
+    });
+};
+
+
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#addEventListener
 export const addEventListenerHandler = (params:ActionHandlerParams) => {
     const { action }=params;
@@ -8,6 +27,7 @@ export const addEventListenerHandler = (params:ActionHandlerParams) => {
         // eat the exception
     });
 };
+
 
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#Window

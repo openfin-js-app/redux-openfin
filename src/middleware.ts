@@ -32,6 +32,8 @@ const actionHandlers:any = {
     [SystemActions.GET_HOST_SPECS]:SystemHandlers.getHostSpecsHandler,
     [SystemActions.GET_ENVIRONMENT_VARIABLE]:SystemHandlers.getEnvironmentVariableHandler,
     [SystemActions.CLEAR_CACHE]:SystemHandlers.clearCacheHandler,
+    [WindowActions.GET_CURRENT]:WindowHandlers.getCurrentHandler,
+    [WindowActions.WRAP]:WindowHandlers.wrapHandler,
     [WindowActions.ADD_EVENT_LISTENER]:WindowHandlers.addEventListenerHandler,
     [WindowActions.NEW_WINDOWS]:WindowHandlers.newWindowHandler,
     [WindowActions.CLOSE]:WindowHandlers.closeHandler,

@@ -5,6 +5,8 @@ import * as handlerActions from './actions/handlerActionCreator';
 import createAsyncFun from '../utils/createAsyncFun'
 
 import {
+    GET_CURRENT_ERROR_MSG,
+    WRAP_ERROR_MSG,
     ADD_EVENT_LISTENER_ERROR_MSG,
     NEW_WINDOW_ERROR_MSG,
     CLOSE_ERROR_MSG,
@@ -29,6 +31,37 @@ import {
     SET_BOUNDS_ERROR_MSG,
     UPDATE_OPTIONS_ERROR_MSG,
 } from './types';
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#.getCurrent
+export async function getCurrent(action:Action<types.GetCurrentPayload>):Promise<Action<types.GetCurrentResPayload>>{
+    return createAsyncFun<types.GetCurrentPayload,types.GetCurrentResPayload>(
+        action,
+        GET_CURRENT_ERROR_MSG,
+        handlerActions.getCurrentRes,
+        (fin,action,resActionCreator,succCb,errCb)=>{
+            let current = fin.desktop.Window.getCurrent();
+            const responseAction = resActionCreator({current});
+            succCb(responseAction);
+        }
+    );
+}
+
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#.wrap
+export async function wrap(action:Action<types.WrapPayload>):Promise<Action<types.WrapResPayload>>{
+    const { appUuid, windowName } = action.payload;
+    return createAsyncFun<types.WrapPayload,types.WrapResPayload>(
+        action,
+        WRAP_ERROR_MSG,
+        handlerActions.wrapRes,
+        (fin,action,resActionCreator,succCb,errCb)=>{
+            let window = fin.desktop.Window.wrap(appUuid, windowName);
+            const responseAction = resActionCreator({window});
+            succCb(responseAction);
+        }
+    );
+}
+
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#addEventListener
 export async function addEventListener(action:Action<types.AddEventListenerPayload>):Promise<Action<types.AddEventListenerResPayload>>{

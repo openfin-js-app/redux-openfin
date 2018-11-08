@@ -3,6 +3,16 @@ import createFSA, {ActionCreator} from '../../utils/createFSA';
 import * as types from "../types";
 import * as actionTypes from "./actionTypes";
 
+export const getCurrent:ActionCreator<types.GetCurrentPayload> = createFSA<types.GetCurrentPayload>(
+    actionTypes.GET_CURRENT,
+    (options:types.GetCurrentPayload) => <any> options
+);
+
+export const wrap:ActionCreator<types.WrapPayload> = createFSA<types.WrapPayload>(
+    actionTypes.WRAP,
+    (options:types.WrapPayload) => <any> options
+);
+
 export const addEventListener:ActionCreator<types.AddEventListenerPayload> = createFSA<types.AddEventListenerPayload>(
     actionTypes.ADD_EVENT_LISTENER,
     (options:types.AddEventListenerPayload) => <any> options

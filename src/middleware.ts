@@ -44,6 +44,7 @@ const actionHandlers:any = {
     [WindowActions.GET_OPTIONS]:WindowHandlers.getOptionsHandler,
     [WindowActions.HIDE]:WindowHandlers.hideHandler,
     [WindowActions.JOIN_GROUP]:WindowHandlers.joinGroupHandler,
+    [WindowActions.LEAVE_GROUP]:WindowHandlers.leaveGroupHandler,
     [WindowActions.MINIMIZE]:WindowHandlers.minimizeHandler,
     [WindowActions.MAXIMIZE]:WindowHandlers.maximizeHandler,
     [WindowActions.MOVE_BY]:WindowHandlers.moveByHandler,

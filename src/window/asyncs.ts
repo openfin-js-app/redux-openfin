@@ -17,6 +17,7 @@ import {
     GET_OPTIONS_ERROR_MSG,
     HIDE_ERROR_MSG,
     JOIN_GROUP_ERROR_MSG,
+    LEAVE_GROUP_ERROR_MSG,
     MAXIMIZE_ERROR_MSG,
     MINIMIZE_ERROR_MSG,
     MOVE_BY_ERROR_MSG,
@@ -220,14 +221,14 @@ export async function hide(action:Action<types.HidePayload>):Promise<Action<type
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#joinGroup
 export async function joinGroup(action:Action<types.JoinGroupPayload>):Promise<Action<types.JoinGroupResPayload>> {
-    const { target } = action.payload;
+    const { secondWindow } = action.payload;
     return createAsyncFun<types.JoinGroupPayload,types.JoinGroupResPayload>(
         action,
         JOIN_GROUP_ERROR_MSG,
         handlerActions.joinGroupRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
             let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.joinGroup(target,
+            secondWindow.joinGroup(currentWindow,
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);
@@ -236,6 +237,22 @@ export async function joinGroup(action:Action<types.JoinGroupPayload>):Promise<A
     );
 }
 
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#leaveGroup
+export async function leaveGroup(action:Action<types.LeaveGroupPayload>):Promise<Action<types.LeaveGroupResPayload>> {
+    const { secondWindow } = action.payload;
+    return createAsyncFun<types.LeaveGroupPayload,types.LeaveGroupResPayload>(
+        action,
+        LEAVE_GROUP_ERROR_MSG,
+        handlerActions.leaveGroupRes,
+        (fin,action,resActionCreator,succCb,errCb)=>{
+            secondWindow.leaveGroup(
+                ()=>{
+                    const responseAction = resActionCreator({});
+                    succCb(responseAction);
+                },errCb);
+        }
+    );
+}
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#maximize
 export async function maximize(action:Action<types.MaximizePayload>):Promise<Action<types.MaximizeResPayload>>{

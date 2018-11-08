@@ -63,6 +63,11 @@ export const joinGroup:ActionCreator<types.JoinGroupPayload> = createFSA<types.J
     (options:types.JoinGroupPayload) => <any> options
 );
 
+export const leaveGroup:ActionCreator<types.LeaveGroupPayload> = createFSA<types.LeaveGroupPayload>(
+    actionTypes.LEAVE_GROUP,
+    (options:types.LeaveGroupPayload) => <any> options
+);
+
 export const minimize:ActionCreator<types.MinimizePayload> = createFSA<types.MinimizePayload>(
     actionTypes.MINIMIZE,
     (options:types.MinimizePayload) => <any> options

@@ -64,6 +64,11 @@ export const joinGroupRes:ActionCreator<types.JoinGroupResPayload> = createFSA<t
     (options:types.JoinGroupResPayload) => <any> options
 );
 
+export const leaveGroupRes:ActionCreator<types.LeaveGroupResPayload> = createFSA<types.LeaveGroupResPayload>(
+    actionTypes.LEAVE_GROUP_RES,
+    (options:types.LeaveGroupResPayload) => <any> options
+);
+
 export const minimizeRes:ActionCreator<types.MinimizeResPayload> = createFSA<types.MinimizeResPayload>(
     actionTypes.MINIMIZE_RES,
     (options:types.MinimizeResPayload) => <any> options

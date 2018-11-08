@@ -98,6 +98,14 @@ export const joinGroupHandler = (params:ActionHandlerParams) => {
     });
 };
 
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#leaveGroup
+export const leaveGroupHandler = (params:ActionHandlerParams) => {
+    const { action }=params;
+    asyncs.leaveGroup(action).catch((e)=>{
+        // eat the exception
+    });
+};
+
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#maximize
 export const maximizeHandler = (params:ActionHandlerParams) => {
     const { action }=params;

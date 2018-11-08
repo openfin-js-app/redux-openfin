@@ -36,6 +36,9 @@ export const HIDE_RES = makeType('HIDE_RES');
 export const JOIN_GROUP = makeType('JOIN_GROUP');
 export const JOIN_GROUP_RES = makeType('JOIN_GROUP_RES');
 
+export const LEAVE_GROUP = makeType('LEAVE_GROUP');
+export const LEAVE_GROUP_RES = makeType('LEAVE_GROUP_RES');
+
 export const MINIMIZE = makeType('MINIMIZE');
 export const MINIMIZE_RES = makeType('MINIMIZE_RES');
 

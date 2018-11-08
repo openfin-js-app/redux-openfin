@@ -14,8 +14,8 @@ import {
     CLEAR_CACHE_ERROR_MSG,
 } from './types';
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getDeviceId
-export async function getDeviceId(action:Action<types.GetMachineIdPayload>):Promise<Action<types.GetMachineIdResPayload>>{
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getMachineId
+export async function getMachineId(action:Action<types.GetMachineIdPayload>):Promise<Action<types.GetMachineIdResPayload>>{
     return createAsyncFun<types.GetMachineIdPayload,types.GetMachineIdResPayload>(
         action,
         GET_MACHINE_ID_ERROR_MSG,

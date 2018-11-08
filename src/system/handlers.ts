@@ -4,7 +4,7 @@ import * as asyncs from './asyncs';
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getMachineId
 export const getMachineIdHandler = (params:ActionHandlerParams) => {
     const { action }=params;
-    asyncs.getDeviceId(action).catch((e)=>{
+    asyncs.getMachineId(action).catch((e)=>{
         // eat the exception
     });
 };

@@ -13,6 +13,11 @@ export const closeRes:ActionCreator<types.CloseResPayload> = createFSA<types.Clo
     (options:types.CloseResPayload) => <any> options
 );
 
+export const disableFrameRes:ActionCreator<types.DisableFrameResPayload> = createFSA<types.DisableFrameResPayload>(
+    actionTypes.DISABLE_FRAME_RES,
+    (options:types.DisableFrameResPayload) => <any> options
+);
+
 export const focusRes:ActionCreator<types.FocusResPayload> = createFSA<types.FocusResPayload>(
     actionTypes.FOCUS_RES,
     (options:types.FocusResPayload) => <any> options

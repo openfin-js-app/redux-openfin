@@ -17,6 +17,14 @@ export const closeHandler = (params:ActionHandlerParams) => {
     });
 };
 
+//http://cdn.openfin.co/jsdocs/beta/tutorial-window.disableFrame.html
+export const disableFrameHandler = (params:ActionHandlerParams) => {
+    const { action }=params;
+    asyncs.disableFrame(action).catch((e)=>{
+        // eat the exception
+    });
+};
+
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#focus
 export const focusHandler = (params:ActionHandlerParams) => {
     const { action }=params;

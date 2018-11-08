@@ -34,6 +34,7 @@ const actionHandlers:any = {
     [SystemActions.CLEAR_CACHE]:SystemHandlers.clearCacheHandler,
     [WindowActions.NEW_WINDOWS]:WindowHandlers.newWindowHandler,
     [WindowActions.CLOSE]:WindowHandlers.closeHandler,
+    [WindowActions.DISABLE_FRAME]:WindowHandlers.disableFrameHandler,
     [WindowActions.FOCUS]:WindowHandlers.focusHandler,
     [WindowActions.GET_BOUNDS]:WindowHandlers.getBoundsHandler,
     [WindowActions.GET_STATE]:WindowHandlers.getStateHandler,

@@ -7,6 +7,7 @@ import createAsyncFun from '../utils/createAsyncFun'
 import {
     NEW_WINDOW_ERROR_MSG,
     CLOSE_ERROR_MSG,
+    DISABLE_FRAME_ERROR_MSG,
     FOCUS_ERROR_MSG,
     GET_BOUNDS_ERROR_MSG,
     GET_STATE_ERROR_MSG,
@@ -56,6 +57,24 @@ export async function close(action:Action<types.ClosePayload>):Promise<Action<ty
                 },errCb);
         }
     );
+}
+
+//http://cdn.openfin.co/jsdocs/beta/tutorial-window.disableFrame.html
+export async function disableFrame(action:Action<types.DisableFramePayload>):Promise<Action<types.DisableFrameResPayload>>{
+    return createAsyncFun<types.DisableFramePayload,types.DisableFrameResPayload>(
+        action,
+        DISABLE_FRAME_ERROR_MSG,
+        handlerActions.disableFrameRes,
+        (fin,action,resActionCreator,succCb,errCb)=>{
+            let currentWindow = fin.desktop.Window.getCurrent();
+            currentWindow.disableFrame(
+                ()=>{
+                    const responseAction = resActionCreator({});
+                    succCb(responseAction);
+                },errCb);
+        }
+    )
+    
 }
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#focus

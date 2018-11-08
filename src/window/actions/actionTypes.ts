@@ -6,6 +6,9 @@ export const NEW_WINDOWS_RES = makeType('NEW_WINDOWS_RES');
 export const CLOSE = makeType('CLOSE');
 export const CLOSE_RES = makeType('CLOSE_RES');
 
+export const DISABLE_FRAME = makeType('DISABLE_FRAME');
+export const DISABLE_FRAME_RES = makeType('DISABLE_FRAME_RES');
+
 export const FOCUS = makeType('FOCUS');
 export const FOCUS_RES = makeType('FOCUS_RES');
 

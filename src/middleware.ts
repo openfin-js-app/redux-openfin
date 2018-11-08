@@ -3,6 +3,8 @@ import { ActionHandlerParams } from './GlobalTypes';
 
 import * as ApplicationActions from './application/actions/actionTypes';
 import * as  ApplicationHandlers from './application/handlers';
+import * as InterApplicationActions from './interApplicationBus/actions/actionTypes';
+import * as  InterApplicationHandlers from './interApplicationBus/handlers';
 import * as NotificationActions from './notification/actions/actionTypes';
 import * as  NotificationHandlers from './notification/handlers';
 import * as SystemActions from './system/actions/actionTypes';
@@ -24,6 +26,8 @@ const actionHandlers:any = {
     [ApplicationActions.NEW_APPLICATION]:ApplicationHandlers.newApplicatoinHandler,
     [ApplicationActions.RESTART]:ApplicationHandlers.restartHandler,
     [ApplicationActions.CLOSE]:ApplicationHandlers.closeHandler,
+    [InterApplicationActions.PUBLISH]:InterApplicationHandlers.publishHandler,
+    [InterApplicationActions.SUBSCRIBE]:InterApplicationHandlers.subscribeHandler,
     [NotificationActions.CREATE_NOTIFICATION]:NotificationHandlers.createNotificationHandler,
     [SystemActions.GET_MACHINE_ID]:SystemHandlers.getMachineIdHandler,
     [SystemActions.GET_DEVICE_USER_ID]:SystemHandlers.getDeviceUserIdHandler,

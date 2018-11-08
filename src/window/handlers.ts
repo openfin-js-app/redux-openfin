@@ -114,6 +114,14 @@ export const maximizeHandler = (params:ActionHandlerParams) => {
     });
 };
 
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#mergeGroups
+export const mergeGroupsHandler = (params:ActionHandlerParams) => {
+    const { action }=params;
+    asyncs.mergeGroups(action).catch((e)=>{
+        // eat the exception
+    });
+};
+
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#minimize
 export const minimizeHandler = (params:ActionHandlerParams) => {
     const { action }=params;

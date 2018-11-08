@@ -78,6 +78,11 @@ export const maximize:ActionCreator<types.MaximizePayload> = createFSA<types.Max
     (options:types.MaximizePayload) => <any> options
 );
 
+export const mergeGroups:ActionCreator<types.MergeGroupsPayload> = createFSA<types.MergeGroupsPayload>(
+    actionTypes.MERGE_GROUPS,
+    (options:types.MergeGroupsPayload) => <any> options
+);
+
 export const moveBy:ActionCreator<types.MoveByPayload> = createFSA<types.MoveByPayload>(
     actionTypes.MOVE_BY,
     (options:types.MoveByPayload) => <any> options

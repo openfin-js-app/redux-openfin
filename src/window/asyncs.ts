@@ -19,6 +19,7 @@ import {
     JOIN_GROUP_ERROR_MSG,
     LEAVE_GROUP_ERROR_MSG,
     MAXIMIZE_ERROR_MSG,
+    MERGE_GROUPS_ERROR_MSG,
     MINIMIZE_ERROR_MSG,
     MOVE_BY_ERROR_MSG,
     MOVE_TO_ERROR_MSG,
@@ -269,6 +270,26 @@ export async function maximize(action:Action<types.MaximizePayload>):Promise<Act
         }
     );
 }
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#mergeGroups
+export async function mergeGroups(action:Action<types.MergeGroupsPayload>):Promise<Action<types.MergeGroupsResPayload>>{
+    const { currentWindow, targetWindow } = action.payload;
+    return createAsyncFun<types.MergeGroupsPayload,types.MergeGroupsResPayload>(
+        action,
+        MERGE_GROUPS_ERROR_MSG,
+        handlerActions.mergeGroupsRes,
+        (fin,action,resActionCreator,succCb,errCb)=>{
+            currentWindow.mergeGroups(targetWindow,
+                ()=>{
+                    const responseAction = resActionCreator({});
+                    succCb(responseAction);
+                },errCb);
+        }
+    );
+}
+
+
+
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#minimize
 export async function minimize(action:Action<types.MinimizePayload>):Promise<Action<types.MinimizeResPayload>>{

@@ -15,6 +15,7 @@ export const HIDE_ERROR_MSG = 'Openfin API call Window.hide() failed.';
 export const JOIN_GROUP_ERROR_MSG = 'Openfin API call Window.joinGroup() failed.';
 export const LEAVE_GROUP_ERROR_MSG = 'Openfin API call Window.leaveGroup() failed.';
 export const MAXIMIZE_ERROR_MSG = 'Openfin API call Window.maximize() failed.';
+export const MERGE_GROUPS_ERROR_MSG = 'Openfin API call Window.mergeGroups() failed.';
 export const MINIMIZE_ERROR_MSG = 'Openfin API call Window.minimize() failed.';
 export const MOVE_BY_ERROR_MSG = 'Openfin API call Window.moveBy() failed.';
 export const MOVE_TO_ERROR_MSG = 'Openfin API call Window.moveTo() failed.';
@@ -126,6 +127,14 @@ export interface MaximizePayload extends BaseRequestPayload{
 
 }
 export interface MaximizeResPayload extends BaseResponsePayload{
+
+}
+
+export interface MergeGroupsPayload extends BaseRequestPayload{
+    currentWindow:any,
+    targetWindow:any,
+}
+export interface MergeGroupsResPayload extends BaseResponsePayload{
 
 }
 

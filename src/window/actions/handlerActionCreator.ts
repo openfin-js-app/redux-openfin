@@ -79,6 +79,11 @@ export const maximizeRes:ActionCreator<types.MaximizeResPayload> = createFSA<typ
     (options:types.MaximizeResPayload) => <any> options
 );
 
+export const mergeGroupsRes:ActionCreator<types.MergeGroupsResPayload> = createFSA<types.MergeGroupsResPayload>(
+    actionTypes.MERGE_GROUPS_RES,
+    (options:types.MergeGroupsResPayload) => <any> options
+);
+
 export const moveByRes:ActionCreator<types.MoveByResPayload> = createFSA<types.MoveByResPayload>(
     actionTypes.MOVE_BY_RES,
     (options:types.MoveByResPayload) => <any> options

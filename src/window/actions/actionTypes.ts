@@ -45,6 +45,9 @@ export const MINIMIZE_RES = makeType('MINIMIZE_RES');
 export const MAXIMIZE = makeType('MAXIMIZE');
 export const MAXIMIZE_RES = makeType('MAXIMIZE_RES');
 
+export const MERGE_GROUPS = makeType('MERGE_GROUPS');
+export const MERGE_GROUPS_RES = makeType('MERGE_GROUPS_RES');
+
 export const MOVE_BY = makeType('MOVE_BY');
 export const MOVE_BY_RES = makeType('MOVE_BY_RES');
 

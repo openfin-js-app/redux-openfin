@@ -47,6 +47,7 @@ const actionHandlers:any = {
     [WindowActions.LEAVE_GROUP]:WindowHandlers.leaveGroupHandler,
     [WindowActions.MINIMIZE]:WindowHandlers.minimizeHandler,
     [WindowActions.MAXIMIZE]:WindowHandlers.maximizeHandler,
+    [WindowActions.MERGE_GROUPS]:WindowHandlers.mergeGroupsHandler,
     [WindowActions.MOVE_BY]:WindowHandlers.moveByHandler,
     [WindowActions.MOVE_TO]:WindowHandlers.moveToHandler,
     [WindowActions.RESTORE]:WindowHandlers.restoreHandler,

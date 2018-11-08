@@ -23,6 +23,11 @@ export const disableFrame:ActionCreator<types.DisableFramePayload> = createFSA<t
     (options:types.DisableFramePayload) => <any> options
 );
 
+export const enableFrame:ActionCreator<types.EnableFramePayload> = createFSA<types.EnableFramePayload>(
+    actionTypes.ENABLE_FRAME,
+    (options:types.EnableFramePayload) => <any> options
+);
+
 export const focus:ActionCreator<types.FocusPayload> = createFSA<types.FocusPayload>(
     actionTypes.FOCUS,
     (options:types.FocusPayload) => <any> options

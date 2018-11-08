@@ -23,6 +23,11 @@ export const disableFrameRes:ActionCreator<types.DisableFrameResPayload> = creat
     (options:types.DisableFrameResPayload) => <any> options
 );
 
+export const enableFrameRes:ActionCreator<types.EnableFrameResPayload> = createFSA<types.EnableFrameResPayload>(
+    actionTypes.ENABLE_FRAME_RES,
+    (options:types.EnableFrameResPayload) => <any> options
+);
+
 export const focusRes:ActionCreator<types.FocusResPayload> = createFSA<types.FocusResPayload>(
     actionTypes.FOCUS_RES,
     (options:types.FocusResPayload) => <any> options

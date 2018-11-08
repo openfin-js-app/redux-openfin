@@ -12,6 +12,9 @@ export const CLOSE_RES = makeType('CLOSE_RES');
 export const DISABLE_FRAME = makeType('DISABLE_FRAME');
 export const DISABLE_FRAME_RES = makeType('DISABLE_FRAME_RES');
 
+export const ENABLE_FRAME = makeType('ENABLE_FRAME');
+export const ENABLE_FRAME_RES = makeType('ENABLE_FRAME_RES');
+
 export const FOCUS = makeType('FOCUS');
 export const FOCUS_RES = makeType('FOCUS_RES');
 

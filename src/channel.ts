@@ -23,7 +23,7 @@ const sharedActionListener = (type:string)=>(payload:any,src:any)=>{
         channel.publish(type,payload);
     }
 
-    if (payload[SHARED_ACTION_ORIGIN_TAG] != window[SHARED_ACTION_ORIGIN_TAG]){
+    if (payload[SHARED_ACTION_ORIGIN_TAG] !== window[SHARED_ACTION_ORIGIN_TAG]){
         dispatch({type,payload});
     }
 

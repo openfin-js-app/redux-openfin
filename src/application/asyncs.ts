@@ -18,7 +18,7 @@ export async function newApplication(action:Action<types.NewApplicationPayload>)
         NEW_APPLICAITON_ERROR_MSG,
         handlerActions.newApplicationRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let app = new new fin.desktop.Application(options,
+            let app = new fin.desktop.Application(options,
                 (app:any)=>{
                     const responseAction = resActionCreator({app});
                     succCb(responseAction);

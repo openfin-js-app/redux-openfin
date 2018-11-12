@@ -9,7 +9,7 @@ Array [
       "errorCallback": [Function],
       "force": true,
     },
-    "type": "REDUX_OPENFIN::CLOSE",
+    "type": "REDUX_OPENFIN::APPLICATION_CLOSE",
   },
 ]
 `;

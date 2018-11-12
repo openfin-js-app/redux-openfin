@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Application asyncs close 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+            "force": true,
+          },
+          "type": "REDUX_OPENFIN::APPLICATION_CLOSE",
+        },
+        "OpenFin API call Application.close() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Application asyncs newApplication 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+            "mainWindowOptions": Object {},
+            "name": "name",
+            "uuid": "uuid",
+          },
+          "type": "REDUX_OPENFIN::NEW_APPLICATION",
+        },
+        "OpenFin API call Application.constructor failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Application asyncs restart 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      [Function],
+      [MockFunction],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Application asyncs restart 2`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "error": false,
+        "payload": Object {
+          "callback": [Function],
+          "errorCallback": [Function],
+        },
+        "type": "REDUX_OPENFIN::APPLICATION_RESTART_RES",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`Application asyncs restart 3`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::APPLICATION_RESTART",
+        },
+        "OpenFin API call Application.restart() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;

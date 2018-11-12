@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@types/jest": "^23.3.9",
+    "@types/node": "^10.12.5",
     "@types/redux-actions": "^2.3.0",
     "copyfiles": "^2.0.0",
     "fs-extra": "^6.0.1",

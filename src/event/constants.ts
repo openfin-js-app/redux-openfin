@@ -102,5 +102,5 @@ export const appEvents:EventConstant[] = appEventStrArr.map(one => {
 });
 
 export const windowEvents:EventConstant[] = windowEventStrArr.map(one => {
-    return new EventConstant('MAIN_WIND_EVENT::',one);
+    return new EventConstant('WIND_EVENT::',one);
 });

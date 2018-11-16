@@ -46,7 +46,7 @@ describe('Notification asyncs',()=>{
             })
         );
         jest.runAllTimers();
-        expect(fin.desktop.Notification).toBeTruthy();
+        expect(fin.desktop.Notification).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
     });

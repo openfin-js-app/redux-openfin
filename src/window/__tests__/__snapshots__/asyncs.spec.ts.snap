@@ -1,0 +1,791 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Window asyncs addEventListener 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+            "listener": [Function],
+            "type": "type",
+          },
+          "type": "REDUX_OPENFIN::ADD_EVENT_LISTENER",
+        },
+        "Openfin API call Window.addEventListener() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs bringToFront 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::BRING_TO_FRONT",
+        },
+        "Openfin API call Window.bringToFront() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs close 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+            "force": false,
+          },
+          "type": "REDUX_OPENFIN::CLOSE",
+        },
+        "Openfin API call Window.close() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs disableFrame 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::DISABLE_FRAME",
+        },
+        "Openfin API call Window.disableFrame() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs enableFrame 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::ENABLE_FRAME",
+        },
+        "Openfin API call Window.enableFrame() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs focus 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::FOCUS",
+        },
+        "Openfin API call Window.focus() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs getBounds 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::GET_BOUNDS",
+        },
+        "Openfin API call Window.getBounds() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs getCurrent 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::GET_CURRENT",
+        },
+        "Openfin API call Window.getCurrent() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs getGroup 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::GET_GROUP",
+        },
+        "Openfin API call Window.getGroup() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs getOptions 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::GET_OPTIONS",
+        },
+        "Openfin API call Window.getOptions() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs getState 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::GET_STATE",
+        },
+        "Openfin API call Window.getState() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs hide 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::HIDE",
+        },
+        "Openfin API call Window.hide() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs joinGroup 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "currentWindow": Object {
+              "joinGroup": [MockFunction] {
+                "calls": Array [
+                  Array [
+                    Object {},
+                    [Function],
+                    [MockFunction],
+                  ],
+                ],
+                "results": Array [
+                  Object {
+                    "isThrow": false,
+                    "value": undefined,
+                  },
+                ],
+              },
+            },
+            "errorCallback": [Function],
+            "targetWindow": Object {},
+          },
+          "type": "REDUX_OPENFIN::JOIN_GROUP",
+        },
+        "Openfin API call Window.joinGroup() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs leaveGroup 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "currentWindow": Object {
+              "leaveGroup": [MockFunction] {
+                "calls": Array [
+                  Array [
+                    [Function],
+                    [MockFunction],
+                  ],
+                ],
+                "results": Array [
+                  Object {
+                    "isThrow": false,
+                    "value": undefined,
+                  },
+                ],
+              },
+            },
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::LEAVE_GROUP",
+        },
+        "Openfin API call Window.leaveGroup() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs maximize 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::MAXIMIZE",
+        },
+        "Openfin API call Window.maximize() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs mergeGroups 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "currentWindow": Object {
+              "mergeGroups": [MockFunction] {
+                "calls": Array [
+                  Array [
+                    Object {},
+                    [Function],
+                    [MockFunction],
+                  ],
+                ],
+                "results": Array [
+                  Object {
+                    "isThrow": false,
+                    "value": undefined,
+                  },
+                ],
+              },
+            },
+            "errorCallback": [Function],
+            "targetWindow": Object {},
+          },
+          "type": "REDUX_OPENFIN::MERGE_GROUPS",
+        },
+        "Openfin API call Window.mergeGroups() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs minimize 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::MINIMIZE",
+        },
+        "Openfin API call Window.minimize() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs moveBy 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "deltaLeft": 1,
+            "deltaTop": 1,
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::MOVE_BY",
+        },
+        "Openfin API call Window.moveBy() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs moveTo 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+            "left": 1,
+            "top": 1,
+          },
+          "type": "REDUX_OPENFIN::MOVE_TO",
+        },
+        "Openfin API call Window.moveTo() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs newWindow 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::NEW_WINDOWS",
+        },
+        "Openfin API call Window.constructor() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs restore 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::RESTORE",
+        },
+        "Openfin API call Window.restore() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs setAsForeground 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::SET_AS_FOREGROUND",
+        },
+        "Openfin API call Window.setForeground() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs setBounds 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+            "height": 3,
+            "left": 2,
+            "top": 1,
+            "width": 4,
+          },
+          "type": "REDUX_OPENFIN::SET_BOUNDS",
+        },
+        "Openfin API call Window.setBounds() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs show 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+            "force": true,
+          },
+          "type": "REDUX_OPENFIN::SHOW",
+        },
+        "Openfin API call Window.show() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs updateOptions 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+            "options": Object {},
+          },
+          "type": "REDUX_OPENFIN::UPDATE_OPTIONS",
+        },
+        "Openfin API call Window.updateOptions() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;

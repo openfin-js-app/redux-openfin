@@ -72,7 +72,8 @@ export async function addEventListener(action:Action<types.AddEventListenerPaylo
         ADD_EVENT_LISTENER_ERROR_MSG,
         handlerActions.addEventListenerRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let window = new fin.desktop.addEventListener(type, listener,
+            let currentWindow = fin.desktop.Window.getCurrent();
+            currentWindow.addEventListener(type, listener,
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);

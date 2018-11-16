@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`makeType utils works by default 1`] = `"REDUX_OPENFIN::SAMPLE_ACTION_NAME"`;

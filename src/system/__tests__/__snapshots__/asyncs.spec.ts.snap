@@ -1,0 +1,495 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`System asyncs clearCache 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "callback": [Function],
+        "errorCallback": [Function],
+      },
+      [Function],
+      [MockFunction],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`System asyncs clearCache 2`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "error": false,
+        "payload": Object {
+          "callback": [Function],
+          "errorCallback": [Function],
+        },
+        "type": "REDUX_OPENFIN::CLEAR_CACHE_RES",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`System asyncs clearCache 3`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::CLEAR_CACHE",
+        },
+        "OpenFin API call System.clearCache() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`System asyncs getDeviceUserId 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      [Function],
+      [MockFunction],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`System asyncs getDeviceUserId 2`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "error": false,
+        "payload": Object {
+          "callback": [Function],
+          "errorCallback": [Function],
+          "id": undefined,
+        },
+        "type": "REDUX_OPENFIN::GET_DEVICE_USER_ID_RES",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`System asyncs getDeviceUserId 3`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::GET_DEVICE_USER_ID",
+        },
+        "OpenFin API call System.getDeviceUserId() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`System asyncs getEnvironmentVariable 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      "env",
+      [Function],
+      [MockFunction],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`System asyncs getEnvironmentVariable 2`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "error": false,
+        "payload": Object {
+          "callback": [Function],
+          "env": "env",
+          "errorCallback": [Function],
+          "value": undefined,
+        },
+        "type": "REDUX_OPENFIN::GET_ENVIRONMENT_VARIABLE_RES",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`System asyncs getEnvironmentVariable 3`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "env": "env",
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::GET_ENVIRONMENT_VARIABLE",
+        },
+        "OpenFin API call System.getEnvironmentVariable() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`System asyncs getHostSpecs 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      [Function],
+      [MockFunction],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`System asyncs getHostSpecs 2`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "error": undefined,
+        "payload": Object {
+          "callback": [Function],
+          "errorCallback": [Function],
+        },
+        "type": "REDUX_OPENFIN::GET_HOST_SPECS_RES",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`System asyncs getHostSpecs 3`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::GET_HOST_SPECS",
+        },
+        "OpenFin API call System.getHostSpecs() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`System asyncs getMachineId 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      [Function],
+      [MockFunction],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`System asyncs getMachineId 2`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "error": false,
+        "payload": Object {
+          "callback": [Function],
+          "errorCallback": [Function],
+          "id": undefined,
+        },
+        "type": "REDUX_OPENFIN::GET_MACHINE_ID_RES",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`System asyncs getMachineId 3`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::GET_MACHINE_ID",
+        },
+        "OpenFin API call System.getMachine() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`System asyncs getMonitorInfo 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      [Function],
+      [MockFunction],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`System asyncs getMonitorInfo 2`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "error": undefined,
+        "payload": Object {
+          "callback": [Function],
+          "errorCallback": [Function],
+        },
+        "type": "REDUX_OPENFIN::GET_MONITOR_INFO_RES",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`System asyncs getMonitorInfo 3`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::GET_MONITOR_INFO",
+        },
+        "OpenFin API call System.getMonitorInfo() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`System asyncs getVersion 1`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      [Function],
+      [MockFunction],
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`System asyncs getVersion 2`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "error": false,
+        "payload": Object {
+          "callback": [Function],
+          "errorCallback": [Function],
+          "version": undefined,
+        },
+        "type": "REDUX_OPENFIN::GET_VERSION_RES",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`System asyncs getVersion 3`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "callback": [Function],
+            "errorCallback": [Function],
+          },
+          "type": "REDUX_OPENFIN::GET_VERSION",
+        },
+        "OpenFin API call System.getVersion() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;

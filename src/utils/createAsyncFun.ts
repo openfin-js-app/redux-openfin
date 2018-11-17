@@ -8,10 +8,11 @@ export default function createAsyncFun<RequestPayloadType,ResponsePayloadType,>(
         ERROR_MSG:string,
         resActionCreator:(options:ResponsePayloadType)=>Action<ResponsePayloadType>,
         finCb:(
-            fin:any,action:Action<RequestPayloadType>,
+            fin:any,
+            action:Action<RequestPayloadType>,
             resActionCreator:(options:ResponsePayloadType)=>Action<ResponsePayloadType>,
             succCb:(action:Action<ResponsePayloadType>)=>void,
-            errCb:(e:Error)=>void
+            errCb:(e:Error|string)=>void
         )=>void
 ):Promise<Action<ResponsePayloadType>> {
     return new Promise<Action<ResponsePayloadType>>((resolve,reject)=>{
@@ -22,10 +23,10 @@ export default function createAsyncFun<RequestPayloadType,ResponsePayloadType,>(
                 resolve(action);
             }
         };
-        const errCb = (e:Error)=>{
-            const errMsg = e && e.message
-                ? e.message
-                : ERROR_MSG;
+        const errCb = (e:Error|string)=>{
+            const errMsg:string = e && (e as Error).message
+                ? (e as Error).message
+                : e?e as string:ERROR_MSG;
             const error = new Error(errMsg);
             const rejectAction = resActionCreator({
                 name:'Error',

@@ -33,7 +33,10 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/**/*.{ts,tsx,js,jsx,mjs}"
+      "src/**/*.{ts,tsx,js,jsx,mjs}",
+      "!src/event/index.ts",
+      "!src/system/index.ts",
+      "!src/index.ts"
     ],
     "setupFiles": [],
     "testMatch": [

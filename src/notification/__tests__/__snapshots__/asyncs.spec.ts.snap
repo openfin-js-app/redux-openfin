@@ -9,8 +9,6 @@ Object {
         Object {
           "error": false,
           "payload": Object {
-            "callback": [Function],
-            "errorCallback": [Function],
             "ignoreMouseOver": false,
             "message": "message",
             "onClick": [Function],

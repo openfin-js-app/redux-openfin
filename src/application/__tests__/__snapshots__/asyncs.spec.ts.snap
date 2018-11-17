@@ -9,8 +9,6 @@ Object {
         Object {
           "error": false,
           "payload": Object {
-            "callback": [Function],
-            "errorCallback": [Function],
             "force": true,
           },
           "type": "REDUX_OPENFIN::APPLICATION_CLOSE",
@@ -39,8 +37,6 @@ Object {
         Object {
           "error": false,
           "payload": Object {
-            "callback": [Function],
-            "errorCallback": [Function],
             "mainWindowOptions": Object {},
             "name": "name",
             "uuid": "uuid",
@@ -85,10 +81,7 @@ exports[`Application asyncs restart 2`] = `
     Array [
       Object {
         "error": false,
-        "payload": Object {
-          "callback": [Function],
-          "errorCallback": [Function],
-        },
+        "payload": Object {},
         "type": "REDUX_OPENFIN::APPLICATION_RESTART_RES",
       },
     ],
@@ -110,10 +103,7 @@ Object {
       Array [
         Object {
           "error": false,
-          "payload": Object {
-            "callback": [Function],
-            "errorCallback": [Function],
-          },
+          "payload": Object {},
           "type": "REDUX_OPENFIN::APPLICATION_RESTART",
         },
         "OpenFin API call Application.restart() failed.",

@@ -5,8 +5,6 @@ Array [
   Object {
     "error": false,
     "payload": Object {
-      "callback": [Function],
-      "errorCallback": [Function],
       "force": true,
     },
     "type": "REDUX_OPENFIN::APPLICATION_CLOSE",

@@ -112,70 +112,49 @@ exports[`Event::registerDefaultListener register by default 3`] = `
     Array [
       Object {
         "error": false,
-        "payload": Object {
-          "callback": [Function],
-          "errorCallback": [Function],
-        },
+        "payload": Object {},
         "type": "REDUX_OPENFIN::APP_EVENT::CLOSED",
       },
     ],
     Array [
       Object {
         "error": false,
-        "payload": Object {
-          "callback": [Function],
-          "errorCallback": [Function],
-        },
+        "payload": Object {},
         "type": "REDUX_OPENFIN::WIND_EVENT::BLURRED",
       },
     ],
     Array [
       Object {
         "error": false,
-        "payload": Object {
-          "callback": [Function],
-          "errorCallback": [Function],
-        },
+        "payload": Object {},
         "type": "REDUX_OPENFIN::WIND_EVENT::BOUNDS_CHANGED",
       },
     ],
     Array [
       Object {
         "error": false,
-        "payload": Object {
-          "callback": [Function],
-          "errorCallback": [Function],
-        },
+        "payload": Object {},
         "type": "REDUX_OPENFIN::WIND_EVENT::BOUNDS_CHANGING",
       },
     ],
     Array [
       Object {
         "error": false,
-        "payload": Object {
-          "callback": [Function],
-          "errorCallback": [Function],
-        },
+        "payload": Object {},
         "type": "REDUX_OPENFIN::WIND_EVENT::CLOSE_REQUESTED",
       },
     ],
     Array [
       Object {
         "error": false,
-        "payload": Object {
-          "callback": [Function],
-          "errorCallback": [Function],
-        },
+        "payload": Object {},
         "type": "REDUX_OPENFIN::WIND_EVENT::FOCUSED",
       },
     ],
     Array [
       Object {
         "error": false,
-        "payload": Object {
-          "callback": [Function],
-          "errorCallback": [Function],
-        },
+        "payload": Object {},
         "type": "REDUX_OPENFIN::WIND_EVENT::HIDDEN",
       },
     ],
@@ -183,8 +162,6 @@ exports[`Event::registerDefaultListener register by default 3`] = `
       Object {
         "error": false,
         "payload": Object {
-          "callback": [Function],
-          "errorCallback": [Function],
           "state": "maximized",
         },
         "type": "REDUX_OPENFIN::GET_STATE_RES",
@@ -194,8 +171,6 @@ exports[`Event::registerDefaultListener register by default 3`] = `
       Object {
         "error": false,
         "payload": Object {
-          "callback": [Function],
-          "errorCallback": [Function],
           "type": "maximized",
         },
         "type": "REDUX_OPENFIN::WIND_EVENT::MAXIMIZED",
@@ -205,8 +180,6 @@ exports[`Event::registerDefaultListener register by default 3`] = `
       Object {
         "error": false,
         "payload": Object {
-          "callback": [Function],
-          "errorCallback": [Function],
           "state": "minimized",
         },
         "type": "REDUX_OPENFIN::GET_STATE_RES",
@@ -216,8 +189,6 @@ exports[`Event::registerDefaultListener register by default 3`] = `
       Object {
         "error": false,
         "payload": Object {
-          "callback": [Function],
-          "errorCallback": [Function],
           "type": "minimized",
         },
         "type": "REDUX_OPENFIN::WIND_EVENT::MINIMIZED",
@@ -227,8 +198,6 @@ exports[`Event::registerDefaultListener register by default 3`] = `
       Object {
         "error": false,
         "payload": Object {
-          "callback": [Function],
-          "errorCallback": [Function],
           "state": "restored",
         },
         "type": "REDUX_OPENFIN::GET_STATE_RES",
@@ -238,8 +207,6 @@ exports[`Event::registerDefaultListener register by default 3`] = `
       Object {
         "error": false,
         "payload": Object {
-          "callback": [Function],
-          "errorCallback": [Function],
           "type": "restored",
         },
         "type": "REDUX_OPENFIN::WIND_EVENT::RESTORED",
@@ -248,10 +215,7 @@ exports[`Event::registerDefaultListener register by default 3`] = `
     Array [
       Object {
         "error": false,
-        "payload": Object {
-          "callback": [Function],
-          "errorCallback": [Function],
-        },
+        "payload": Object {},
         "type": "REDUX_OPENFIN::WIND_EVENT::SHOWN",
       },
     ],

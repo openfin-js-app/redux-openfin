@@ -9,8 +9,6 @@ Object {
         Object {
           "error": false,
           "payload": Object {
-            "callback": [Function],
-            "errorCallback": [Function],
             "options": Object {
               "message": "message",
               "topic": "topic",
@@ -42,8 +40,6 @@ Object {
         Object {
           "error": false,
           "payload": Object {
-            "callback": [Function],
-            "errorCallback": [Function],
             "options": Object {
               "listener": [Function],
               "senderUuid": "senderUuid",

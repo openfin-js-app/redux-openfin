@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InterApplication asyncs publish 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "options": Object {
+              "message": "message",
+              "topic": "topic",
+            },
+          },
+          "type": "REDUX_OPENFIN::PUBLISH",
+        },
+        "OpenFin API call InterApplicationBus.publish failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`InterApplication asyncs subscribe 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {
+            "options": Object {
+              "listener": [Function],
+              "senderUuid": "senderUuid",
+              "topic": "topic",
+            },
+          },
+          "type": "REDUX_OPENFIN::SUBSCRIBE",
+        },
+        "OpenFin API call InterApplicationBus.subscribe failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;

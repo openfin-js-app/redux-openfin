@@ -1,6 +1,8 @@
 import {Store} from 'redux';
 import {Action} from 'redux-actions';
 
+export const FIN_NOT_INJECTED_MSG = 'fin handler is not injected or initialized';
+
 export type Noop = ()=> void;
 export type ErrorCallback = (error:Object) => void;
 

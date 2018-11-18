@@ -1,6 +1,59 @@
 import { WindowOptions } from '../GlobalTypes';
 import { BaseRequestPayload, BaseResponsePayload } from '../base/BasePayload';
 
+export const GET_CURRENT_ERROR_MSG = 'Openfin API call Window.getCurrent() failed.';
+export const WRAP_ERROR_MSG = 'Openfin API call Window.wrap() failed.';
+export const ADD_EVENT_LISTENER_ERROR_MSG = 'Openfin API call Window.addEventListener() failed.';
+export const BRING_TO_FRONT_ERROR_MSG = 'Openfin API call Window.bringToFront() failed.';
+export const NEW_WINDOW_ERROR_MSG = 'Openfin API call Window.constructor() failed.';
+export const CLOSE_ERROR_MSG = 'Openfin API call Window.close() failed.';
+export const DISABLE_FRAME_ERROR_MSG = 'Openfin API call Window.disableFrame() failed.';
+export const ENABLE_FRAME_ERROR_MSG = 'Openfin API call Window.enableFrame() failed.';
+export const FOCUS_ERROR_MSG = 'Openfin API call Window.focus() failed.';
+export const GET_GROUP_ERROR_MSG = 'Openfin API call Window.getGroup() failed.';
+export const GET_BOUNDS_ERROR_MSG = 'Openfin API call Window.getBounds() failed.';
+export const GET_STATE_ERROR_MSG = 'Openfin API call Window.getState() failed.';
+export const GET_OPTIONS_ERROR_MSG = 'Openfin API call Window.getOptions() failed.';
+export const HIDE_ERROR_MSG = 'Openfin API call Window.hide() failed.';
+export const JOIN_GROUP_ERROR_MSG = 'Openfin API call Window.joinGroup() failed.';
+export const LEAVE_GROUP_ERROR_MSG = 'Openfin API call Window.leaveGroup() failed.';
+export const MAXIMIZE_ERROR_MSG = 'Openfin API call Window.maximize() failed.';
+export const MERGE_GROUPS_ERROR_MSG = 'Openfin API call Window.mergeGroups() failed.';
+export const MINIMIZE_ERROR_MSG = 'Openfin API call Window.minimize() failed.';
+export const MOVE_BY_ERROR_MSG = 'Openfin API call Window.moveBy() failed.';
+export const MOVE_TO_ERROR_MSG = 'Openfin API call Window.moveTo() failed.';
+export const RETORE_ERROR_MSG = 'Openfin API call Window.restore() failed.';
+export const SHOW_ERROR_MSG = 'Openfin API call Window.show() failed.';
+export const SET_AS_FOREGROUND_ERROR_MSG = 'Openfin API call Window.setForeground() failed.';
+export const SET_BOUNDS_ERROR_MSG = 'Openfin API call Window.setBounds() failed.';
+export const UPDATE_OPTIONS_ERROR_MSG = 'Openfin API call Window.updateOptions() failed.';
+
+export interface GetCurrentPayload extends BaseRequestPayload{
+}
+export interface GetCurrentResPayload extends BaseResponsePayload{
+    current:any,
+}
+
+export interface WrapPayload extends BaseRequestPayload{
+    appUuid:string,
+    windowName:string,
+}
+export interface WrapResPayload extends BaseResponsePayload{
+    window:any,
+}
+
+export interface AddEventListenerPayload extends BaseRequestPayload, Partial<WindowOptions>{
+    type:string,
+    listener: Function,
+}
+export interface AddEventListenerResPayload extends BaseResponsePayload{
+}
+
+export interface BringToFrontPayload extends BaseRequestPayload, Partial<WindowOptions>{
+}
+export interface BringToFrontResPayload extends BaseResponsePayload{
+}
+
 export interface NewWindowPayload extends BaseRequestPayload, Partial<WindowOptions>{
 
 }
@@ -13,6 +66,16 @@ export interface ClosePayload extends BaseRequestPayload {
 }
 export interface CloseResPayload extends BaseResponsePayload{
 
+}
+
+export interface DisableFramePayload extends BaseRequestPayload {
+}
+export interface DisableFrameResPayload extends BaseResponsePayload{
+}
+
+export interface EnableFramePayload extends BaseRequestPayload {
+}
+export interface EnableFrameResPayload extends BaseResponsePayload{
 }
 
 export interface FocusPayload extends BaseRequestPayload{
@@ -32,6 +95,12 @@ export interface GetBoundsResPayload extends BaseResponsePayload {
     width?:number,
     right?:number,
     bottom?:number,
+}
+
+export interface GetGroupPayload extends BaseRequestPayload{
+}
+export interface GetGroupResPayload extends BaseResponsePayload {
+    windows?:any[]
 }
 
 export interface GetStatePayload extends BaseRequestPayload{
@@ -55,6 +124,20 @@ export interface HideResPayload extends BaseResponsePayload{
 
 }
 
+export interface JoinGroupPayload extends BaseRequestPayload{
+    currentWindow:any,
+    targetWindow:any,
+}
+export interface JoinGroupResPayload extends BaseResponsePayload{
+
+}
+
+export interface LeaveGroupPayload extends BaseRequestPayload{
+    currentWindow:any,
+}
+export interface LeaveGroupResPayload extends BaseResponsePayload{
+}
+
 export interface MinimizePayload extends BaseRequestPayload{
 
 }
@@ -66,6 +149,14 @@ export interface MaximizePayload extends BaseRequestPayload{
 
 }
 export interface MaximizeResPayload extends BaseResponsePayload{
+
+}
+
+export interface MergeGroupsPayload extends BaseRequestPayload{
+    currentWindow:any,
+    targetWindow:any,
+}
+export interface MergeGroupsResPayload extends BaseResponsePayload{
 
 }
 

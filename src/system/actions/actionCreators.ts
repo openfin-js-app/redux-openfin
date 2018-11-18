@@ -1,11 +1,10 @@
-import {Action} from 'redux-actions';
 import createFSA, {ActionCreator} from '../../utils/createFSA';
 import * as types from "../types";
 import * as actionTypes from "./actionTypes";
 
-export const getDeviceId:ActionCreator<types.GetDeviceIdPayload> = createFSA<types.GetDeviceIdPayload>(
-    actionTypes.GET_DEVICE_ID,
-    (options:types.GetDeviceIdPayload) => <any> options
+export const getMachineId:ActionCreator<types.GetMachineIdPayload> = createFSA<types.GetMachineIdPayload>(
+    actionTypes.GET_MACHINE_ID,
+    (options:types.GetMachineIdPayload) => <any> options
 );
 
 export const getDeviceUserId:ActionCreator<types.GetDeviceUserIdPayload> = createFSA<types.GetDeviceUserIdPayload>(

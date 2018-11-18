@@ -3,6 +3,26 @@ import createFSA, {ActionCreator} from '../../utils/createFSA';
 import * as types from "../types";
 import * as actionTypes from "./actionTypes";
 
+export const getCurrentRes:ActionCreator<types.GetCurrentResPayload> = createFSA<types.GetCurrentResPayload>(
+    actionTypes.GET_CURRENT_RES,
+    (options:types.GetCurrentResPayload) => <any> options
+);
+
+export const wrapRes:ActionCreator<types.WrapResPayload> = createFSA<types.WrapResPayload>(
+    actionTypes.WRAP_RES,
+    (options:types.WrapResPayload) => <any> options
+);
+
+export const addEventListenerRes:ActionCreator<types.AddEventListenerResPayload> = createFSA<types.AddEventListenerResPayload>(
+    actionTypes.ADD_EVENT_LISTENER_RES,
+    (options:types.AddEventListenerResPayload) => <any> options
+);
+
+export const bringToFrontRes:ActionCreator<types.BringToFrontResPayload> = createFSA<types.BringToFrontResPayload>(
+    actionTypes.BRING_TO_FRONT_RES,
+    (options:types.BringToFrontResPayload) => <any> options
+);
+
 export const newWindowRes:ActionCreator<types.NewWindowResPayload> = createFSA<types.NewWindowResPayload>(
     actionTypes.NEW_WINDOWS_RES,
     (options:types.NewWindowResPayload) => <any> options
@@ -11,6 +31,16 @@ export const newWindowRes:ActionCreator<types.NewWindowResPayload> = createFSA<t
 export const closeRes:ActionCreator<types.CloseResPayload> = createFSA<types.CloseResPayload>(
     actionTypes.CLOSE_RES,
     (options:types.CloseResPayload) => <any> options
+);
+
+export const disableFrameRes:ActionCreator<types.DisableFrameResPayload> = createFSA<types.DisableFrameResPayload>(
+    actionTypes.DISABLE_FRAME_RES,
+    (options:types.DisableFrameResPayload) => <any> options
+);
+
+export const enableFrameRes:ActionCreator<types.EnableFrameResPayload> = createFSA<types.EnableFrameResPayload>(
+    actionTypes.ENABLE_FRAME_RES,
+    (options:types.EnableFrameResPayload) => <any> options
 );
 
 export const focusRes:ActionCreator<types.FocusResPayload> = createFSA<types.FocusResPayload>(
@@ -22,6 +52,12 @@ export const getBoundsRes:ActionCreator<types.GetBoundsResPayload> = createFSA<t
     actionTypes.GET_BOUNDS_RES,
     (options:types.GetBoundsResPayload) => <any> options
 );
+
+export const getGroupRes:ActionCreator<types.GetGroupResPayload> = createFSA<types.GetGroupResPayload>(
+    actionTypes.GET_GROUP_RES,
+    (options:types.GetGroupResPayload) => <any> options
+);
+
 
 export const getStateRes:ActionCreator<types.GetStateResPayload> = createFSA<types.GetStateResPayload>(
     actionTypes.GET_STATE_RES,
@@ -38,6 +74,16 @@ export const hideRes:ActionCreator<types.HideResPayload> = createFSA<types.HideR
     (options:types.HideResPayload) => <any> options
 );
 
+export const joinGroupRes:ActionCreator<types.JoinGroupResPayload> = createFSA<types.JoinGroupResPayload>(
+    actionTypes.JOIN_GROUP_RES,
+    (options:types.JoinGroupResPayload) => <any> options
+);
+
+export const leaveGroupRes:ActionCreator<types.LeaveGroupResPayload> = createFSA<types.LeaveGroupResPayload>(
+    actionTypes.LEAVE_GROUP_RES,
+    (options:types.LeaveGroupResPayload) => <any> options
+);
+
 export const minimizeRes:ActionCreator<types.MinimizeResPayload> = createFSA<types.MinimizeResPayload>(
     actionTypes.MINIMIZE_RES,
     (options:types.MinimizeResPayload) => <any> options
@@ -46,6 +92,11 @@ export const minimizeRes:ActionCreator<types.MinimizeResPayload> = createFSA<typ
 export const maximizeRes:ActionCreator<types.MaximizeResPayload> = createFSA<types.MaximizeResPayload>(
     actionTypes.MAXIMIZE_RES,
     (options:types.MaximizeResPayload) => <any> options
+);
+
+export const mergeGroupsRes:ActionCreator<types.MergeGroupsResPayload> = createFSA<types.MergeGroupsResPayload>(
+    actionTypes.MERGE_GROUPS_RES,
+    (options:types.MergeGroupsResPayload) => <any> options
 );
 
 export const moveByRes:ActionCreator<types.MoveByResPayload> = createFSA<types.MoveByResPayload>(

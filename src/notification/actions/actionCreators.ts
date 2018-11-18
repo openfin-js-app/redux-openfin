@@ -7,5 +7,5 @@ export const createNotification:ActionCreator<Partial<types.CreateNotificationPa
     =
 createFSA<Partial<types.CreateNotificationPayload>>(
     actionTypes.CREATE_NOTIFICATION,
-    (options:Partial<types.CreateNotificationPayload>) => <any>{options}
+    (options:Partial<types.CreateNotificationPayload>) => <any>(options)
 )

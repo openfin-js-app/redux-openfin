@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createAsyncFun util async rejected with reason str 1`] = `undefined`;
+
+exports[`createAsyncFun util async rejected with reason str 2`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "type": "res_action_name",
+      },
+    ],
+    Array [
+      Object {
+        "payload": Object {
+          "error": [Error: err],
+          "name": "Error",
+        },
+        "type": "action_name_res",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`createAsyncFun util async resolved 1`] = `
+Object {
+  "type": "res_action_name",
+}
+`;
+
+exports[`createAsyncFun util async resolved 2`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "type": "res_action_name",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;
+
+exports[`createAsyncFun util fin & store not injected throw exception by default 1`] = `[Error: fin handler is not injected or initialized]`;
+
+exports[`createAsyncFun util fin not injected throw exception by default 1`] = `undefined`;
+
+exports[`createAsyncFun util fin not injected throw exception by default 2`] = `
+[MockFunction] {
+  "calls": Array [
+    Array [
+      Object {
+        "type": "res_action_name",
+      },
+    ],
+    Array [
+      Object {
+        "payload": Object {
+          "error": [Error: err],
+          "name": "Error",
+        },
+        "type": "action_name_res",
+      },
+    ],
+    Array [
+      Object {
+        "payload": Object {
+          "error": [Error: fin handler is not injected or initialized],
+          "name": "Error",
+        },
+        "type": "action_name_res",
+      },
+    ],
+  ],
+  "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
+  ],
+}
+`;

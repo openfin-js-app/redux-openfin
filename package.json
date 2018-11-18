@@ -2,6 +2,7 @@
   "name": "@albertli90/redux-openfin",
   "version": "0.20.1-beta",
   "description": "redux middleware for openfin in typescript",
+  "keywords":["openfin","redux","middleware","albert"],
   "main": "index.js",
   "scripts": {
     "build": "yarn prebuild && yarn build:es2015 && yarn build:copy-files",
@@ -9,7 +10,12 @@
     "build:es2015": "tsc",
     "build:copy-files": "node ./scripts/copy-files.js",
     "release-staging": "yarn build && npm publish build --registry=https://albertli.ddns.net:9004/repository/npm-private/",
+    "release":"yarn build && npm publish build --access public",
     "test": "node scripts/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@albertli.ddns.net:open-fin/redux-openfin.git"
   },
   "author": "Wentao Li <liwentao90@yahoo.com>",
   "license": "MIT",

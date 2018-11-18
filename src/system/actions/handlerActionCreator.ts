@@ -3,9 +3,9 @@ import createFSA, {ActionCreator} from "../../utils/createFSA";
 import * as types from "../types";
 import * as actionTypes from "./actionTypes";
 
-export const getDeviceIdRes:ActionCreator<types.GetDeviceIdResPayload> = createFSA<types.GetDeviceIdResPayload>(
-    actionTypes.GET_DEVICE_ID_RES,
-    (options:types.GetDeviceIdResPayload) => <any> options
+export const getMachineIdRes:ActionCreator<types.GetMachineIdResPayload> = createFSA<types.GetMachineIdResPayload>(
+    actionTypes.GET_MACHINE_ID_RES,
+    (options:types.GetMachineIdResPayload) => <any> options
 );
 
 export const getDeviceUserIdRes:ActionCreator<types.GetDeviceUserIdResPayload> = createFSA<types.GetDeviceUserIdResPayload>(

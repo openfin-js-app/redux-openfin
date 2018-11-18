@@ -13,8 +13,9 @@ export default function createFSA<T>(type:string, payloadCreator:(payload:T)=>an
         let oriPayload:Action<any> = actionCreator(payload);
 
         oriPayload.payload = oriPayload.payload?oriPayload.payload:{};
-        oriPayload.payload.callback = oriPayload.payload.callback?oriPayload.payload.callback:noop;
-        oriPayload.payload.errorCallback = oriPayload.payload.errorCallback?oriPayload.payload.errorCallback:noop;
+
+        // oriPayload.payload.callback = oriPayload.payload.callback?oriPayload.payload.callback:noop;
+        // oriPayload.payload.errorCallback = oriPayload.payload.errorCallback?oriPayload.payload.errorCallback:noop;
 
         return <Action<any>> {
             ...oriPayload,

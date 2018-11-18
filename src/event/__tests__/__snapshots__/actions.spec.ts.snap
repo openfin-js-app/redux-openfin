@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Event actions default snapshot 1`] = `
+Object {
+  "appEventDictByName": Object {
+    "closed": EventConstant {
+      "actionCreator": [Function],
+      "name": "closed",
+      "type": "REDUX_OPENFIN::APP_EVENT::CLOSED",
+    },
+  },
+  "appEventDictByType": Object {
+    "REDUX_OPENFIN::APP_EVENT::CLOSED": EventConstant {
+      "actionCreator": [Function],
+      "name": "closed",
+      "type": "REDUX_OPENFIN::APP_EVENT::CLOSED",
+    },
+  },
+  "windowEventDictByName": Object {
+    "blurred": EventConstant {
+      "actionCreator": [Function],
+      "name": "blurred",
+      "type": "REDUX_OPENFIN::WIND_EVENT::BLURRED",
+    },
+    "bounds-changed": EventConstant {
+      "actionCreator": [Function],
+      "name": "bounds-changed",
+      "type": "REDUX_OPENFIN::WIND_EVENT::BOUNDS_CHANGED",
+    },
+    "bounds-changing": EventConstant {
+      "actionCreator": [Function],
+      "name": "bounds-changing",
+      "type": "REDUX_OPENFIN::WIND_EVENT::BOUNDS_CHANGING",
+    },
+    "close-requested": EventConstant {
+      "actionCreator": [Function],
+      "name": "close-requested",
+      "type": "REDUX_OPENFIN::WIND_EVENT::CLOSE_REQUESTED",
+    },
+    "focused": EventConstant {
+      "actionCreator": [Function],
+      "name": "focused",
+      "type": "REDUX_OPENFIN::WIND_EVENT::FOCUSED",
+    },
+    "hidden": EventConstant {
+      "actionCreator": [Function],
+      "name": "hidden",
+      "type": "REDUX_OPENFIN::WIND_EVENT::HIDDEN",
+    },
+    "maximized": EventConstant {
+      "actionCreator": [Function],
+      "name": "maximized",
+      "type": "REDUX_OPENFIN::WIND_EVENT::MAXIMIZED",
+    },
+    "minimized": EventConstant {
+      "actionCreator": [Function],
+      "name": "minimized",
+      "type": "REDUX_OPENFIN::WIND_EVENT::MINIMIZED",
+    },
+    "restored": EventConstant {
+      "actionCreator": [Function],
+      "name": "restored",
+      "type": "REDUX_OPENFIN::WIND_EVENT::RESTORED",
+    },
+    "shown": EventConstant {
+      "actionCreator": [Function],
+      "name": "shown",
+      "type": "REDUX_OPENFIN::WIND_EVENT::SHOWN",
+    },
+  },
+  "windowEventDictByType": Object {
+    "REDUX_OPENFIN::WIND_EVENT::BLURRED": EventConstant {
+      "actionCreator": [Function],
+      "name": "blurred",
+      "type": "REDUX_OPENFIN::WIND_EVENT::BLURRED",
+    },
+    "REDUX_OPENFIN::WIND_EVENT::BOUNDS_CHANGED": EventConstant {
+      "actionCreator": [Function],
+      "name": "bounds-changed",
+      "type": "REDUX_OPENFIN::WIND_EVENT::BOUNDS_CHANGED",
+    },
+    "REDUX_OPENFIN::WIND_EVENT::BOUNDS_CHANGING": EventConstant {
+      "actionCreator": [Function],
+      "name": "bounds-changing",
+      "type": "REDUX_OPENFIN::WIND_EVENT::BOUNDS_CHANGING",
+    },
+    "REDUX_OPENFIN::WIND_EVENT::CLOSE_REQUESTED": EventConstant {
+      "actionCreator": [Function],
+      "name": "close-requested",
+      "type": "REDUX_OPENFIN::WIND_EVENT::CLOSE_REQUESTED",
+    },
+    "REDUX_OPENFIN::WIND_EVENT::FOCUSED": EventConstant {
+      "actionCreator": [Function],
+      "name": "focused",
+      "type": "REDUX_OPENFIN::WIND_EVENT::FOCUSED",
+    },
+    "REDUX_OPENFIN::WIND_EVENT::HIDDEN": EventConstant {
+      "actionCreator": [Function],
+      "name": "hidden",
+      "type": "REDUX_OPENFIN::WIND_EVENT::HIDDEN",
+    },
+    "REDUX_OPENFIN::WIND_EVENT::MAXIMIZED": EventConstant {
+      "actionCreator": [Function],
+      "name": "maximized",
+      "type": "REDUX_OPENFIN::WIND_EVENT::MAXIMIZED",
+    },
+    "REDUX_OPENFIN::WIND_EVENT::MINIMIZED": EventConstant {
+      "actionCreator": [Function],
+      "name": "minimized",
+      "type": "REDUX_OPENFIN::WIND_EVENT::MINIMIZED",
+    },
+    "REDUX_OPENFIN::WIND_EVENT::RESTORED": EventConstant {
+      "actionCreator": [Function],
+      "name": "restored",
+      "type": "REDUX_OPENFIN::WIND_EVENT::RESTORED",
+    },
+    "REDUX_OPENFIN::WIND_EVENT::SHOWN": EventConstant {
+      "actionCreator": [Function],
+      "name": "shown",
+      "type": "REDUX_OPENFIN::WIND_EVENT::SHOWN",
+    },
+  },
+}
+`;

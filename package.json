@@ -1,15 +1,21 @@
 {
-  "name": "@albertli/redux-openfin",
-  "version": "0.10.5",
+  "name": "@albertli90/redux-openfin",
+  "version": "0.20.10",
   "description": "redux middleware for openfin in typescript",
+  "keywords":["openfin","redux","middleware","albert"],
   "main": "index.js",
   "scripts": {
-    "build":"yarn prebuild && yarn build:es2015 && yarn build:copy-files",
-    "prebuild":"rimraf build",
-    "build:es2015":"tsc src/index.ts --outDir build -d --declarationDir build",
-    "build:copy-files":"node ./scripts/copy-files.js",
-    "release":"yarn build && npm publish build --registry=https://albertli.ddns.net:9004/repository/npm-private/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "yarn prebuild && yarn build:es2015 && yarn build:copy-files",
+    "prebuild": "rimraf build",
+    "build:es2015": "tsc",
+    "build:copy-files": "node ./scripts/copy-files.js",
+    "release-staging": "yarn build && npm publish build --registry=https://albertli.ddns.net:9004/repository/npm-private/",
+    "release":"yarn build && npm publish build --access public",
+    "test": "node scripts/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@albertli.ddns.net:open-fin/redux-openfin.git"
   },
   "author": "Wentao Li <liwentao90@yahoo.com>",
   "license": "MIT",
@@ -18,9 +24,58 @@
     "redux-actions": "^2.4.0"
   },
   "devDependencies": {
+    "@types/jest": "^23.3.9",
+    "@types/node": "^10.12.5",
     "@types/redux-actions": "^2.3.0",
     "copyfiles": "^2.0.0",
     "fs-extra": "^6.0.1",
-    "rimraf": "^2.6.2"
+    "jest": "^23.6.0",
+    "jest-environment-jsdom": "^23.4.0",
+    "jest-environment-jsdom-global": "^1.1.0",
+    "redux-mock-store": "^1.5.3",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^23.10.4",
+    "typescript": "^3.1.5"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx,js,jsx,mjs}",
+      "!src/event/index.ts",
+      "!src/system/index.ts",
+      "!src/index.ts"
+    ],
+    "setupFiles": [],
+    "testMatch": [
+      "**/__tests__/**/*.{ts,tsx,js,jsx,mjs}",
+      "**/?(*.)(spec|test).{ts,tsx,js,jsx,mjs}"
+    ],
+    "snapshotSerializers": [],
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "globals": {},
+    "testEnvironment": "jest-environment-jsdom-global",
+    "testURL": "http://localhost",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$",
+      "^.+\\.module\\.(css|sass|scss)$"
+    ],
+    "moduleNameMapper": {},
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "web.js",
+      "web.ts",
+      "js",
+      "json",
+      "web.tsx",
+      "web.jsx",
+      "jsx",
+      "node",
+      "mjs"
+    ]
   }
 }

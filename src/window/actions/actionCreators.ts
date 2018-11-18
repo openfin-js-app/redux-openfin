@@ -3,6 +3,26 @@ import createFSA, {ActionCreator} from '../../utils/createFSA';
 import * as types from "../types";
 import * as actionTypes from "./actionTypes";
 
+export const getCurrent:ActionCreator<types.GetCurrentPayload> = createFSA<types.GetCurrentPayload>(
+    actionTypes.GET_CURRENT,
+    (options:types.GetCurrentPayload) => <any> options
+);
+
+export const wrap:ActionCreator<types.WrapPayload> = createFSA<types.WrapPayload>(
+    actionTypes.WRAP,
+    (options:types.WrapPayload) => <any> options
+);
+
+export const addEventListener:ActionCreator<types.AddEventListenerPayload> = createFSA<types.AddEventListenerPayload>(
+    actionTypes.ADD_EVENT_LISTENER,
+    (options:types.AddEventListenerPayload) => <any> options
+);
+
+export const bringToFront:ActionCreator<types.BringToFrontPayload> = createFSA<types.BringToFrontPayload>(
+    actionTypes.BRING_TO_FRONT,
+    (options:types.BringToFrontPayload) => <any> options
+);
+
 export const newWindow:ActionCreator<types.NewWindowPayload> = createFSA<types.NewWindowPayload>(
     actionTypes.NEW_WINDOWS,
     (options:types.NewWindowPayload) => <any> options
@@ -13,6 +33,16 @@ export const close:ActionCreator<types.ClosePayload> = createFSA<types.ClosePayl
     (options:types.ClosePayload) => <any> options
 );
 
+export const disableFrame:ActionCreator<types.DisableFramePayload> = createFSA<types.DisableFramePayload>(
+    actionTypes.DISABLE_FRAME,
+    (options:types.DisableFramePayload) => <any> options
+);
+
+export const enableFrame:ActionCreator<types.EnableFramePayload> = createFSA<types.EnableFramePayload>(
+    actionTypes.ENABLE_FRAME,
+    (options:types.EnableFramePayload) => <any> options
+);
+
 export const focus:ActionCreator<types.FocusPayload> = createFSA<types.FocusPayload>(
     actionTypes.FOCUS,
     (options:types.FocusPayload) => <any> options
@@ -21,6 +51,11 @@ export const focus:ActionCreator<types.FocusPayload> = createFSA<types.FocusPayl
 export const getBounds:ActionCreator<types.GetBoundsPayload> = createFSA<types.GetBoundsPayload>(
     actionTypes.GET_BOUNDS,
     (options:types.GetBoundsPayload) => <any> options
+);
+
+export const getGroup:ActionCreator<types.GetGroupPayload> = createFSA<types.GetGroupPayload>(
+    actionTypes.GET_GROUP,
+    (options:types.GetGroupPayload) => <any> options
 );
 
 export const getState:ActionCreator<types.GetStatePayload> = createFSA<types.GetStatePayload>(
@@ -38,6 +73,16 @@ export const hide:ActionCreator<types.HidePayload> = createFSA<types.HidePayload
     (options:types.HidePayload) => <any> options
 );
 
+export const joinGroup:ActionCreator<types.JoinGroupPayload> = createFSA<types.JoinGroupPayload>(
+    actionTypes.JOIN_GROUP,
+    (options:types.JoinGroupPayload) => <any> options
+);
+
+export const leaveGroup:ActionCreator<types.LeaveGroupPayload> = createFSA<types.LeaveGroupPayload>(
+    actionTypes.LEAVE_GROUP,
+    (options:types.LeaveGroupPayload) => <any> options
+);
+
 export const minimize:ActionCreator<types.MinimizePayload> = createFSA<types.MinimizePayload>(
     actionTypes.MINIMIZE,
     (options:types.MinimizePayload) => <any> options
@@ -46,6 +91,11 @@ export const minimize:ActionCreator<types.MinimizePayload> = createFSA<types.Min
 export const maximize:ActionCreator<types.MaximizePayload> = createFSA<types.MaximizePayload>(
     actionTypes.MAXIMIZE,
     (options:types.MaximizePayload) => <any> options
+);
+
+export const mergeGroups:ActionCreator<types.MergeGroupsPayload> = createFSA<types.MergeGroupsPayload>(
+    actionTypes.MERGE_GROUPS,
+    (options:types.MergeGroupsPayload) => <any> options
 );
 
 export const moveBy:ActionCreator<types.MoveByPayload> = createFSA<types.MoveByPayload>(

@@ -18,8 +18,10 @@ Redux openfin is a middleware to wrap openfin js api and support to communicate 
 ```
 
 ## Usage
+
+sample configure store scripts
+
 ```typescript
-    // sample configure store scripts
     
     import { applyMiddleware, createStore, compose } from 'redux';
     import createSagaMiddleware from 'redux-saga';
@@ -64,6 +66,7 @@ Redux openfin is a middleware to wrap openfin js api and support to communicate 
     
     }
 ```
+sample index.tsx
 
 ```typescript jsx
     import * as shortid from 'shortid';
@@ -79,6 +82,7 @@ Redux openfin is a middleware to wrap openfin js api and support to communicate 
     
     declare const window:any;
     
+    // actions names to be shard across windows via event bus
     const sharedActions = [
         CLIENT_SET_VALUE
     ];

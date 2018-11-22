@@ -198,7 +198,7 @@ exports[`Event::registerDefaultListener register by default 3`] = `
       Object {
         "error": false,
         "payload": Object {
-          "state": "restored",
+          "state": "normal",
         },
         "type": "REDUX_OPENFIN::GET_STATE_RES",
       },

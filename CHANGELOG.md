@@ -1,4 +1,4 @@
-## [0.20.10] 2018-11-18
+## [0.20.11] 2018-11-18
 - support async apis
 - support channel apis
 - support redux-action eventbus

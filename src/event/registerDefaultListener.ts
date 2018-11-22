@@ -15,7 +15,7 @@ export default function registerDefaultListener(fin: any, store: Store<any>) {
             }else if (event.type == 'minimized'){
                 dispatch(getStateRes({state:'minimized'}) as any);
             }else if (event.type == 'restored'){
-                dispatch(getStateRes({state:'restored'}) as any);
+                dispatch(getStateRes({state:'normal'}) as any);
             }
         }
     }

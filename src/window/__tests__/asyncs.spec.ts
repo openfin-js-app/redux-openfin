@@ -1,5 +1,8 @@
 jest.mock('../../utils/createAsyncFun');
+jest.mock('../../init');
 const createAsyncFun = require('../../utils/createAsyncFun');
+const init = require('../../init');
+
 import * as actions from '../actions';
 import * as asyncs  from '../asyncs';
 
@@ -7,11 +10,18 @@ jest.useFakeTimers();
 
 describe('Window asyncs',()=>{
 
+    beforeEach(()=>{
+        init.initState = {};
+    })
+
     afterEach(()=>{
         jest.resetAllMocks();
     });
 
-    it('getCurrent',async ()=>{
+    it('getCurrent without init',async ()=>{
+
+        init.initState.currentWindow = null;
+
         const fin = {
             desktop:{
                 Window:{
@@ -37,10 +47,42 @@ describe('Window asyncs',()=>{
         expect(createAsyncFun).toMatchSnapshot();
     });
 
+    it('getCurrent with init',async ()=>{
+
+        init.initState.currentWindow = {};
+
+        const fin = {
+            desktop:{
+                Window:{
+                    getCurrent: jest.fn(()=>{
+                        return init.initState.currentWindow;
+                    })
+                }
+            }
+        };
+        const succCb = jest.fn();
+        const errCb = jest.fn();
+
+        createAsyncFun.default=jest.fn(
+            (action,ERROR_MSG,resActionCreator,finCb)=>{
+                finCb(fin,action,resActionCreator,succCb,errCb);
+            }
+        );
+        await asyncs.getCurrent(
+            actions.getCurrent({})
+        );
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(succCb).toHaveBeenCalled();
+        expect(createAsyncFun).toMatchSnapshot();
+    });
+
     it('addEventListener',async ()=>{
         const addEventListener = jest.fn((type,listener,succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {addEventListener};
+
         const fin = {
             desktop:{
                 Window:{
@@ -66,7 +108,7 @@ describe('Window asyncs',()=>{
                 listener:()=>{}
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(addEventListener).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -76,6 +118,9 @@ describe('Window asyncs',()=>{
         const bringToFront = jest.fn((succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {bringToFront};
+
         const fin = {
             desktop:{
                 Window:{
@@ -99,7 +144,7 @@ describe('Window asyncs',()=>{
             actions.bringToFront({
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(bringToFront).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -139,6 +184,9 @@ describe('Window asyncs',()=>{
         const close = jest.fn((force,succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {close};
+
         const fin = {
             desktop:{
                 Window:{
@@ -163,7 +211,7 @@ describe('Window asyncs',()=>{
                 force:false,
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(close).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -173,6 +221,9 @@ describe('Window asyncs',()=>{
         const disableFrame = jest.fn((succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {disableFrame};
+
         const fin = {
             desktop:{
                 Window:{
@@ -196,7 +247,7 @@ describe('Window asyncs',()=>{
             actions.disableFrame({
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(disableFrame).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -206,6 +257,9 @@ describe('Window asyncs',()=>{
         const enableFrame = jest.fn((succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {enableFrame};
+
         const fin = {
             desktop:{
                 Window:{
@@ -229,7 +283,7 @@ describe('Window asyncs',()=>{
             actions.enableFrame({
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(enableFrame).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -239,6 +293,9 @@ describe('Window asyncs',()=>{
         const focus = jest.fn((succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {focus};
+
         const fin = {
             desktop:{
                 Window:{
@@ -262,7 +319,7 @@ describe('Window asyncs',()=>{
             actions.focus({
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(focus).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -272,6 +329,9 @@ describe('Window asyncs',()=>{
         const getGroup = jest.fn((succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {getGroup};
+
         const fin = {
             desktop:{
                 Window:{
@@ -295,7 +355,7 @@ describe('Window asyncs',()=>{
             actions.getGroup({
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(getGroup).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -305,6 +365,9 @@ describe('Window asyncs',()=>{
         const getBounds = jest.fn((succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {getBounds};
+
         const fin = {
             desktop:{
                 Window:{
@@ -328,7 +391,7 @@ describe('Window asyncs',()=>{
             actions.getBounds({
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(getBounds).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -338,6 +401,9 @@ describe('Window asyncs',()=>{
         const getState = jest.fn((succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {getState};
+
         const fin = {
             desktop:{
                 Window:{
@@ -361,7 +427,7 @@ describe('Window asyncs',()=>{
             actions.getState({
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(getState).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -371,6 +437,9 @@ describe('Window asyncs',()=>{
         const getOptions = jest.fn((succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {getOptions};
+
         const fin = {
             desktop:{
                 Window:{
@@ -394,7 +463,7 @@ describe('Window asyncs',()=>{
             actions.getOptions({
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(getOptions).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -404,6 +473,9 @@ describe('Window asyncs',()=>{
         const hide = jest.fn((succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {hide};
+
         const fin = {
             desktop:{
                 Window:{
@@ -427,7 +499,7 @@ describe('Window asyncs',()=>{
             actions.hide({
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(hide).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -508,6 +580,9 @@ describe('Window asyncs',()=>{
         const maximize = jest.fn((succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {maximize};
+
         const fin = {
             desktop:{
                 Window:{
@@ -531,7 +606,7 @@ describe('Window asyncs',()=>{
             actions.maximize({
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(maximize).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -577,6 +652,9 @@ describe('Window asyncs',()=>{
         const minimize = jest.fn((succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {minimize};
+
         const fin = {
             desktop:{
                 Window:{
@@ -600,7 +678,7 @@ describe('Window asyncs',()=>{
             actions.minimize({
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(minimize).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -610,6 +688,9 @@ describe('Window asyncs',()=>{
         const moveBy = jest.fn((deltaLeft, deltaTop,succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {moveBy};
+
         const fin = {
             desktop:{
                 Window:{
@@ -635,7 +716,7 @@ describe('Window asyncs',()=>{
                 deltaTop:1,
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(moveBy).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -645,6 +726,9 @@ describe('Window asyncs',()=>{
         const moveTo = jest.fn((left, top, succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {moveTo};
+
         const fin = {
             desktop:{
                 Window:{
@@ -670,7 +754,7 @@ describe('Window asyncs',()=>{
                 top:1,
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(moveTo).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -680,6 +764,9 @@ describe('Window asyncs',()=>{
         const restore = jest.fn((succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {restore};
+
         const fin = {
             desktop:{
                 Window:{
@@ -703,7 +790,7 @@ describe('Window asyncs',()=>{
             actions.restore({
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(restore).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -713,6 +800,9 @@ describe('Window asyncs',()=>{
         const show = jest.fn((succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {show};
+
         const fin = {
             desktop:{
                 Window:{
@@ -737,7 +827,7 @@ describe('Window asyncs',()=>{
                 force:true,
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(show).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -747,6 +837,9 @@ describe('Window asyncs',()=>{
         const setAsForeground = jest.fn((succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {setAsForeground};
+
         const fin = {
             desktop:{
                 Window:{
@@ -770,7 +863,7 @@ describe('Window asyncs',()=>{
             actions.setAsForeground({
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(setAsForeground).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -780,6 +873,9 @@ describe('Window asyncs',()=>{
         const setBounds = jest.fn((left, top, width, height,succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {setBounds};
+
         const fin = {
             desktop:{
                 Window:{
@@ -807,7 +903,7 @@ describe('Window asyncs',()=>{
                 width:4,
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(setBounds).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
@@ -817,6 +913,9 @@ describe('Window asyncs',()=>{
         const updateOptions = jest.fn((options,succCb,errCb)=>{
             succCb();
         });
+
+        init.initState.currentWindow = {updateOptions};
+
         const fin = {
             desktop:{
                 Window:{
@@ -841,7 +940,7 @@ describe('Window asyncs',()=>{
                 options:{}
             })
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
+        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
         expect(updateOptions).toBeCalled();
         expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();

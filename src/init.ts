@@ -20,11 +20,15 @@ export interface IConfig{
 export interface IInitState {
     fin:any,
     store:Store<any>,
+    channel:any,
+    currentWindow:any,
 }
 
 export const initState:IInitState ={
     fin:null,
     store:null,
+    channel:null,
+    currentWindow:null,
 };
 
 export default (fin: any, config:IConfig, store?: Store<any>)=>{
@@ -33,6 +37,10 @@ export default (fin: any, config:IConfig, store?: Store<any>)=>{
         registerDefaultListener(fin,store);
     }
     initState.fin = fin;
+
+    if(fin && fin.desktop){
+        initState.currentWindow = fin.desktop.Window.getCurrent();
+    }
 
     if (config.ignoreStore){
         initState.store = null;

@@ -1,5 +1,8 @@
 import { Action } from 'redux-actions';
-import {ChannelType, IConfig} from './init';
+import {
+    ChannelType, IConfig,
+    initState,
+} from './init';
 import {Store} from "redux";
 
 export const sharedActionDict = new Set();
@@ -88,6 +91,7 @@ export default async function f(fin:any,config:IConfig,store?: Store<any>) {
 
         if (config.channelType === ChannelType.PROVIDER){
             channel = await Channel.create(ChannelName);
+            initState.channel = channel;
             window._albertli90_redux_openfin_channelname = ChannelName;
         }else if (config.channelType === ChannelType.CLIENT){
             if (config.channelRandomSuffix && window.opener._albertli90_redux_openfin_channelname){
@@ -95,6 +99,7 @@ export default async function f(fin:any,config:IConfig,store?: Store<any>) {
             }else{
                 channel = await Channel.connect(ChannelName,{wait:true});
             }
+            initState.channel = channel;
         }
 
         config.sharedActions.forEach((oneAction:string)=>{

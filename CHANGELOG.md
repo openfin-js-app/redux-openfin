@@ -1,3 +1,6 @@
+## [0.30.10] 2018-11-25
+- Support snap dock
+
 ## [0.20.11] 2018-11-18
 - support async apis
 - support channel apis

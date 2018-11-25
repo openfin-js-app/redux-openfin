@@ -1,6 +1,6 @@
 {
   "name": "@albertli90/redux-openfin",
-  "version": "0.20.11",
+  "version": "0.30.1-beta",
   "description": "redux middleware for openfin in typescript",
   "keywords":["openfin","redux","middleware","albert"],
   "main": "index.js",

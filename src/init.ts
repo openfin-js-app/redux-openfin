@@ -1,5 +1,7 @@
 import { Store } from 'redux';
 
+import { FinWindow } from './GlobalTypes';
+
 import registerDefaultListener from './event/registerDefaultListener';
 
 export enum ChannelType{
@@ -21,7 +23,7 @@ export interface IInitState {
     fin:any,
     store:Store<any>,
     channel:any,
-    currentWindow:any,
+    currentWindow:FinWindow,
 }
 
 export const initState:IInitState ={

@@ -3,6 +3,8 @@ jest.mock('../../init');
 const createAsyncFun = require('../../utils/createAsyncFun');
 const init = require('../../init');
 
+import { FinWindow } from '../../GlobalTypes'
+
 import * as actions from '../actions';
 import * as asyncs  from '../asyncs';
 
@@ -527,12 +529,13 @@ describe('Window asyncs',()=>{
                 finCb(fin,action,resActionCreator,succCb,errCb);
             }
         );
+
+        const currentWindow:any = { joinGroup };
+
         await asyncs.joinGroup(
             actions.joinGroup({
-                currentWindow:{
-                    joinGroup
-                },
-                targetWindow:{},
+                currentWindow:currentWindow as FinWindow,
+                targetWindow:{} as FinWindow,
             })
         );
         expect(fin.desktop.Window.getCurrent).not.toBeCalled();
@@ -563,11 +566,12 @@ describe('Window asyncs',()=>{
                 finCb(fin,action,resActionCreator,succCb,errCb);
             }
         );
+
+        const currentWindow:any = { leaveGroup };
+
         await asyncs.leaveGroup(
             actions.leaveGroup({
-                currentWindow:{
-                    leaveGroup
-                }
+                currentWindow:currentWindow as FinWindow,
             })
         );
         expect(fin.desktop.Window.getCurrent).not.toBeCalled();
@@ -634,12 +638,13 @@ describe('Window asyncs',()=>{
                 finCb(fin,action,resActionCreator,succCb,errCb);
             }
         );
+
+        const currentWindow:any = { mergeGroups };
+
         await asyncs.mergeGroups(
             actions.mergeGroups({
-                currentWindow:{
-                    mergeGroups
-                },
-                targetWindow:{}
+                currentWindow:currentWindow as FinWindow,
+                targetWindow:{} as FinWindow,
             })
         );
         expect(fin.desktop.Window.getCurrent).not.toBeCalled();

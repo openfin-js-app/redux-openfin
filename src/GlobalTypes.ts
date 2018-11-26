@@ -116,6 +116,7 @@ export interface FinWindow{
     minimize:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
     moveBy:(deltaLeft:number, deltaTop:number,callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
     moveTo:(left:number, top:number,callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    removeEventListener:(type:string,listener:(event?:any)=>void,callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
     restore:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
     show:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
     setAsForeground:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;

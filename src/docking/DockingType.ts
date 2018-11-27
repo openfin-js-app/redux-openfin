@@ -46,10 +46,13 @@ export interface IDockingOptions {
     unregisterOnClose:boolean,
 }
 
+
+// todo: implement this
 export interface UndockAllWindowsPayload extends BaseRequestPayload{
 
 }
 
+// todo: implement this
 export interface UndockAllWindowsResPayload extends BaseResponsePayload{
 
 }

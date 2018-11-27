@@ -1,16 +1,15 @@
-import {initState} from '../init';
-
 import {
     IRectangle,
     SnapDirection
 } from './DockingType';
 
-import DockingWindow from './DockingWindow';
 
-const fin = initState.fin;
-
-export function getAppId() {
-    return fin.desktop.Application.getCurrent().uuid;
+export function getAppId(fin) {
+    if (fin){
+        return fin.desktop.Application.getCurrent().uuid;
+    }else{
+        return null;
+    }
 }
 
 function handleMonitorInfo(openfinMonitorInfo):IRectangle[] {
@@ -26,7 +25,7 @@ function handleMonitorInfo(openfinMonitorInfo):IRectangle[] {
     });
 }
 
-export async function requestMonitorInfo():Promise<IRectangle[]> {
+export async function requestMonitorInfo(fin):Promise<IRectangle[]> {
     return new Promise<IRectangle[]>((resolve, reject) => fin.desktop.System.getMonitorInfo(
         monitorData => resolve(handleMonitorInfo(monitorData)),
         err => reject(err)

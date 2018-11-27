@@ -5,6 +5,10 @@ import { initState as globalInitState } from '../init';
 import { initState } from './init';
 
 import {
+    dockWindowRes, undockWindowRes
+} from './actions/handlerActionCreator';
+
+import {
     IRectangle, IDockingOptions,
     GroupEventReason,
 } from './DockingType';
@@ -199,7 +203,6 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
             const potentialPartnerName = formerDockingPartners[i];
             const potentialPartnerWindow = openDockableWindows[potentialPartnerName];
 
-            // TODO: push this stuff out into util class
             if (!potentialPartnerWindow ||
                 !getSnapDirection(this, potentialPartnerWindow) &&
                 !getSnapDirection(potentialPartnerWindow, this)) {
@@ -372,11 +375,13 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
             const dockingGroup = new DockingGroup();
             dockingGroup.add(snappedPartnerWindow);
             // todo: should dispatch a redux action instead
+            globalInitState.store.dispatch(dockWindowRes({windowName: snappedPartnerWindow.name}));
             globalInitState.fin.desktop.InterApplicationBus.publish('window-docked', {windowName: snappedPartnerWindow.name});
         }
 
         snappedPartnerWindow.group.add(this);
         // todo: should dispatch a redux action instead
+        globalInitState.store.dispatch(dockWindowRes({windowName: this.name}));
         globalInitState.fin.desktop.InterApplicationBus.publish('window-docked', {windowName: this.name});
 
         initState.persistenceService.createRelationshipsBetween(this.name, snappedPartnerWindow.name);
@@ -404,6 +409,7 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
         }
 
         // todo: should dispatch a redux action instead
+        globalInitState.store.dispatch(undockWindowRes({windowName: this.name}));
         globalInitState.fin.desktop.InterApplicationBus.publish('window-undocked', {windowName: this.name});
 
         if (isInitiator) {

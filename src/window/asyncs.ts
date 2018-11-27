@@ -1,6 +1,7 @@
 import {Action} from 'redux-actions';
 
 import { initState } from '../init';
+import { initState as dockingInitState } from '../docking/init';
 
 import * as types from "./types";
 import * as handlerActions from './actions/handlerActionCreator';
@@ -117,6 +118,9 @@ export async function newWindow(action:Action<types.NewWindowPayload>):Promise<A
             let window = new fin.desktop.Window(options,
                 ()=>{
                     const responseAction = resActionCreator({window});
+                    if (dockingInitState.dockingManager){
+                        dockingInitState.dockingManager.register(window);
+                    }
                     succCb(responseAction);
                 },errCb);
         }

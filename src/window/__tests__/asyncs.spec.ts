@@ -1,7 +1,10 @@
 jest.mock('../../utils/createAsyncFun');
 jest.mock('../../init');
+jest.mock('../../docking/init');
+
 const createAsyncFun = require('../../utils/createAsyncFun');
 const init = require('../../init');
+const dockingInit = require('../../docking/init');
 
 import { FinWindow } from '../../GlobalTypes'
 
@@ -154,6 +157,11 @@ describe('Window asyncs',()=>{
 
 
     it('newWindow',async ()=>{
+
+        dockingInit.initState.dockingManager = {
+            register:jest.fn(),
+        }
+
         const fin = {
             desktop:{
                 Window:jest.fn((options,succCb,errCb)=>{
@@ -178,6 +186,7 @@ describe('Window asyncs',()=>{
         );
         jest.runAllTimers();
         expect(fin.desktop.Window).toBeCalled();
+        // expect(dockingInit.initState.dockingManager.register).toHaveBeenCalled();
         // expect(succCb).toHaveBeenCalled();
         expect(createAsyncFun).toMatchSnapshot();
     });

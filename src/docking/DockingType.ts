@@ -1,3 +1,5 @@
+import {BaseRequestPayload, BaseResponsePayload} from '../base/BasePayload';
+
 export enum GroupEventReason{
     DISBAND     = 'disband',
     JOIN        = 'join',
@@ -42,4 +44,20 @@ export interface IDockingOptions {
     dockableToOthers:boolean,
     // 'unregisterOnClose' is a boolean which toggles automatic unregistration on close of a DockingWindow
     unregisterOnClose:boolean,
+}
+
+export interface UndockAllWindowsPayload extends BaseRequestPayload{
+
+}
+
+export interface UndockAllWindowsResPayload extends BaseResponsePayload{
+
+}
+
+export interface DockWindowResPayload extends BaseResponsePayload{
+    windowName:string,
+}
+
+export interface UnDockWindowResPayload extends BaseResponsePayload{
+    windowName:string,
 }

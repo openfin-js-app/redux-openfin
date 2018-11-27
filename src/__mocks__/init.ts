@@ -10,4 +10,7 @@ export const initState:IInitState ={
         subscribe:jest.fn(),
         replaceReducer:jest.fn(),
     },
+    channel:null,
+    config:null,
+    currentWindow:null,
 };

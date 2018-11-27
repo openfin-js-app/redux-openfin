@@ -133,7 +133,7 @@ export interface JoinGroupResPayload extends BaseResponsePayload{
 }
 
 export interface LeaveGroupPayload extends BaseRequestPayload{
-    currentWindow:FinWindow,
+    targetWindow?:FinWindow,
 }
 export interface LeaveGroupResPayload extends BaseResponsePayload{
 }

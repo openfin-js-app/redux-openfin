@@ -580,7 +580,7 @@ describe('Window asyncs',()=>{
 
         await asyncs.leaveGroup(
             actions.leaveGroup({
-                currentWindow:currentWindow as FinWindow,
+                targetWindow:currentWindow as FinWindow,
             })
         );
         expect(fin.desktop.Window.getCurrent).not.toBeCalled();

@@ -397,7 +397,7 @@ Object {
         Object {
           "error": false,
           "payload": Object {
-            "currentWindow": Object {
+            "targetWindow": Object {
               "leaveGroup": [MockFunction] {
                 "calls": Array [
                   Array [

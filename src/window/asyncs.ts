@@ -293,17 +293,25 @@ export async function joinGroup(action:Action<types.JoinGroupPayload>):Promise<A
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#leaveGroup
 export async function leaveGroup(action:Action<types.LeaveGroupPayload>):Promise<Action<types.LeaveGroupResPayload>> {
-    const { currentWindow } = action.payload;
+    const { targetWindow } = action.payload;
     return createAsyncFun<types.LeaveGroupPayload,types.LeaveGroupResPayload>(
         action,
         LEAVE_GROUP_ERROR_MSG,
         handlerActions.leaveGroupRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            currentWindow.leaveGroup(
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+            if (targetWindow){
+                targetWindow.leaveGroup(
+                    ()=>{
+                        const responseAction = resActionCreator({});
+                        succCb(responseAction);
+                    },errCb);
+            }else{
+                initState.currentWindow.leaveGroup(
+                    ()=>{
+                        const responseAction = resActionCreator({});
+                        succCb(responseAction);
+                    },errCb)
+            }
         }
     );
 }

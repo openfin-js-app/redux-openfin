@@ -175,7 +175,7 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
 
     hanldeWindowOptions = (windowOptions:WindowOptions)=>{
         // make note of opacity for this existing window, set as original
-        this.originalOpacity = windowOptions.opacity;
+        this.originalOpacity = windowOptions && windowOptions.opacity ?windowOptions.opacity:this.originalOpacity;
         this.handleWindowInitialized();
     }
 

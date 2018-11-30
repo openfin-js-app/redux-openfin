@@ -56,11 +56,3 @@ export interface UndockAllWindowsPayload extends BaseRequestPayload{
 export interface UndockAllWindowsResPayload extends BaseResponsePayload{
 
 }
-
-export interface DockWindowResPayload extends BaseResponsePayload{
-    windowName:string,
-}
-
-export interface UnDockWindowResPayload extends BaseResponsePayload{
-    windowName:string,
-}

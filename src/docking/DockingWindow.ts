@@ -5,10 +5,6 @@ import { initState as globalInitState } from '../init';
 import { initState } from './init';
 
 import {
-    dockWindowRes, undockWindowRes
-} from './actions/handlerActionCreator';
-
-import {
     IRectangle, IDockingOptions,
     GroupEventReason,
 } from './DockingType';
@@ -111,7 +107,16 @@ export type DockingWindowOnCloseEvent={
 export default class DockingWindow implements IRectangle, IDockingOptions {
 
     static getWindowByName(windowList:DockingWindow[], windowName:string):DockingWindow {
-        return windowList.find(windowInList => windowInList.name === windowName);
+        let found:DockingWindow = null;
+        if (windowList && windowName){
+            for (let i = 0; i< windowList.length; i++){
+                if (windowList[i].name === windowName){
+                    found = windowList[i];
+                    break;
+                }
+            }
+        }
+        return found;
     }
 
     name:string;
@@ -374,20 +379,16 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
             // both ungrouped .. set partner up with new group
             const dockingGroup = new DockingGroup();
             dockingGroup.add(snappedPartnerWindow);
-            // todo: should dispatch a redux action instead
-            globalInitState.store.dispatch(dockWindowRes({windowName: snappedPartnerWindow.name}));
             globalInitState.fin.desktop.InterApplicationBus.publish('window-docked', {windowName: snappedPartnerWindow.name});
         }
 
         snappedPartnerWindow.group.add(this);
-        // todo: should dispatch a redux action instead
-        globalInitState.store.dispatch(dockWindowRes({windowName: this.name}));
         globalInitState.fin.desktop.InterApplicationBus.publish('window-docked', {windowName: this.name});
 
         initState.persistenceService.createRelationshipsBetween(this.name, snappedPartnerWindow.name);
     }
 
-    async leaveDockingGroup(isInitiator?:boolean){
+    leaveDockingGroup =  async (isInitiator?:boolean) => {
         const {group} = this;
         if (!group) {
             return;
@@ -408,8 +409,6 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
             // do not need further action here, this is likely due to a close, and window is gone
         }
 
-        // todo: should dispatch a redux action instead
-        globalInitState.store.dispatch(undockWindowRes({windowName: this.name}));
         globalInitState.fin.desktop.InterApplicationBus.publish('window-undocked', {windowName: this.name});
 
         if (isInitiator) {

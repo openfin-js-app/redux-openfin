@@ -39,7 +39,7 @@ export const initState:IInitState ={
     currentWindow:null,
 };
 
-export default (fin: any, config:IConfig, store?: Store<any>)=>{
+function init(fin: any, config:IConfig, store?: Store<any>){
 
     initState.config = config;
 
@@ -50,7 +50,7 @@ export default (fin: any, config:IConfig, store?: Store<any>)=>{
 
     if(fin && fin.desktop){
         initState.currentWindow = fin.desktop.Window.getCurrent();
-        if (config.autoDocking){
+        if (config.autoDocking && config.channelType === ChannelType.PROVIDER){
             const dockingOptions = config.dockingOptions?config.dockingOptions:{};
             initDocking(fin,initState.currentWindow,dockingOptions);
         }
@@ -63,3 +63,5 @@ export default (fin: any, config:IConfig, store?: Store<any>)=>{
     }
 
 }
+
+export default init;

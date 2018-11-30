@@ -1,9 +1,9 @@
 import { Action } from 'redux-actions';
+import {Store} from "redux";
 import {
     ChannelType, IConfig,
     initState,
 } from './init';
-import {Store} from "redux";
 
 export const sharedActionDict = new Set();
 export const DEFAULT_SHARED_ACTION_CHANNEL_NAME = 'ALBERTLI90_REDUX_OPENFIN_SHARED_ACTIONS';

@@ -13,7 +13,7 @@ import LocalStoragePersistence from './LocalStoragePersistence';
 import DockingManager from './DockingManager';
 
 
-type State = {
+export type State = {
     monitors:IRectangle[],
     persistenceService:LocalStoragePersistence,
     options:IDockingOptions,

@@ -14,10 +14,10 @@ export enum GroupEventMemberOf {
 }
 
 export enum SnapDirection{
-    RIGHT,
-    LEFT,
-    BOTTOM,
-    TOP,
+    RIGHT       = 1,
+    LEFT        = 2,
+    BOTTOM      = 3,
+    TOP         = 4,
 }
 
 export interface IRectangle{

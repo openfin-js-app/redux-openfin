@@ -56,11 +56,11 @@ export default class DockingManager implements IDockingOptions{
 
     }
 
-    unregister(window:DockingWindow) {
+    unregister = (window:DockingWindow) => {
         this.unregisterByName(window.name);
     }
 
-    unregisterByName(windowName:string) {
+    unregisterByName = (windowName:string) => {
         const existingWindowIdx = this.windows.findIndex(window => window.name === windowName);
         if (existingWindowIdx > -1) {
             const [removedDockableWindow] = this.windows.splice(existingWindowIdx, 1);
@@ -69,7 +69,7 @@ export default class DockingManager implements IDockingOptions{
         }
     }
 
-    undockAll() {
+    undockAll = () => {
         for (const dockingWindow of this.windows) {
             dockingWindow.leaveDockingGroup();
         }
@@ -129,7 +129,7 @@ export default class DockingManager implements IDockingOptions{
             if (!snapDirection) {
                 snapDirection = reverseSnapDirection(getSnapDirection(dockableWindow, windowInfo));
             }
-
+            // console.log(`DockingManager::handleWindowMove${event.target.name}->${dockableWindow.name}`,snapDirection);
             if (snapDirection) {
                 currentWindow.currentRange = currentWindow.range + 10;
                 const pos = getSnappedCoordinates(windowInfo, currentWindow, dockableWindow, snapDirection, this.range, this.spacing);
@@ -168,7 +168,7 @@ export default class DockingManager implements IDockingOptions{
             this.addWindowToTheGroup(snappedWindowInfo[0], snappedWindowInfo[1]);
         }
     };
-    undockWindow(windowName:string) {
+    undockWindow = (windowName:string) => {
         const existingWindow = DockingWindow.getWindowByName(this.windows, windowName);
         if (existingWindow) {
             existingWindow.leaveDockingGroup(true);

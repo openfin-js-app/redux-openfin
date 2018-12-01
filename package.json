@@ -1,6 +1,6 @@
 {
   "name": "@albertli90/redux-openfin",
-  "version": "0.30.2-beta",
+  "version": "0.30.3-beta",
   "description": "redux middleware for openfin in typescript",
   "keywords":["openfin","redux","middleware","albert"],
   "main": "index.js",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@albertli.ddns.net:open-fin/redux-openfin.git"
+    "url": "git@github.com:albertleigh/redux-openfin.git"
   },
   "author": "Wentao Li <liwentao90@yahoo.com>",
   "license": "MIT",

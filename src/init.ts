@@ -7,16 +7,17 @@ import initDocking from './docking/init';
 import { IDockingOptions } from './docking/DockingType';
 
 export enum ChannelType{
-    STANDALONE,
-    PROVIDER,
-    CLIENT,
+    STANDALONE = 1,
+    PROVIDER = 2,
+    CLIENT = 3,
 }
 
 export interface IConfig{
-    channelType:ChannelType,
+    finUuid:string,
+    channelType?:ChannelType,
     channelName?:string,
     channelRandomSuffix?:boolean,
-    channelClientId:string,
+    channelClientId?:string,
     sharedActions:string[],
     ignoreStore?:boolean,
     autoDocking?:boolean,

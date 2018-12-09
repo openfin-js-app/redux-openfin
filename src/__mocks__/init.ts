@@ -1,5 +1,5 @@
 import {
-    ChannelType, IConfig, IInitState,
+    IInitState,
 } from "../init";
 
 export const initState:IInitState ={

@@ -187,7 +187,33 @@ Object {
 }
 `;
 
-exports[`Window asyncs getCurrent 1`] = `
+exports[`Window asyncs getCurrent with init 1`] = `
+Object {
+  "__esModule": true,
+  "default": [MockFunction] {
+    "calls": Array [
+      Array [
+        Object {
+          "error": false,
+          "payload": Object {},
+          "type": "REDUX_OPENFIN::GET_CURRENT",
+        },
+        "Openfin API call Window.getCurrent() failed.",
+        [Function],
+        [Function],
+      ],
+    ],
+    "results": Array [
+      Object {
+        "isThrow": false,
+        "value": undefined,
+      },
+    ],
+  },
+}
+`;
+
+exports[`Window asyncs getCurrent without init 1`] = `
 Object {
   "__esModule": true,
   "default": [MockFunction] {
@@ -371,7 +397,7 @@ Object {
         Object {
           "error": false,
           "payload": Object {
-            "currentWindow": Object {
+            "targetWindow": Object {
               "leaveGroup": [MockFunction] {
                 "calls": Array [
                   Array [

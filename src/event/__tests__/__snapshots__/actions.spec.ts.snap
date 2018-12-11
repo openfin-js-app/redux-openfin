@@ -42,6 +42,11 @@ Object {
       "name": "focused",
       "type": "REDUX_OPENFIN::WIND_EVENT::FOCUSED",
     },
+    "group-changed": EventConstant {
+      "actionCreator": [Function],
+      "name": "group-changed",
+      "type": "REDUX_OPENFIN::WIND_EVENT::GROUP_CHANGED",
+    },
     "hidden": EventConstant {
       "actionCreator": [Function],
       "name": "hidden",
@@ -93,6 +98,11 @@ Object {
       "actionCreator": [Function],
       "name": "focused",
       "type": "REDUX_OPENFIN::WIND_EVENT::FOCUSED",
+    },
+    "REDUX_OPENFIN::WIND_EVENT::GROUP_CHANGED": EventConstant {
+      "actionCreator": [Function],
+      "name": "group-changed",
+      "type": "REDUX_OPENFIN::WIND_EVENT::GROUP_CHANGED",
     },
     "REDUX_OPENFIN::WIND_EVENT::HIDDEN": EventConstant {
       "actionCreator": [Function],

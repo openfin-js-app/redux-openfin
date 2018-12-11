@@ -1,6 +1,9 @@
 import { Action } from 'redux-actions';
-import {ChannelType, IConfig} from './init';
 import {Store} from "redux";
+import {
+    ChannelType, IConfig,
+    initState,
+} from './init';
 
 export const sharedActionDict = new Set();
 export const DEFAULT_SHARED_ACTION_CHANNEL_NAME = 'ALBERTLI90_REDUX_OPENFIN_SHARED_ACTIONS';
@@ -55,12 +58,16 @@ export function sharedActionHandler(action:Action<any>) {
     }
 }
 
-export default async function f(fin:any,config:IConfig,store?: Store<any>) {
+export default async (fin:any,config:IConfig,store?: Store<any>) => {
+
+    if (!config.channelType){
+        config.channelType = window.name === config.finUuid?ChannelType.PROVIDER:ChannelType.CLIENT
+    }
 
     if (config.channelType != ChannelType.STANDALONE && store){
 
         const Channel = fin.desktop.InterApplicationBus.Channel;
-        const ChannelName = config.channelName?config.channelName:
+        let ChannelName = config.channelName?config.channelName:
             (   config.channelRandomSuffix?
                     DEFAULT_SHARED_ACTION_CHANNEL_NAME+'-'+ new Date().getTime()
                 :DEFAULT_SHARED_ACTION_CHANNEL_NAME
@@ -72,7 +79,7 @@ export default async function f(fin:any,config:IConfig,store?: Store<any>) {
             sharedActionDict.add(oneAction);
         });
 
-        window[SHARED_ACTION_ORIGIN_TAG] = config.channelClientId;
+        window[SHARED_ACTION_ORIGIN_TAG] = config.channelClientId?config.channelClientId:window.name;
 
         Channel.onChannelConnect(()=>{
             channelUp++;
@@ -87,14 +94,23 @@ export default async function f(fin:any,config:IConfig,store?: Store<any>) {
         channelType = config.channelType;
 
         if (config.channelType === ChannelType.PROVIDER){
-            channel = await Channel.create(ChannelName);
+            try{
+                channel = await Channel.create(ChannelName);
+            }catch(e){
+                // console.error('[redux-openfin]channel::default',e);
+                ChannelName = ChannelName+'-'+ new Date().getTime();
+                channel = await Channel.create(ChannelName);
+                console.log(`[redux-openfin] Duplicate channel name found and use ${ChannelName} instead`)
+            }
+            initState.channel = channel;
             window._albertli90_redux_openfin_channelname = ChannelName;
         }else if (config.channelType === ChannelType.CLIENT){
-            if (config.channelRandomSuffix && window.opener._albertli90_redux_openfin_channelname){
+            if (window.opener._albertli90_redux_openfin_channelname){
                 channel = await Channel.connect(window.opener._albertli90_redux_openfin_channelname,{wait:true});
             }else{
                 channel = await Channel.connect(ChannelName,{wait:true});
             }
+            initState.channel = channel;
         }
 
         config.sharedActions.forEach((oneAction:string)=>{

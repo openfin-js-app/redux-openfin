@@ -1,4 +1,4 @@
-
+export * from './GlobalTypes';
 export { middlewareCreator as createOpenfinMiddleware } from './middleware';
 export {default as Applcation} from './application'
 export {default as Docking} from './docking'

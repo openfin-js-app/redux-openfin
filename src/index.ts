@@ -1,17 +1,9 @@
-import * as _application from './application/index';
-import * as _docking from './docking/index';
-import * as _event from './event/index';
-import * as _interApplicationBus from './interApplicationBus/index';
-import * as _notification from './notification/index';
-import * as _system from './system/index';
-import * as _window from './window/index';
-import { middlewareCreator } from './middleware';
 
-export const Applcation:typeof _application = _application;
-export const Docking:typeof _docking = _docking;
-export const Event:typeof _event = _event;
-export const InterApplicationBus:typeof _interApplicationBus = _interApplicationBus;
-export const Notification:typeof _notification = _notification;
-export const System:typeof _system = _system;
-export const Window:typeof _window = _window;
-export const createOpenfinMiddleware:typeof middlewareCreator = middlewareCreator;
+export { middlewareCreator as createOpenfinMiddleware } from './middleware';
+export {default as Applcation} from './application'
+export {default as Docking} from './docking'
+export {default as Event} from './event'
+export {default as InterApplicationBus} from './interApplicationBus'
+export {default as Notification} from './notification'
+export {default as Window} from './window'
+export {default as System} from './system'

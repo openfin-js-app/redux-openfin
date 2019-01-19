@@ -22,27 +22,27 @@ Redux openfin is a middleware to wrap openfin js api and support to communicate 
 sample configure store scripts
 
 ```typescript
-    
     import { applyMiddleware, createStore, compose } from 'redux';
     import createSagaMiddleware from 'redux-saga';
     import { createOpenfinMiddleware } from '@albertli90/redux-openfin';
-    import { ChannelType } from '@albertli90/redux-openfin/init';
     
-    import rootReducer, {IRootState} from '../redux';
-    import rootSaga from '../redux/sagas';
+    import rootReducer, {IRootState} from '../reduxs';
+    import rootSaga from '../reduxs/sagas';
     
     declare const window:any;
     
     export default (
-            channelType:ChannelType,
-            channelClientId:string,
             sharedActions:string[],
             parentState?:IRootState
     )=>{
     
         const openfinMiddleware = createOpenfinMiddleware(window.fin,{
-            channelType,channelClientId,sharedActions,
-            channelRandomSuffix:process.env.NODE_ENV === 'development'
+            finUuid:process.env.REACT_APP_FIN_UUID,
+            sharedActions,
+            // channelRandomSuffix:process.env.NODE_ENV === 'development',
+            autoDocking:process.env.REACT_APP_ENABLE_AUTO_DOCKING === 'true',
+            dockingOptions:{
+            }
         });
         const sagaMiddleware = createSagaMiddleware();
         const devtools = window.devToolsExtension?window.devToolsExtension():(f:any):any => (f);
@@ -69,8 +69,6 @@ sample configure store scripts
 sample index.tsx
 
 ```typescript jsx
-    import * as shortid from 'shortid';
-    import { ChannelType } from '@albertli90/redux-openfin/init';
     import configureStore from './utils/configureStore';
     
     import {
@@ -88,33 +86,21 @@ sample index.tsx
     ];
 
     
-    if(window.store == null && window.opener == null){
-        // parent window, thus create the store providing the channel via ChannelType.PROVIDER
+    if(window.name === process.env.REACT_APP_FIN_UUID){
         const store = configureStore(
-            ChannelType.PROVIDER,
-            "app-name-main-window",
             sharedActions,
         );
         window.store=store;
         store.dispatch(applicationStarted());
     }else{
-        // child window, thus create the store consuming the channel provided by the parent via ChannelType.CLIENT
-        const pathName = new URL(window.location.href).pathname;
-        const childWindowIndex = pathName.indexOf('childWindow');
-        let channelClientId = shortid.generate();
-        if (childWindowIndex > -1){
-            channelClientId = `app-name-${pathName.substring(childWindowIndex).replace('/','-')}`
-        }
         const store = configureStore(
-            ChannelType.CLIENT,
-            channelClientId,
             sharedActions,
             window.opener.store.getState()
         );
         window.store=store;
         store.dispatch(applicationChildStarted());
     }
-    
+    setPlatformClass(document.body,window.navigator.platform);
     ReactDOM.render(
         <Provider store = {window.store}>
             <App/>
@@ -148,5 +134,5 @@ sample index.tsx
 [LICENSE]: ./LICENSE.md
 [CHANGELOG]: ./CHANGELOG.md
 
-[version-badge]: https://img.shields.io/badge/version-0.30.10-blue.svg
+[version-badge]: https://img.shields.io/badge/version-0.35.2beta-blue.svg
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg

@@ -134,5 +134,5 @@ sample index.tsx
 [LICENSE]: ./LICENSE.md
 [CHANGELOG]: ./CHANGELOG.md
 
-[version-badge]: https://img.shields.io/badge/version-0.35.2beta-blue.svg
+[version-badge]: https://img.shields.io/badge/version-0.35.3beta-blue.svg
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg

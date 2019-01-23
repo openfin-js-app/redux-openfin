@@ -1,4 +1,6 @@
-## [0.30.10] 2018-11-25
+## [0.35.20] 2019-01-23
+- Support openfin runtime v9.61.38.40
+- Support Notification api
 - Support snap dock
 
 ## [0.20.11] 2018-11-18

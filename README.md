@@ -2,12 +2,15 @@
 [![version][version-badge]][CHANGELOG] [![license][license-badge]][LICENSE]
 
 
-Redux openfin is a middleware to wrap openfin js api and support to communicate via redux actions
+Redux openfin is a wrapper allowing to call openfin js api via redux actions. 
 
-* Written in typescript
+* All in typescript
 * Provide FLUX based apis
 * Provide async based apis
 * Provide cross-windows redux-action event bus
+* Provide snap-dock features
+
+![](https://albertleigh.github.io/openfin-react-latest/img/screenshoot.gif)
 
 ## Installation
 
@@ -134,5 +137,5 @@ sample index.tsx
 [LICENSE]: ./LICENSE.md
 [CHANGELOG]: ./CHANGELOG.md
 
-[version-badge]: https://img.shields.io/badge/version-0.35.3beta-blue.svg
+[version-badge]: https://img.shields.io/badge/version-0.35.20-blue.svg
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg

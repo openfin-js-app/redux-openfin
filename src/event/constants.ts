@@ -83,7 +83,7 @@ const windowEventStrArr:string[] = [
     'focused',
     // 'frame-disabled',
     // 'frame-enabled',
-    // 'group-changed',
+    'group-changed',
     'hidden',
     // 'initialized',
     'maximized',

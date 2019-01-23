@@ -1,4 +1,8 @@
 import {Action} from 'redux-actions';
+
+import { initState } from '../init';
+import { initState as dockingInitState } from '../docking/init';
+
 import * as types from "./types";
 import * as handlerActions from './actions/handlerActionCreator';
 
@@ -40,7 +44,13 @@ export async function getCurrent(action:Action<types.GetCurrentPayload>):Promise
         GET_CURRENT_ERROR_MSG,
         handlerActions.getCurrentRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let current = fin.desktop.Window.getCurrent();
+            let current;
+            if (initState.currentWindow){
+                current = initState.currentWindow;
+            }else{
+                current = fin.desktop.Window.getCurrent();
+                initState.currentWindow = current;
+            }
             const responseAction = resActionCreator({current});
             succCb(responseAction);
         }
@@ -72,8 +82,7 @@ export async function addEventListener(action:Action<types.AddEventListenerPaylo
         ADD_EVENT_LISTENER_ERROR_MSG,
         handlerActions.addEventListenerRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.addEventListener(type, listener,
+            initState.currentWindow.addEventListener(type, listener,
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);
@@ -89,8 +98,7 @@ export async function bringToFront(action:Action<types.BringToFrontPayload>):Pro
         BRING_TO_FRONT_ERROR_MSG,
         handlerActions.bringToFrontRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.bringToFront(
+            initState.currentWindow.bringToFront(
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);
@@ -110,6 +118,9 @@ export async function newWindow(action:Action<types.NewWindowPayload>):Promise<A
             let window = new fin.desktop.Window(options,
                 ()=>{
                     const responseAction = resActionCreator({window});
+                    if (dockingInitState.dockingManager){
+                        dockingInitState.dockingManager.register(window);
+                    }
                     succCb(responseAction);
                 },errCb);
         }
@@ -124,8 +135,7 @@ export async function close(action:Action<types.ClosePayload>):Promise<Action<ty
         CLOSE_ERROR_MSG,
         handlerActions.closeRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.close(force,
+            initState.currentWindow.close(force,
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);
@@ -141,8 +151,7 @@ export async function disableFrame(action:Action<types.DisableFramePayload>):Pro
         DISABLE_FRAME_ERROR_MSG,
         handlerActions.disableFrameRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.disableFrame(
+            initState.currentWindow.disableFrame(
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);
@@ -159,8 +168,7 @@ export async function enableFrame(action:Action<types.EnableFramePayload>):Promi
         ENABLE_FRAME_ERROR_MSG,
         handlerActions.enableFrameRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.enableFrame(
+            initState.currentWindow.enableFrame(
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);
@@ -176,8 +184,7 @@ export async function focus(action:Action<types.FocusPayload>):Promise<Action<ty
         FOCUS_ERROR_MSG,
         handlerActions.focusRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.focus(
+            initState.currentWindow.focus(
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);
@@ -193,8 +200,7 @@ export async function getGroup(action:Action<types.GetGroupPayload>):Promise<Act
         GET_GROUP_ERROR_MSG,
         handlerActions.getGroupRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.getGroup(
+            initState.currentWindow.getGroup(
                 (windows)=>{
                     const responseAction = resActionCreator({windows});
                     succCb(responseAction);
@@ -211,8 +217,7 @@ export async function getBounds(action:Action<types.GetBoundsPayload>):Promise<A
         GET_BOUNDS_ERROR_MSG,
         handlerActions.getBoundsRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.getBounds(
+            initState.currentWindow.getBounds(
                 (payload)=>{
                     const responseAction = resActionCreator(payload);
                     succCb(responseAction);
@@ -228,8 +233,7 @@ export async function getState(action:Action<types.GetStatePayload>):Promise<Act
         GET_STATE_ERROR_MSG,
         handlerActions.getStateRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.getState(
+            initState.currentWindow.getState(
                 (state:string)=>{
                     const responseAction = resActionCreator({state});
                     succCb(responseAction);
@@ -245,8 +249,7 @@ export async function getOptions(action:Action<types.GetOptionsPayload>):Promise
         GET_OPTIONS_ERROR_MSG,
         handlerActions.getOptionsRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.getOptions(
+            initState.currentWindow.getOptions(
                 (options)=>{
                     const responseAction = resActionCreator(options);
                     succCb(responseAction);
@@ -262,8 +265,7 @@ export async function hide(action:Action<types.HidePayload>):Promise<Action<type
         HIDE_ERROR_MSG,
         handlerActions.hideRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.hide(
+            initState.currentWindow.hide(
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);
@@ -291,17 +293,25 @@ export async function joinGroup(action:Action<types.JoinGroupPayload>):Promise<A
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#leaveGroup
 export async function leaveGroup(action:Action<types.LeaveGroupPayload>):Promise<Action<types.LeaveGroupResPayload>> {
-    const { currentWindow } = action.payload;
+    const { targetWindow } = action.payload;
     return createAsyncFun<types.LeaveGroupPayload,types.LeaveGroupResPayload>(
         action,
         LEAVE_GROUP_ERROR_MSG,
         handlerActions.leaveGroupRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            currentWindow.leaveGroup(
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+            if (targetWindow){
+                targetWindow.leaveGroup(
+                    ()=>{
+                        const responseAction = resActionCreator({});
+                        succCb(responseAction);
+                    },errCb);
+            }else{
+                initState.currentWindow.leaveGroup(
+                    ()=>{
+                        const responseAction = resActionCreator({});
+                        succCb(responseAction);
+                    },errCb)
+            }
         }
     );
 }
@@ -313,8 +323,7 @@ export async function maximize(action:Action<types.MaximizePayload>):Promise<Act
         MAXIMIZE_ERROR_MSG,
         handlerActions.maximizeRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.maximize(
+            initState.currentWindow.maximize(
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);
@@ -350,8 +359,7 @@ export async function minimize(action:Action<types.MinimizePayload>):Promise<Act
         MINIMIZE_ERROR_MSG,
         handlerActions.minimizeRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.minimize(
+            initState.currentWindow.minimize(
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);
@@ -368,8 +376,7 @@ export async function moveBy(action:Action<types.MoveByPayload>):Promise<Action<
         MOVE_BY_ERROR_MSG,
         handlerActions.moveByRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.moveBy(deltaLeft, deltaTop,
+            initState.currentWindow.moveBy(deltaLeft, deltaTop,
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);
@@ -386,8 +393,7 @@ export async function moveTo(action:Action<types.MoveToPayload>):Promise<Action<
         MOVE_TO_ERROR_MSG,
         handlerActions.moveToRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.moveTo(left, top,
+            initState.currentWindow.moveTo(left, top,
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);
@@ -403,8 +409,7 @@ export async function restore(action:Action<types.RestorePayload>):Promise<Actio
         RETORE_ERROR_MSG,
         handlerActions.restoreRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.restore(
+            initState.currentWindow.restore(
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);
@@ -420,8 +425,7 @@ export async function show(action:Action<types.ShowPayload>):Promise<Action<type
         SHOW_ERROR_MSG,
         handlerActions.showRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.show(
+            initState.currentWindow.show(
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);
@@ -437,8 +441,7 @@ export async function setAsForeground(action:Action<types.SetAsForegroundPayload
         SET_AS_FOREGROUND_ERROR_MSG,
         handlerActions.setAsForegroundRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.setAsForeground(
+            initState.currentWindow.setAsForeground(
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);
@@ -457,8 +460,7 @@ export async function setBounds(action:Action<types.SetBoundsPayload>):Promise<A
         SET_BOUNDS_ERROR_MSG,
         handlerActions.setBoundsRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.setBounds( left, top, width, height,
+            initState.currentWindow.setBounds( left, top, width, height,
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);
@@ -477,8 +479,7 @@ export async function updateOptions(action:Action<types.UpdateOptionsPayload>):P
         UPDATE_OPTIONS_ERROR_MSG,
         handlerActions.updateOptionsRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
-            let currentWindow = fin.desktop.Window.getCurrent();
-            currentWindow.updateOptions( options,
+            initState.currentWindow.updateOptions( options,
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);

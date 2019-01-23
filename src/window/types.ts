@@ -1,4 +1,4 @@
-import { WindowOptions } from '../GlobalTypes';
+import { WindowOptions, FinWindow } from '../GlobalTypes';
 import { BaseRequestPayload, BaseResponsePayload } from '../base/BasePayload';
 
 export const GET_CURRENT_ERROR_MSG = 'Openfin API call Window.getCurrent() failed.';
@@ -44,7 +44,7 @@ export interface WrapResPayload extends BaseResponsePayload{
 
 export interface AddEventListenerPayload extends BaseRequestPayload, Partial<WindowOptions>{
     type:string,
-    listener: Function,
+    listener: (event?:any)=>void,
 }
 export interface AddEventListenerResPayload extends BaseResponsePayload{
 }
@@ -125,15 +125,15 @@ export interface HideResPayload extends BaseResponsePayload{
 }
 
 export interface JoinGroupPayload extends BaseRequestPayload{
-    currentWindow:any,
-    targetWindow:any,
+    currentWindow:FinWindow,
+    targetWindow:FinWindow,
 }
 export interface JoinGroupResPayload extends BaseResponsePayload{
 
 }
 
 export interface LeaveGroupPayload extends BaseRequestPayload{
-    currentWindow:any,
+    targetWindow?:FinWindow,
 }
 export interface LeaveGroupResPayload extends BaseResponsePayload{
 }
@@ -153,8 +153,8 @@ export interface MaximizeResPayload extends BaseResponsePayload{
 }
 
 export interface MergeGroupsPayload extends BaseRequestPayload{
-    currentWindow:any,
-    targetWindow:any,
+    currentWindow:FinWindow,
+    targetWindow:FinWindow,
 }
 export interface MergeGroupsResPayload extends BaseResponsePayload{
 

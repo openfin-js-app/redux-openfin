@@ -1,5 +1,5 @@
 import {
-    ChannelType, IConfig, IInitState,
+    IInitState,
 } from "../init";
 
 export const initState:IInitState ={
@@ -10,4 +10,7 @@ export const initState:IInitState ={
         subscribe:jest.fn(),
         replaceReducer:jest.fn(),
     },
+    channel:null,
+    config:null,
+    currentWindow:null,
 };

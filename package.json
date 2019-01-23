@@ -1,21 +1,24 @@
 {
   "name": "@albertli90/redux-openfin",
-  "version": "0.20.10",
+  "version": "0.35.20",
   "description": "redux middleware for openfin in typescript",
+  "homepage": "https://albertleigh.github.io/openfin-react-latest",
   "keywords":["openfin","redux","middleware","albert"],
   "main": "index.js",
   "scripts": {
     "build": "yarn prebuild && yarn build:es2015 && yarn build:copy-files",
+    "build-prod": "yarn prebuild && yarn build:es2015-prod && yarn build:copy-files",
     "prebuild": "rimraf build",
     "build:es2015": "tsc",
+    "build:es2015-prod": "tsc -p tsconfig.prod.json",
     "build:copy-files": "node ./scripts/copy-files.js",
     "release-staging": "yarn build && npm publish build --registry=https://albertli.ddns.net:9004/repository/npm-private/",
-    "release":"yarn build && npm publish build --access public",
+    "release":"yarn build-prod && npm publish build --access public",
     "test": "node scripts/test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git@albertli.ddns.net:open-fin/redux-openfin.git"
+    "url": "git@github.com:albertleigh/redux-openfin.git"
   },
   "author": "Wentao Li <liwentao90@yahoo.com>",
   "license": "MIT",

@@ -41,6 +41,10 @@ exports[`Event::registerDefaultListener register by default 2`] = `
       [Function],
     ],
     Array [
+      "group-changed",
+      [Function],
+    ],
+    Array [
       "hidden",
       [Function],
     ],
@@ -62,6 +66,10 @@ exports[`Event::registerDefaultListener register by default 2`] = `
     ],
   ],
   "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
     Object {
       "isThrow": false,
       "value": undefined,
@@ -155,6 +163,13 @@ exports[`Event::registerDefaultListener register by default 3`] = `
       Object {
         "error": false,
         "payload": Object {},
+        "type": "REDUX_OPENFIN::WIND_EVENT::GROUP_CHANGED",
+      },
+    ],
+    Array [
+      Object {
+        "error": false,
+        "payload": Object {},
         "type": "REDUX_OPENFIN::WIND_EVENT::HIDDEN",
       },
     ],
@@ -198,7 +213,7 @@ exports[`Event::registerDefaultListener register by default 3`] = `
       Object {
         "error": false,
         "payload": Object {
-          "state": "restored",
+          "state": "normal",
         },
         "type": "REDUX_OPENFIN::GET_STATE_RES",
       },
@@ -221,6 +236,10 @@ exports[`Event::registerDefaultListener register by default 3`] = `
     ],
   ],
   "results": Array [
+    Object {
+      "isThrow": false,
+      "value": undefined,
+    },
     Object {
       "isThrow": false,
       "value": undefined,

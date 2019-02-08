@@ -1,3 +1,6 @@
+## [0.35.40] 2019-02-10
+- Support application event listener
+
 ## [0.35.21] 2019-01-23
 - Support openfin runtime v9.61.38.40
 - Support Notification api

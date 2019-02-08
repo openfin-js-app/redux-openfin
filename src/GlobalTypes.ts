@@ -124,4 +124,58 @@ export interface FinWindow{
     updateOptions:(options:Partial<WindowOptions>,callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
 }
 
+export interface ISetShortCutsConfig{
+    desktop?:boolean,
+    startMenu?:boolean,
+    systemStartUp?:boolean,
+}
+
+
+export interface ITrayIconHoverEvent {
+    x:number,
+    y:number,
+    bounds:{
+        height:number,
+        width:number,
+        x:number,
+        y:number,
+    },
+    monitorInfo:any,
+}
+export interface ITrayIconClickEvent extends ITrayIconHoverEvent{
+    button:number,
+}
+export type SetTrayIconClickListener = (event:ITrayIconClickEvent)=>void;
+export interface ISetTrayIconDefaultListenerObj {
+    clickListener:SetTrayIconClickListener,
+    hoverListener:(event:ITrayIconHoverEvent)=>void,
+}
+export type SetTrayIconListener = ISetTrayIconDefaultListenerObj | SetTrayIconClickListener;
+
+export interface FinApplication{
+    addEventListener:(type:string, listener:(event?:any)=>void,callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    close:(force:boolean, callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    getChildWindows:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    getGroups:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    getInfo:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    getManifest:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    getParentUuid:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    getShortcuts:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    getTrayIconInfo:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    getZoomLevel:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    isRunning:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    registerUser:(userName:string, appName:string, callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    removeEventListener:(type:string, listener:(event?:any)=>void,callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    removeTrayIcon:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    restart:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    run:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    scheduleRestart:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    sendApplicationLog:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    setAppLogUsername:(username:string,callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    setShortcuts:(config:ISetShortCutsConfig,callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    setTrayIcon:(iconUrl:string, listener:SetTrayIconListener, callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    setZoomLevel:(level:number, callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    terminate:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+}
+
 // end of window apis

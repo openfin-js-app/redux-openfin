@@ -27,22 +27,13 @@ export async function newApplication(action:Action<types.NewApplicationPayload>)
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#restart
-export async function restart(action:Action<types.RestartPayload>):Promise<Action<types.RestartResPayload>>{
-    return createAsyncFun<types.RestartPayload,types.NewApplicationResPayload>(
-        action,
-        RESTART_ERROR_MSG,
-        handlerActions.restartRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            let application = fin.desktop.Application.getCurrent();
-            application.restart(
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
-        }
-    );
-}
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#.getCurrent
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#getWindow
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#.wrap
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#addEventListener
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#close
 export async function close(action:Action<types.ClosePayload>):Promise<Action<types.CloseResPayload>>{
@@ -61,3 +52,46 @@ export async function close(action:Action<types.ClosePayload>):Promise<Action<ty
         }
     );
 }
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#getChildWindows
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#getInfo
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#getShortcuts
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#getTrayIconInfo
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#getZoomLevel
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#isRunning
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#removeEventListener
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#restart
+export async function restart(action:Action<types.RestartPayload>):Promise<Action<types.RestartResPayload>>{
+    return createAsyncFun<types.RestartPayload,types.NewApplicationResPayload>(
+        action,
+        RESTART_ERROR_MSG,
+        handlerActions.restartRes,
+        (fin,action,resActionCreator,succCb,errCb)=>{
+            let application = fin.desktop.Application.getCurrent();
+            application.restart(
+                ()=>{
+                    const responseAction = resActionCreator({});
+                    succCb(responseAction);
+                },errCb);
+        }
+    );
+}
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#run
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#scheduleRestart
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#setShortcuts
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#setTrayIcon
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#setZoomLevel
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#terminate

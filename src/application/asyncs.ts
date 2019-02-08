@@ -84,8 +84,6 @@ export async function restart(action:Action<types.RestartPayload>):Promise<Actio
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#run
-
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#scheduleRestart
 
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#setShortcuts

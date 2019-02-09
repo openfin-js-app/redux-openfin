@@ -99,6 +99,7 @@ export interface FinWindow{
         errorCallback?:ErrorCallback,
     )=>FinWindow,
     addEventListener:(type:string,listener:(event?:any)=>void,callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    authenticate:(userName:string,password:string,callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
     bringToFront:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
     close:(force?:boolean,callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
     disableFrame:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;

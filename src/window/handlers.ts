@@ -26,6 +26,14 @@ export const addEventListenerHandler = (params:ActionHandlerParams) => {
     });
 };
 
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#authenticate
+export const authenticateHandler = (params:ActionHandlerParams) => {
+    const { action }=params;
+    asyncs.authenticate(action).catch((e)=>{
+        // eat the exception
+    });
+};
+
 //http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#bringToFront
 export const bringToFrontHandler = (params:ActionHandlerParams) => {
     const { action }=params;

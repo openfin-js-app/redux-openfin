@@ -1,6 +1,6 @@
 import { Store } from 'redux';
 
-import { FinWindow } from './GlobalTypes';
+import { FinWindow, FinApplication } from './GlobalTypes';
 
 import registerDefaultListener from './event/registerDefaultListener';
 import initDocking from './docking/init';
@@ -30,6 +30,7 @@ export interface IInitState {
     channel:any,
     config:IConfig,
     currentWindow:FinWindow,
+    currentApplication:FinApplication,
 }
 
 export const initState:IInitState ={
@@ -38,6 +39,7 @@ export const initState:IInitState ={
     channel:null,
     config:null,
     currentWindow:null,
+    currentApplication:null,
 };
 
 function init(fin: any, config:IConfig, store?: Store<any>){
@@ -50,6 +52,7 @@ function init(fin: any, config:IConfig, store?: Store<any>){
     initState.fin = fin;
 
     if(fin && fin.desktop){
+        initState.currentApplication = fin.desktop.Application.getCurrent();
         initState.currentWindow = fin.desktop.Window.getCurrent();
         if (config.autoDocking && config.channelType === ChannelType.PROVIDER){
             const dockingOptions = config.dockingOptions?config.dockingOptions:{};

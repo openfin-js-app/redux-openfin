@@ -153,6 +153,7 @@ export interface ISetTrayIconDefaultListenerObj {
 export type SetTrayIconListener = ISetTrayIconDefaultListenerObj | SetTrayIconClickListener;
 
 export interface FinApplication{
+    getWindow:()=>FinWindow,
     addEventListener:(type:string, listener:(event?:any)=>void,callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
     close:(force:boolean, callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
     getChildWindows:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void,

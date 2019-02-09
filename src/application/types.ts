@@ -6,8 +6,24 @@ import {
 import {BaseRequestPayload, BaseResponsePayload} from '../base/BasePayload';
 
 export const NEW_APPLICAITON_ERROR_MSG = 'OpenFin API call Application.constructor failed.';
-export const RESTART_ERROR_MSG = 'OpenFin API call Application.restart() failed.';
+export const APPLICATION_GET_CURRENT_ERROR_MSG = 'OpenFin API call Application.getCurrent() failed.';
+export const APPLICATION_GET_WINDOW_ERROR_MSG = 'OpenFin API call Application.getWindow() failed.';
+export const APPLICATION_WRAP_ERROR_MSG = 'OpenFin API call Application.wrap() failed.';
+export const APPLICATION_ADD_EVENT_LISTENER_ERROR_MSG = 'OpenFin API call Application.addEventListener() failed.';
 export const CLOSE_ERROR_MSG = 'OpenFin API call Application.close() failed.';
+export const APPLICATION_GET_CHILD_WINDOWS_ERROR_MSG = 'OpenFin API call Application.getChildWindows() failed.';
+export const APPLICATION_GET_INFO_ERROR_MSG = 'OpenFin API call Application.getInfo() failed.';
+export const APPLICATION_GET_SHORTCUTS_ERROR_MSG = 'OpenFin API call Application.getShortcuts() failed.';
+export const APPLICATION_GET_TRAY_ICON_INFO_ERROR_MSG = 'OpenFin API call Application.getTrayIconInfo() failed.';
+export const APPLICATION_GET_ZOOM_LEVEL_ERROR_MSG = 'OpenFin API call Application.getZoomLevel() failed.';
+export const APPLICATION_IS_RUNNING_ERROR_MSG = 'OpenFin API call Application.isRunning() failed.';
+export const APPLICATION_REMOVE_EVENT_LISTENER_ERROR_MSG = 'OpenFin API call Application.removeEventListener() failed.';
+export const RESTART_ERROR_MSG = 'OpenFin API call Application.restart() failed.';
+export const APPLICATION_SCHEDULE_RESTART_ERROR_MSG = 'OpenFin API call Application.scheduleRestart() failed.';
+export const APPLICATION_SET_SHORTCUTS_ERROR_MSG = 'OpenFin API call Application.setShortcuts() failed.';
+export const APPLICATION_SET_TRAY_ICON_ERROR_MSG = 'OpenFin API call Application.setTrayIcon() failed.';
+export const APPLICATION_SET_ZOOM_LEVEL_ERROR_MSG = 'OpenFin API call Application.setZoomLevel() failed.';
+export const APPLICATION_TERMINATE_ERROR_MSG = 'OpenFin API call Application.terminate() failed.';
 
 export interface NewApplicationPayload extends BaseRequestPayload{
     uuid:string;

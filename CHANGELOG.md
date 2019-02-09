@@ -1,5 +1,21 @@
 ## [0.35.40] 2019-02-10
-- Support application event listener
+- Support OpenFin API Application.getCurrent()
+- Support OpenFin API Application.getWindow()
+- Support OpenFin API Application.wrap()
+- Support OpenFin API Application.addEventListener()
+- Support OpenFin API Application.addEventListener()
+- Support OpenFin API Application.getChildWindows()
+- Support OpenFin API Application.getInfo()
+- Support OpenFin API Application.getShortcuts()
+- Support OpenFin API Application.getTrayIconInfo()
+- Support OpenFin API Application.getZoomLevel()
+- Support OpenFin API Application.isRunning()
+- Support OpenFin API Application.removeEventListener()
+- Support OpenFin API Application.scheduleRestart()
+- Support OpenFin API Application.setShortcuts()
+- Support OpenFin API Application.setTrayIcon()
+- Support OpenFin API Application.setZoomLevel()
+- Support OpenFin API Application.terminate()
 
 ## [0.35.21] 2019-01-23
 - Support openfin runtime v9.61.38.40

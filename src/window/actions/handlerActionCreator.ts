@@ -18,6 +18,11 @@ export const addEventListenerRes:ActionCreator<types.AddEventListenerResPayload>
     (options:types.AddEventListenerResPayload) => <any> options
 );
 
+export const authenticateRes:ActionCreator<types.AuthenticateResPayload> = createFSA<types.AuthenticateResPayload>(
+    actionTypes.AUTHENTICATE_RES,
+    (options:types.AuthenticateResPayload) => <any> options
+);
+
 export const bringToFrontRes:ActionCreator<types.BringToFrontResPayload> = createFSA<types.BringToFrontResPayload>(
     actionTypes.BRING_TO_FRONT_RES,
     (options:types.BringToFrontResPayload) => <any> options

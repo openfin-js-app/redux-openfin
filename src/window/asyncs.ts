@@ -12,6 +12,7 @@ import {
     GET_CURRENT_ERROR_MSG,
     WRAP_ERROR_MSG,
     ADD_EVENT_LISTENER_ERROR_MSG,
+    AUTHENTICATE_ERROR_MSG,
     BRING_TO_FRONT_ERROR_MSG,
     NEW_WINDOW_ERROR_MSG,
     CLOSE_ERROR_MSG,
@@ -83,6 +84,25 @@ export async function addEventListener(action:Action<types.AddEventListenerPaylo
         handlerActions.addEventListenerRes,
         (fin,action,resActionCreator,succCb,errCb)=>{
             initState.currentWindow.addEventListener(type, listener,
+                ()=>{
+                    const responseAction = resActionCreator({});
+                    succCb(responseAction);
+                },errCb);
+        }
+    );
+}
+
+//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#authenticate
+export async function authenticate(action:Action<types.AuthenticatePayload>):Promise<Action<types.AuthenticateResPayload>>{
+    const  { userName, password }  = action.payload;
+    return createAsyncFun<types.AuthenticatePayload,types.AuthenticateResPayload>(
+        action,
+        AUTHENTICATE_ERROR_MSG,
+        handlerActions.authenticateRes,
+        (fin,action,resActionCreator,succCb,errCb)=>{
+            initState.currentWindow.authenticate(
+                userName,
+                password,
                 ()=>{
                     const responseAction = resActionCreator({});
                     succCb(responseAction);

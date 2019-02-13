@@ -4,6 +4,7 @@ import { BaseRequestPayload, BaseResponsePayload } from '../base/BasePayload';
 export const GET_CURRENT_ERROR_MSG = 'Openfin API call Window.getCurrent() failed.';
 export const WRAP_ERROR_MSG = 'Openfin API call Window.wrap() failed.';
 export const ADD_EVENT_LISTENER_ERROR_MSG = 'Openfin API call Window.addEventListener() failed.';
+export const AUTHENTICATE_ERROR_MSG = 'Openfin API call Window.authenticate() failed.';
 export const BRING_TO_FRONT_ERROR_MSG = 'Openfin API call Window.bringToFront() failed.';
 export const NEW_WINDOW_ERROR_MSG = 'Openfin API call Window.constructor() failed.';
 export const CLOSE_ERROR_MSG = 'Openfin API call Window.close() failed.';
@@ -47,6 +48,13 @@ export interface AddEventListenerPayload extends BaseRequestPayload, Partial<Win
     listener: (event?:any)=>void,
 }
 export interface AddEventListenerResPayload extends BaseResponsePayload{
+}
+
+export interface AuthenticatePayload extends BaseRequestPayload{
+    userName:string,
+    password:string,
+}
+export interface AuthenticateResPayload extends BaseResponsePayload{
 }
 
 export interface BringToFrontPayload extends BaseRequestPayload, Partial<WindowOptions>{

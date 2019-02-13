@@ -1,6 +1,6 @@
 {
-  "name": "@albertli90/redux-openfin",
-  "version": "0.35.20",
+  "name": "redux-openfin",
+  "version": "0.35.40",
   "description": "redux middleware for openfin in typescript",
   "homepage": "https://albertleigh.github.io/openfin-react-latest",
   "keywords":["openfin","redux","middleware","albert"],

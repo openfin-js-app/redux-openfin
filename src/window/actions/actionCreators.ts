@@ -18,6 +18,11 @@ export const addEventListener:ActionCreator<types.AddEventListenerPayload> = cre
     (options:types.AddEventListenerPayload) => <any> options
 );
 
+export const authenticate:ActionCreator<types.AuthenticatePayload> = createFSA<types.AuthenticatePayload>(
+    actionTypes.AUTHENTICATE,
+    (options:types.AuthenticatePayload) => <any> options
+);
+
 export const bringToFront:ActionCreator<types.BringToFrontPayload> = createFSA<types.BringToFrontPayload>(
     actionTypes.BRING_TO_FRONT,
     (options:types.BringToFrontPayload) => <any> options

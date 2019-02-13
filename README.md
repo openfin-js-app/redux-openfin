@@ -15,9 +15,9 @@ Redux openfin is a wrapper allowing to call openfin js api via redux actions.
 ## Installation
 
 ```text
-    npm i @albertli90/redux-openfin 
+    npm i redux-openfin 
     or 
-    yarn add @albertli90/redux-openfin
+    yarn add redux-openfin
 ```
 
 ## Usage
@@ -27,7 +27,7 @@ sample configure store scripts
 ```typescript
     import { applyMiddleware, createStore, compose } from 'redux';
     import createSagaMiddleware from 'redux-saga';
-    import { createOpenfinMiddleware } from '@albertli90/redux-openfin';
+    import { createOpenfinMiddleware } from 'redux-openfin';
     
     import rootReducer, {IRootState} from '../reduxs';
     import rootSaga from '../reduxs/sagas';
@@ -137,5 +137,5 @@ sample index.tsx
 [LICENSE]: ./LICENSE.md
 [CHANGELOG]: ./CHANGELOG.md
 
-[version-badge]: https://img.shields.io/badge/version-0.35.20-blue.svg
+[version-badge]: https://img.shields.io/badge/version-0.35.40-blue.svg
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg

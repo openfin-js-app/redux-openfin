@@ -9,6 +9,9 @@ export const WRAP_RES = makeType('WRAP_RES');
 export const ADD_EVENT_LISTENER = makeType('ADD_EVENT_LISTENER');
 export const ADD_EVENT_LISTENER_RES = makeType('ADD_EVENT_LISTENER_RES');
 
+export const AUTHENTICATE = makeType('AUTHENTICATE');
+export const AUTHENTICATE_RES = makeType('AUTHENTICATE_RES');
+
 export const BRING_TO_FRONT = makeType('BRING_TO_FRONT');
 export const BRING_TO_FRONT_RES = makeType('BRING_TO_FRONT_RES');
 

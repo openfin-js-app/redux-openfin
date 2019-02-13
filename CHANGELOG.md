@@ -1,4 +1,4 @@
-## [0.35.40] 2019-02-10
+## [0.35.40] 2019-02-12
 - Support OpenFin API Application.getCurrent()
 - Support OpenFin API Application.getWindow()
 - Support OpenFin API Application.wrap()

@@ -22,6 +22,7 @@ export interface IConfig{
     ignoreStore?:boolean,
     autoDocking?:boolean,
     dockingOptions?:Partial<IDockingOptions>,
+    libDispatchFieldName?:string,
 }
 
 export interface IInitState {

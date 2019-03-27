@@ -1,7 +1,9 @@
 import {Action} from 'redux-actions';
 
 import { initState } from '../init';
-import {FIN_NOT_INJECTED_MSG} from "../GlobalTypes";
+import {FIN_NOT_INJECTED_MSG, LIB_REDUX_DISPATCH_FIELD_NAME } from "../GlobalTypes";
+
+declare const window:any;
 
 export default function createAsyncFun<RequestPayloadType,ResponsePayloadType,>(
         action:Action<RequestPayloadType>,
@@ -15,13 +17,21 @@ export default function createAsyncFun<RequestPayloadType,ResponsePayloadType,>(
             errCb:(e:Error|string)=>void
         )=>void
 ):Promise<Action<ResponsePayloadType>> {
+
+    const libReduxDispatch =
+        (action[LIB_REDUX_DISPATCH_FIELD_NAME] && window[action[LIB_REDUX_DISPATCH_FIELD_NAME]])?
+            window[action[LIB_REDUX_DISPATCH_FIELD_NAME]]:
+            void 0;
+
     return new Promise<Action<ResponsePayloadType>>((resolve,reject)=>{
 
         const succCb = (action:Action<ResponsePayloadType>)=>{
-            if (initState.store){
+            if (libReduxDispatch){
+                libReduxDispatch(action)
+            }else if (initState.store){
                 initState.store.dispatch(action);
-                resolve(action);
             }
+            resolve(action);;
         };
         const errCb = (e:Error|string)=>{
             const errMsg:string = e && (e as Error).message
@@ -32,7 +42,9 @@ export default function createAsyncFun<RequestPayloadType,ResponsePayloadType,>(
                 name:'Error',
                 error
             } as any);
-            if (initState.store){
+            if (libReduxDispatch){
+                libReduxDispatch(action)
+            }else if (initState.store){
                 initState.store.dispatch(rejectAction);
             }
             reject(rejectAction.error)

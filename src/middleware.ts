@@ -88,9 +88,6 @@ const actionHandlers:any = {
 export function middlewareCreator(fin: any, config:IConfig):Middleware {
     return (
         (store?:Store<any>) => {
-            initChannel(fin,config,store).catch(e=>{
-                throw e;
-            });
             init(fin,config,store);
             const libDispatchFieldName = config.libDispatchFieldName?config.libDispatchFieldName:void 0;
             return (next:Function) => (action:Action) => {

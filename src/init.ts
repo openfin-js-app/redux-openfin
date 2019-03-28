@@ -1,6 +1,7 @@
 import { Store } from 'redux';
 
 import { FinWindow, FinApplication } from './GlobalTypes';
+import initChannel from './channel';
 
 import registerDefaultListener from './event/registerDefaultListener';
 import initDocking from './docking/init';
@@ -43,28 +44,39 @@ export const initState:IInitState ={
     currentApplication:null,
 };
 
+let initialized = false;
+
 function init(fin: any, config:IConfig, store?: Store<any>){
 
-    initState.config = config;
+    if (!initialized){
 
-    if (store){
-        registerDefaultListener(fin,store);
-    }
-    initState.fin = fin;
+        initChannel(fin,config,store).catch(e=>{
+            throw e;
+        });
 
-    if(fin && fin.desktop){
-        initState.currentApplication = fin.desktop.Application.getCurrent();
-        initState.currentWindow = fin.desktop.Window.getCurrent();
-        if (config.autoDocking && config.channelType === ChannelType.PROVIDER){
-            const dockingOptions = config.dockingOptions?config.dockingOptions:{};
-            initDocking(fin,initState.currentWindow,dockingOptions);
+        initialized = true;
+        initState.config = config;
+
+        if (store){
+            registerDefaultListener(fin,store);
         }
-    }
+        initState.fin = fin;
 
-    if (config.ignoreStore){
-        initState.store = null;
-    }else{
-        initState.store = store;
+        if(fin && fin.desktop){
+            initState.currentApplication = fin.desktop.Application.getCurrent();
+            initState.currentWindow = fin.desktop.Window.getCurrent();
+            if (config.autoDocking && config.channelType === ChannelType.PROVIDER){
+                const dockingOptions = config.dockingOptions?config.dockingOptions:{};
+                initDocking(fin,initState.currentWindow,dockingOptions);
+            }
+        }
+
+        if (config.ignoreStore){
+            initState.store = null;
+        }else{
+            initState.store = store;
+        }
+
     }
 
 }

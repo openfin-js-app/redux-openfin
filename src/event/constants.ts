@@ -1,5 +1,5 @@
 import {Action} from 'redux-actions';
-import makeType from '../utils/makeType';
+import { makeReqType, makeResType } from '../utils/makeType';
 import createFSA, {ActionCreator} from '../utils/createFSA';
 
 export class EventConstant{
@@ -8,7 +8,7 @@ export class EventConstant{
     actionCreator:ActionCreator<any>;
     constructor(prefix:string,name:string){
         this.name = name;
-        this.type = makeType(prefix+name.split('-').join('_').toUpperCase());
+        this.type = makeResType(prefix+name.split('-').join('_').toUpperCase());
         this.actionCreator = createFSA<any>(
             this.type,
             (options:any)=> <any> options

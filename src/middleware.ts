@@ -1,5 +1,5 @@
 import {Store, Action, Middleware, MiddlewareAPI } from 'redux';
-import { ActionHandlerParams } from './GlobalTypes';
+import { ActionHandlerParams, LIB_REDUX_DISPATCH_FIELD_NAME } from './GlobalTypes';
 
 import * as ApplicationActions from './application/actions/actionTypes';
 import * as  ApplicationHandlers from './application/handlers';
@@ -88,11 +88,12 @@ const actionHandlers:any = {
 export function middlewareCreator(fin: any, config:IConfig):Middleware {
     return (
         (store?:Store<any>) => {
-            initChannel(fin,config,store).catch(e=>{
-                throw e;
-            });
             init(fin,config,store);
+            const libDispatchFieldName = config.libDispatchFieldName?config.libDispatchFieldName:void 0;
             return (next:Function) => (action:Action) => {
+                if (libDispatchFieldName){
+                    action[LIB_REDUX_DISPATCH_FIELD_NAME] = libDispatchFieldName;
+                }
                 const actionHanlderParams : ActionHandlerParams = {
                     fin, store, next, action,
                 };

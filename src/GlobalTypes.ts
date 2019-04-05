@@ -3,6 +3,9 @@ import {Action} from 'redux-actions';
 
 export const FIN_NOT_INJECTED_MSG = 'fin handler is not injected or initialized';
 
+// the action field name of the field name of the lib dispatch upon window object
+export const LIB_REDUX_DISPATCH_FIELD_NAME='REDUX_OPENFIN_LIB_REDUX_DISPATCH_FIELD_NAME';
+
 export type Noop = ()=> void;
 export type ErrorCallback = (error:Object) => void;
 

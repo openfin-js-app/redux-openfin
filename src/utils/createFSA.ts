@@ -1,25 +1,41 @@
 import {createAction, ActionFunctionAny, Action} from 'redux-actions';
 
+import { LIB_REDUX_DISPATCH_FIELD_NAME } from '../GlobalTypes'
+
 import noop from './noop';
 
-export type ActionCreator<T> = ((options:T)=> Action<any>)
+interface IExtAction {
+    [LIB_REDUX_DISPATCH_FIELD_NAME]:string,
+}
 
-export default function createFSA<T>(type:string, payloadCreator:(payload:T)=>any):ActionCreator<T> {
+export type ActionCreator<T> = ((options:T, extAction?:IExtAction)=> Action<T>)
 
-    const actionCreator:ActionFunctionAny<Action<any>> = createAction(type,payloadCreator);
+export default function createFSA<T>(type:string, payloadCreator:(payload:T)=>T):ActionCreator<T> {
 
-    return (payload:any) => {
+    const actionCreator = createAction<T,T>(type,payloadCreator);
 
-        let oriPayload:Action<any> = actionCreator(payload);
+    return (payload:T, extAction:IExtAction) => {
 
-        oriPayload.payload = oriPayload.payload?oriPayload.payload:{};
+        let oriAction:Action<T> = actionCreator(payload);
+
+        oriAction.payload = oriAction.payload?oriAction.payload:{} as T;
 
         // oriPayload.payload.callback = oriPayload.payload.callback?oriPayload.payload.callback:noop;
         // oriPayload.payload.errorCallback = oriPayload.payload.errorCallback?oriPayload.payload.errorCallback:noop;
 
-        return <Action<any>> {
-            ...oriPayload,
-            error:payload && payload.name === 'Error',
+        if (extAction){
+            return <Action<T>> {
+                ...oriAction,
+                ...extAction,
+                // @ts-ignore
+                error:payload.error && payload.name,
+            }
+        }else{
+            return <Action<T>> {
+                ...oriAction,
+                // @ts-ignore
+                error:payload.error && payload.name,
+            }
         }
 
     }

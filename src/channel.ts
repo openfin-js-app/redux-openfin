@@ -18,16 +18,16 @@ let dispatch;
 declare const window:any;
 
 // listener is response to consume the action from channel
-const sharedActionListener = (type:string)=>(payload:any,src:any)=>{
+const sharedActionListener = (type:string)=>(action:Action<any>,src:any)=>{
 
-    // console.log('[redux-openfin]channel::sharedActionListener',type,payload,src);
+    console.log('[redux-openfin]channel::sharedActionListener',type,action,src);
 
     if (channelType === ChannelType.PROVIDER){
-        channel.publish(type,payload);
+        channel.publish(type,action);
     }
 
-    if (payload[SHARED_ACTION_ORIGIN_TAG] !== window[SHARED_ACTION_ORIGIN_TAG]){
-        dispatch({type,payload});
+    if (action[SHARED_ACTION_ORIGIN_TAG] !== window[SHARED_ACTION_ORIGIN_TAG]){
+        dispatch(action);
     }
 
 }
@@ -37,20 +37,20 @@ export function sharedActionHandler(action:Action<any>) {
 
     // console.log('[redux-openfin]channel::sharedActionHandler called',action,channelType,channel,stackedChannel,channelUp);
 
-    if (!action.payload[SHARED_ACTION_ORIGIN_TAG]){
-        action.payload[SHARED_ACTION_ORIGIN_TAG]=window[SHARED_ACTION_ORIGIN_TAG];
+    if (!action[SHARED_ACTION_ORIGIN_TAG]){
+        action[SHARED_ACTION_ORIGIN_TAG]=window[SHARED_ACTION_ORIGIN_TAG];
         stackedChannel.push(action);
 
         if (channelUp || (channel && channelType === ChannelType.CLIENT)){
             while(stackedChannel.length){
                 let theAction = stackedChannel.shift();
                 if (channelType === ChannelType.PROVIDER){
-                    // console.log('[redux-openfin]channel::sharedActionHandler PROVIDER publish');
-                    channel.publish(theAction.type,theAction.payload);
+                    console.log('[redux-openfin]channel::sharedActionHandler PROVIDER publish');
+                    channel.publish(theAction.type,theAction);
                 }else if (channelType === ChannelType.CLIENT){
-                    // console.log('[redux-openfin]channel::sharedActionHandler CLIENT dispatch');
-                    channel.dispatch(theAction.type,theAction.payload).then((...args)=>{
-                        // console.log('[redux-openfin]channel::sharedActionHandler CLIENT dispatch resolved',args);
+                    console.log('[redux-openfin]channel::sharedActionHandler CLIENT dispatch');
+                    channel.dispatch(theAction.type,theAction).then((...args)=>{
+                        console.log('[redux-openfin]channel::sharedActionHandler CLIENT dispatch resolved',args);
                     }).catch(e=>{throw e})
                 }
             }

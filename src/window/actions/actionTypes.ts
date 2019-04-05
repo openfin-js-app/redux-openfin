@@ -1,82 +1,82 @@
-import makeType from '../../utils/makeType';
+import { makeReqType, makeResType } from '../../utils/makeType';
 
-export const GET_CURRENT = makeType('GET_CURRENT');
-export const GET_CURRENT_RES = makeType('GET_CURRENT_RES');
+export const GET_CURRENT = makeReqType('GET_CURRENT');
+export const GET_CURRENT_RES = makeResType('GET_CURRENT_RES');
 
-export const WRAP = makeType('WRAP');
-export const WRAP_RES = makeType('WRAP_RES');
+export const WRAP = makeReqType('WRAP');
+export const WRAP_RES = makeResType('WRAP_RES');
 
-export const ADD_EVENT_LISTENER = makeType('ADD_EVENT_LISTENER');
-export const ADD_EVENT_LISTENER_RES = makeType('ADD_EVENT_LISTENER_RES');
+export const ADD_EVENT_LISTENER = makeReqType('ADD_EVENT_LISTENER');
+export const ADD_EVENT_LISTENER_RES = makeResType('ADD_EVENT_LISTENER_RES');
 
-export const AUTHENTICATE = makeType('AUTHENTICATE');
-export const AUTHENTICATE_RES = makeType('AUTHENTICATE_RES');
+export const AUTHENTICATE = makeReqType('AUTHENTICATE');
+export const AUTHENTICATE_RES = makeResType('AUTHENTICATE_RES');
 
-export const BRING_TO_FRONT = makeType('BRING_TO_FRONT');
-export const BRING_TO_FRONT_RES = makeType('BRING_TO_FRONT_RES');
+export const BRING_TO_FRONT = makeReqType('BRING_TO_FRONT');
+export const BRING_TO_FRONT_RES = makeResType('BRING_TO_FRONT_RES');
 
-export const NEW_WINDOWS = makeType('NEW_WINDOWS');
-export const NEW_WINDOWS_RES = makeType('NEW_WINDOWS_RES');
+export const NEW_WINDOWS = makeReqType('NEW_WINDOWS');
+export const NEW_WINDOWS_RES = makeResType('NEW_WINDOWS_RES');
 
-export const CLOSE = makeType('CLOSE');
-export const CLOSE_RES = makeType('CLOSE_RES');
+export const CLOSE = makeReqType('CLOSE');
+export const CLOSE_RES = makeResType('CLOSE_RES');
 
-export const DISABLE_FRAME = makeType('DISABLE_FRAME');
-export const DISABLE_FRAME_RES = makeType('DISABLE_FRAME_RES');
+export const DISABLE_FRAME = makeReqType('DISABLE_FRAME');
+export const DISABLE_FRAME_RES = makeResType('DISABLE_FRAME_RES');
 
-export const ENABLE_FRAME = makeType('ENABLE_FRAME');
-export const ENABLE_FRAME_RES = makeType('ENABLE_FRAME_RES');
+export const ENABLE_FRAME = makeReqType('ENABLE_FRAME');
+export const ENABLE_FRAME_RES = makeResType('ENABLE_FRAME_RES');
 
-export const FOCUS = makeType('FOCUS');
-export const FOCUS_RES = makeType('FOCUS_RES');
+export const FOCUS = makeReqType('FOCUS');
+export const FOCUS_RES = makeResType('FOCUS_RES');
 
-export const GET_GROUP = makeType('GET_GROUP');
-export const GET_GROUP_RES = makeType('GET_GROUP_RES');
+export const GET_GROUP = makeReqType('GET_GROUP');
+export const GET_GROUP_RES = makeResType('GET_GROUP_RES');
 
-export const GET_BOUNDS = makeType('GET_BOUNDS');
-export const GET_BOUNDS_RES = makeType('GET_BOUNDS_RES');
+export const GET_BOUNDS = makeReqType('GET_BOUNDS');
+export const GET_BOUNDS_RES = makeResType('GET_BOUNDS_RES');
 
-export const GET_STATE = makeType('GET_STATE');
-export const GET_STATE_RES = makeType('GET_STATE_RES');
+export const GET_STATE = makeReqType('GET_STATE');
+export const GET_STATE_RES = makeResType('GET_STATE_RES');
 
-export const GET_OPTIONS = makeType('GET_OPTIONS');
-export const GET_OPTIONS_RES = makeType('GET_OPTIONS_RES');
+export const GET_OPTIONS = makeReqType('GET_OPTIONS');
+export const GET_OPTIONS_RES = makeResType('GET_OPTIONS_RES');
 
-export const HIDE = makeType('HIDE');
-export const HIDE_RES = makeType('HIDE_RES');
+export const HIDE = makeReqType('HIDE');
+export const HIDE_RES = makeResType('HIDE_RES');
 
-export const JOIN_GROUP = makeType('JOIN_GROUP');
-export const JOIN_GROUP_RES = makeType('JOIN_GROUP_RES');
+export const JOIN_GROUP = makeReqType('JOIN_GROUP');
+export const JOIN_GROUP_RES = makeResType('JOIN_GROUP_RES');
 
-export const LEAVE_GROUP = makeType('LEAVE_GROUP');
-export const LEAVE_GROUP_RES = makeType('LEAVE_GROUP_RES');
+export const LEAVE_GROUP = makeReqType('LEAVE_GROUP');
+export const LEAVE_GROUP_RES = makeResType('LEAVE_GROUP_RES');
 
-export const MINIMIZE = makeType('MINIMIZE');
-export const MINIMIZE_RES = makeType('MINIMIZE_RES');
+export const MINIMIZE = makeReqType('MINIMIZE');
+export const MINIMIZE_RES = makeResType('MINIMIZE_RES');
 
-export const MAXIMIZE = makeType('MAXIMIZE');
-export const MAXIMIZE_RES = makeType('MAXIMIZE_RES');
+export const MAXIMIZE = makeReqType('MAXIMIZE');
+export const MAXIMIZE_RES = makeResType('MAXIMIZE_RES');
 
-export const MERGE_GROUPS = makeType('MERGE_GROUPS');
-export const MERGE_GROUPS_RES = makeType('MERGE_GROUPS_RES');
+export const MERGE_GROUPS = makeReqType('MERGE_GROUPS');
+export const MERGE_GROUPS_RES = makeResType('MERGE_GROUPS_RES');
 
-export const MOVE_BY = makeType('MOVE_BY');
-export const MOVE_BY_RES = makeType('MOVE_BY_RES');
+export const MOVE_BY = makeReqType('MOVE_BY');
+export const MOVE_BY_RES = makeResType('MOVE_BY_RES');
 
-export const MOVE_TO = makeType('MOVE_TO');
-export const MOVE_TO_RES = makeType('MOVE_TO_RES');
+export const MOVE_TO = makeReqType('MOVE_TO');
+export const MOVE_TO_RES = makeResType('MOVE_TO_RES');
 
-export const RESTORE = makeType('RESTORE');
-export const RESTORE_RES = makeType('RESTORE_RES');
+export const RESTORE = makeReqType('RESTORE');
+export const RESTORE_RES = makeResType('RESTORE_RES');
 
-export const SHOW = makeType('SHOW');
-export const SHOW_RES = makeType('SHOW_RES');
+export const SHOW = makeReqType('SHOW');
+export const SHOW_RES = makeResType('SHOW_RES');
 
-export const SET_AS_FOREGROUND = makeType('SET_AS_FOREGROUND');
-export const SET_AS_FOREGROUND_RES = makeType('SET_AS_FOREGROUND_RES');
+export const SET_AS_FOREGROUND = makeReqType('SET_AS_FOREGROUND');
+export const SET_AS_FOREGROUND_RES = makeResType('SET_AS_FOREGROUND_RES');
 
-export const SET_BOUNDS = makeType('SET_BOUNDS');
-export const SET_BOUNDS_RES = makeType('SET_BOUNDS_RES');
+export const SET_BOUNDS = makeReqType('SET_BOUNDS');
+export const SET_BOUNDS_RES = makeResType('SET_BOUNDS_RES');
 
-export const UPDATE_OPTIONS = makeType('UPDATE_OPTIONS');
-export const UPDATE_OPTIONS_RES = makeType('UPDATE_OPTIONS_RES');
+export const UPDATE_OPTIONS = makeReqType('UPDATE_OPTIONS');
+export const UPDATE_OPTIONS_RES = makeResType('UPDATE_OPTIONS_RES');

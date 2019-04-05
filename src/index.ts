@@ -1,4 +1,7 @@
 export * from './GlobalTypes';
+
+export { isReduxOpenfinAct, isReqAct, isResAct } from './utils/makeType';
+
 export { middlewareCreator as createOpenfinMiddleware } from './middleware';
 export {default as Applcation} from './application'
 export {default as Docking} from './docking'

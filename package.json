@@ -1,6 +1,6 @@
 {
   "name": "redux-openfin",
-  "version": "0.70.10.beta",
+  "version": "0.70.12.beta",
   "description": "redux middleware for openfin in typescript",
   "homepage": "https://albertleigh.github.io/openfin-react-latest",
   "keywords":["openfin","redux","middleware","albert"],
@@ -23,8 +23,8 @@
   "author": "Wentao Li <liwentao90@yahoo.com>",
   "license": "MIT",
   "dependencies": {
-    "redux": "^4.0.0",
-    "redux-actions": "^2.4.0"
+    "redux": "^4.0.1",
+    "redux-actions": "^2.6.5"
   },
   "devDependencies": {
     "@types/jest": "^23.3.9",

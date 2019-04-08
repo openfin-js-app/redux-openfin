@@ -1,4 +1,5 @@
-import {Store, Action, Middleware, MiddlewareAPI } from 'redux';
+import {Store, Middleware, MiddlewareAPI } from 'redux';
+import { Action } from 'redux-actions';
 import { ActionHandlerParams, LIB_REDUX_DISPATCH_FIELD_NAME } from './GlobalTypes';
 
 import * as ApplicationActions from './application/actions/actionTypes';
@@ -90,7 +91,7 @@ export function middlewareCreator(fin: any, config:IConfig):Middleware {
         (store?:Store<any>) => {
             init(fin,config,store);
             const libDispatchFieldName = config.libDispatchFieldName?config.libDispatchFieldName:void 0;
-            return (next:Function) => (action:Action) => {
+            return (next:Function) => (action:Action<any>) => {
                 if (libDispatchFieldName){
                     action[LIB_REDUX_DISPATCH_FIELD_NAME] = libDispatchFieldName;
                 }

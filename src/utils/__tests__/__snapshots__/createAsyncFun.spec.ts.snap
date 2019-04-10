@@ -7,6 +7,7 @@ exports[`createAsyncFun util async rejected with reason str 2`] = `
   "calls": Array [
     Array [
       Object {
+        "payload": Object {},
         "type": "res_action_name",
       },
     ],
@@ -35,6 +36,7 @@ exports[`createAsyncFun util async rejected with reason str 2`] = `
 
 exports[`createAsyncFun util async resolved 1`] = `
 Object {
+  "payload": Object {},
   "type": "res_action_name",
 }
 `;
@@ -44,6 +46,7 @@ exports[`createAsyncFun util async resolved 2`] = `
   "calls": Array [
     Array [
       Object {
+        "payload": Object {},
         "type": "res_action_name",
       },
     ],
@@ -66,6 +69,7 @@ exports[`createAsyncFun util fin not injected throw exception by default 2`] = `
   "calls": Array [
     Array [
       Object {
+        "payload": Object {},
         "type": "res_action_name",
       },
     ],

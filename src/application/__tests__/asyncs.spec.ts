@@ -1,5 +1,7 @@
 jest.mock('../../utils/createAsyncFun');
 const createAsyncFun = require('../../utils/createAsyncFun');
+
+import {initState} from '../../init';
 import * as actions from '../actions';
 import * as asyncs  from '../asyncs';
 
@@ -41,22 +43,14 @@ describe('Application asyncs',()=>{
         const restart = jest.fn((succCb,errCb)=>{
             succCb();
         });
-        const fin = {
-            desktop:{
-                Application:{
-                    getCurrent:()=>{
-                        return {
-                            restart
-                        }
-                    }
-                }
-            }
-        };
+        initState.currentApplication = {
+            restart
+        } as any;
         const succCb = jest.fn();
         const errCb = jest.fn();
         createAsyncFun.default=jest.fn(
             (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+                finCb({},action,resActionCreator,succCb,errCb);
             }
         );
         await asyncs.restart(

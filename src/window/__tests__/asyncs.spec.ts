@@ -374,7 +374,7 @@ describe('Window asyncs',()=>{
 
     it('getBounds',async ()=>{
         const getBounds = jest.fn((succCb,errCb)=>{
-            succCb();
+            succCb({});
         });
 
         init.initState.currentWindow = {getBounds};
@@ -446,7 +446,7 @@ describe('Window asyncs',()=>{
 
     it('getOptions',async ()=>{
         const getOptions = jest.fn((succCb,errCb)=>{
-            succCb();
+            succCb({});
         });
 
         init.initState.currentWindow = {getOptions};

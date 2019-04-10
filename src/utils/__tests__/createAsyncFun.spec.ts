@@ -21,6 +21,7 @@ describe('createAsyncFun util',()=>{
             (fin,action,resActionCreator,succCb,errCb)=>{
                 succCb({
                     type:'res_action_name',
+                    payload:{}
                 })
             }
         );
@@ -73,6 +74,7 @@ describe('createAsyncFun util',()=>{
                     (fin,action,resActionCreator,succCb,errCb)=>{
                         succCb({
                             type:'res_action_name',
+                            payload:{}
                         })
                     }
                 );
@@ -109,6 +111,7 @@ describe('createAsyncFun util',()=>{
                     (fin,action,resActionCreator,succCb,errCb)=>{
                         succCb({
                             type:'res_action_name',
+                            payload:{}
                         })
                     }
                 );

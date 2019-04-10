@@ -7,12 +7,12 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {
             "listener": [Function],
             "type": "type",
           },
-          "type": "REDUX_OPENFIN::ADD_EVENT_LISTENER",
+          "type": "REDUX_OPENFIN_REQ::ADD_EVENT_LISTENER",
         },
         "Openfin API call Window.addEventListener() failed.",
         [Function],
@@ -36,9 +36,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::BRING_TO_FRONT",
+          "type": "REDUX_OPENFIN_REQ::BRING_TO_FRONT",
         },
         "Openfin API call Window.bringToFront() failed.",
         [Function],
@@ -62,11 +62,11 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {
             "force": false,
           },
-          "type": "REDUX_OPENFIN::CLOSE",
+          "type": "REDUX_OPENFIN_REQ::CLOSE",
         },
         "Openfin API call Window.close() failed.",
         [Function],
@@ -90,9 +90,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::DISABLE_FRAME",
+          "type": "REDUX_OPENFIN_REQ::DISABLE_FRAME",
         },
         "Openfin API call Window.disableFrame() failed.",
         [Function],
@@ -116,9 +116,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::ENABLE_FRAME",
+          "type": "REDUX_OPENFIN_REQ::ENABLE_FRAME",
         },
         "Openfin API call Window.enableFrame() failed.",
         [Function],
@@ -142,9 +142,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::FOCUS",
+          "type": "REDUX_OPENFIN_REQ::FOCUS",
         },
         "Openfin API call Window.focus() failed.",
         [Function],
@@ -168,9 +168,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::GET_BOUNDS",
+          "type": "REDUX_OPENFIN_REQ::GET_BOUNDS",
         },
         "Openfin API call Window.getBounds() failed.",
         [Function],
@@ -194,9 +194,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::GET_CURRENT",
+          "type": "REDUX_OPENFIN_REQ::GET_CURRENT",
         },
         "Openfin API call Window.getCurrent() failed.",
         [Function],
@@ -220,9 +220,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::GET_CURRENT",
+          "type": "REDUX_OPENFIN_REQ::GET_CURRENT",
         },
         "Openfin API call Window.getCurrent() failed.",
         [Function],
@@ -246,9 +246,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::GET_GROUP",
+          "type": "REDUX_OPENFIN_REQ::GET_GROUP",
         },
         "Openfin API call Window.getGroup() failed.",
         [Function],
@@ -272,9 +272,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::GET_OPTIONS",
+          "type": "REDUX_OPENFIN_REQ::GET_OPTIONS",
         },
         "Openfin API call Window.getOptions() failed.",
         [Function],
@@ -298,9 +298,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::GET_STATE",
+          "type": "REDUX_OPENFIN_REQ::GET_STATE",
         },
         "Openfin API call Window.getState() failed.",
         [Function],
@@ -324,9 +324,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::HIDE",
+          "type": "REDUX_OPENFIN_REQ::HIDE",
         },
         "Openfin API call Window.hide() failed.",
         [Function],
@@ -350,7 +350,7 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {
             "currentWindow": Object {
               "joinGroup": [MockFunction] {
@@ -371,7 +371,7 @@ Object {
             },
             "targetWindow": Object {},
           },
-          "type": "REDUX_OPENFIN::JOIN_GROUP",
+          "type": "REDUX_OPENFIN_REQ::JOIN_GROUP",
         },
         "Openfin API call Window.joinGroup() failed.",
         [Function],
@@ -395,7 +395,7 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {
             "targetWindow": Object {
               "leaveGroup": [MockFunction] {
@@ -414,7 +414,7 @@ Object {
               },
             },
           },
-          "type": "REDUX_OPENFIN::LEAVE_GROUP",
+          "type": "REDUX_OPENFIN_REQ::LEAVE_GROUP",
         },
         "Openfin API call Window.leaveGroup() failed.",
         [Function],
@@ -438,9 +438,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::MAXIMIZE",
+          "type": "REDUX_OPENFIN_REQ::MAXIMIZE",
         },
         "Openfin API call Window.maximize() failed.",
         [Function],
@@ -464,7 +464,7 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {
             "currentWindow": Object {
               "mergeGroups": [MockFunction] {
@@ -485,7 +485,7 @@ Object {
             },
             "targetWindow": Object {},
           },
-          "type": "REDUX_OPENFIN::MERGE_GROUPS",
+          "type": "REDUX_OPENFIN_REQ::MERGE_GROUPS",
         },
         "Openfin API call Window.mergeGroups() failed.",
         [Function],
@@ -509,9 +509,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::MINIMIZE",
+          "type": "REDUX_OPENFIN_REQ::MINIMIZE",
         },
         "Openfin API call Window.minimize() failed.",
         [Function],
@@ -535,12 +535,12 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {
             "deltaLeft": 1,
             "deltaTop": 1,
           },
-          "type": "REDUX_OPENFIN::MOVE_BY",
+          "type": "REDUX_OPENFIN_REQ::MOVE_BY",
         },
         "Openfin API call Window.moveBy() failed.",
         [Function],
@@ -564,12 +564,12 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {
             "left": 1,
             "top": 1,
           },
-          "type": "REDUX_OPENFIN::MOVE_TO",
+          "type": "REDUX_OPENFIN_REQ::MOVE_TO",
         },
         "Openfin API call Window.moveTo() failed.",
         [Function],
@@ -593,9 +593,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::NEW_WINDOWS",
+          "type": "REDUX_OPENFIN_REQ::NEW_WINDOWS",
         },
         "Openfin API call Window.constructor() failed.",
         [Function],
@@ -619,9 +619,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::RESTORE",
+          "type": "REDUX_OPENFIN_REQ::RESTORE",
         },
         "Openfin API call Window.restore() failed.",
         [Function],
@@ -645,9 +645,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::SET_AS_FOREGROUND",
+          "type": "REDUX_OPENFIN_REQ::SET_AS_FOREGROUND",
         },
         "Openfin API call Window.setForeground() failed.",
         [Function],
@@ -671,14 +671,14 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {
             "height": 3,
             "left": 2,
             "top": 1,
             "width": 4,
           },
-          "type": "REDUX_OPENFIN::SET_BOUNDS",
+          "type": "REDUX_OPENFIN_REQ::SET_BOUNDS",
         },
         "Openfin API call Window.setBounds() failed.",
         [Function],
@@ -702,11 +702,11 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {
             "force": true,
           },
-          "type": "REDUX_OPENFIN::SHOW",
+          "type": "REDUX_OPENFIN_REQ::SHOW",
         },
         "Openfin API call Window.show() failed.",
         [Function],
@@ -730,11 +730,11 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {
             "options": Object {},
           },
-          "type": "REDUX_OPENFIN::UPDATE_OPTIONS",
+          "type": "REDUX_OPENFIN_REQ::UPDATE_OPTIONS",
         },
         "Openfin API call Window.updateOptions() failed.",
         [Function],

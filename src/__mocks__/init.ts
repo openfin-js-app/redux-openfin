@@ -13,4 +13,5 @@ export const initState:IInitState ={
     channel:null,
     config:null,
     currentWindow:null,
+    currentApplication:null,
 };

@@ -80,9 +80,9 @@ exports[`Application asyncs restart 2`] = `
   "calls": Array [
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {},
-        "type": "REDUX_OPENFIN::APPLICATION_RESTART_RES",
+        "type": "REDUX_OPENFIN_RES::APPLICATION_RESTART_RES",
       },
     ],
   ],
@@ -102,9 +102,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::APPLICATION_RESTART",
+          "type": "REDUX_OPENFIN_REQ::APPLICATION_RESTART",
         },
         "OpenFin API call Application.restart() failed.",
         [Function],

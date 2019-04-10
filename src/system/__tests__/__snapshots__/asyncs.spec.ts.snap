@@ -23,9 +23,9 @@ exports[`System asyncs clearCache 2`] = `
   "calls": Array [
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {},
-        "type": "REDUX_OPENFIN::CLEAR_CACHE_RES",
+        "type": "REDUX_OPENFIN_RES::CLEAR_CACHE_RES",
       },
     ],
   ],
@@ -45,9 +45,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::CLEAR_CACHE",
+          "type": "REDUX_OPENFIN_REQ::CLEAR_CACHE",
         },
         "OpenFin API call System.clearCache() failed.",
         [Function],
@@ -86,11 +86,11 @@ exports[`System asyncs getDeviceUserId 2`] = `
   "calls": Array [
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {
           "id": undefined,
         },
-        "type": "REDUX_OPENFIN::GET_DEVICE_USER_ID_RES",
+        "type": "REDUX_OPENFIN_RES::GET_DEVICE_USER_ID_RES",
       },
     ],
   ],
@@ -110,9 +110,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::GET_DEVICE_USER_ID",
+          "type": "REDUX_OPENFIN_REQ::GET_DEVICE_USER_ID",
         },
         "OpenFin API call System.getDeviceUserId() failed.",
         [Function],
@@ -152,12 +152,12 @@ exports[`System asyncs getEnvironmentVariable 2`] = `
   "calls": Array [
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {
           "env": "env",
           "value": undefined,
         },
-        "type": "REDUX_OPENFIN::GET_ENVIRONMENT_VARIABLE_RES",
+        "type": "REDUX_OPENFIN_RES::GET_ENVIRONMENT_VARIABLE_RES",
       },
     ],
   ],
@@ -177,11 +177,11 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {
             "env": "env",
           },
-          "type": "REDUX_OPENFIN::GET_ENVIRONMENT_VARIABLE",
+          "type": "REDUX_OPENFIN_REQ::GET_ENVIRONMENT_VARIABLE",
         },
         "OpenFin API call System.getEnvironmentVariable() failed.",
         [Function],
@@ -283,11 +283,11 @@ exports[`System asyncs getMachineId 2`] = `
   "calls": Array [
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {
           "id": undefined,
         },
-        "type": "REDUX_OPENFIN::GET_MACHINE_ID_RES",
+        "type": "REDUX_OPENFIN_RES::GET_MACHINE_ID_RES",
       },
     ],
   ],
@@ -307,9 +307,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::GET_MACHINE_ID",
+          "type": "REDUX_OPENFIN_REQ::GET_MACHINE_ID",
         },
         "OpenFin API call System.getMachine() failed.",
         [Function],
@@ -411,11 +411,11 @@ exports[`System asyncs getVersion 2`] = `
   "calls": Array [
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {
           "version": undefined,
         },
-        "type": "REDUX_OPENFIN::GET_VERSION_RES",
+        "type": "REDUX_OPENFIN_RES::GET_VERSION_RES",
       },
     ],
   ],
@@ -435,9 +435,9 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {},
-          "type": "REDUX_OPENFIN::GET_VERSION",
+          "type": "REDUX_OPENFIN_REQ::GET_VERSION",
         },
         "OpenFin API call System.getVersion() failed.",
         [Function],

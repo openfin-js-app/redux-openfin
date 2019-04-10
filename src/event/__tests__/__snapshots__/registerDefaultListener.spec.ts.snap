@@ -119,119 +119,119 @@ exports[`Event::registerDefaultListener register by default 3`] = `
   "calls": Array [
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {},
-        "type": "REDUX_OPENFIN::APP_EVENT::CLOSED",
+        "type": "REDUX_OPENFIN_RES::APP_EVENT::CLOSED",
       },
     ],
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {},
-        "type": "REDUX_OPENFIN::WIND_EVENT::BLURRED",
+        "type": "REDUX_OPENFIN_RES::WIND_EVENT::BLURRED",
       },
     ],
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {},
-        "type": "REDUX_OPENFIN::WIND_EVENT::BOUNDS_CHANGED",
+        "type": "REDUX_OPENFIN_RES::WIND_EVENT::BOUNDS_CHANGED",
       },
     ],
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {},
-        "type": "REDUX_OPENFIN::WIND_EVENT::BOUNDS_CHANGING",
+        "type": "REDUX_OPENFIN_RES::WIND_EVENT::BOUNDS_CHANGING",
       },
     ],
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {},
-        "type": "REDUX_OPENFIN::WIND_EVENT::CLOSE_REQUESTED",
+        "type": "REDUX_OPENFIN_RES::WIND_EVENT::CLOSE_REQUESTED",
       },
     ],
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {},
-        "type": "REDUX_OPENFIN::WIND_EVENT::FOCUSED",
+        "type": "REDUX_OPENFIN_RES::WIND_EVENT::FOCUSED",
       },
     ],
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {},
-        "type": "REDUX_OPENFIN::WIND_EVENT::GROUP_CHANGED",
+        "type": "REDUX_OPENFIN_RES::WIND_EVENT::GROUP_CHANGED",
       },
     ],
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {},
-        "type": "REDUX_OPENFIN::WIND_EVENT::HIDDEN",
+        "type": "REDUX_OPENFIN_RES::WIND_EVENT::HIDDEN",
       },
     ],
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {
           "state": "maximized",
         },
-        "type": "REDUX_OPENFIN::GET_STATE_RES",
+        "type": "REDUX_OPENFIN_RES::GET_STATE_RES",
       },
     ],
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {
           "type": "maximized",
         },
-        "type": "REDUX_OPENFIN::WIND_EVENT::MAXIMIZED",
+        "type": "REDUX_OPENFIN_RES::WIND_EVENT::MAXIMIZED",
       },
     ],
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {
           "state": "minimized",
         },
-        "type": "REDUX_OPENFIN::GET_STATE_RES",
+        "type": "REDUX_OPENFIN_RES::GET_STATE_RES",
       },
     ],
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {
           "type": "minimized",
         },
-        "type": "REDUX_OPENFIN::WIND_EVENT::MINIMIZED",
+        "type": "REDUX_OPENFIN_RES::WIND_EVENT::MINIMIZED",
       },
     ],
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {
           "state": "normal",
         },
-        "type": "REDUX_OPENFIN::GET_STATE_RES",
+        "type": "REDUX_OPENFIN_RES::GET_STATE_RES",
       },
     ],
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {
           "type": "restored",
         },
-        "type": "REDUX_OPENFIN::WIND_EVENT::RESTORED",
+        "type": "REDUX_OPENFIN_RES::WIND_EVENT::RESTORED",
       },
     ],
     Array [
       Object {
-        "error": false,
+        "error": undefined,
         "payload": Object {},
-        "type": "REDUX_OPENFIN::WIND_EVENT::SHOWN",
+        "type": "REDUX_OPENFIN_RES::WIND_EVENT::SHOWN",
       },
     ],
   ],

@@ -7,14 +7,14 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {
             "options": Object {
               "message": "message",
               "topic": "topic",
             },
           },
-          "type": "REDUX_OPENFIN::PUBLISH",
+          "type": "REDUX_OPENFIN_REQ::PUBLISH",
         },
         "OpenFin API call InterApplicationBus.publish failed.",
         [Function],
@@ -38,7 +38,7 @@ Object {
     "calls": Array [
       Array [
         Object {
-          "error": false,
+          "error": undefined,
           "payload": Object {
             "options": Object {
               "listener": [Function],
@@ -46,7 +46,7 @@ Object {
               "topic": "topic",
             },
           },
-          "type": "REDUX_OPENFIN::SUBSCRIBE",
+          "type": "REDUX_OPENFIN_REQ::SUBSCRIBE",
         },
         "OpenFin API call InterApplicationBus.subscribe failed.",
         [Function],

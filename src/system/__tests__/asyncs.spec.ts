@@ -63,7 +63,7 @@ describe('System asyncs',()=>{
 
     it('getMonitorInfo',async ()=>{
         const getMonitorInfo = jest.fn((succCb,errCb)=>{
-            succCb();
+            succCb({});
         });
         const fin = {
             desktop:{
@@ -115,7 +115,7 @@ describe('System asyncs',()=>{
 
     it('getHostSpecs',async ()=>{
         const getHostSpecs = jest.fn((succCb,errCb)=>{
-            succCb();
+            succCb({});
         });
         const fin = {
             desktop:{

@@ -3,11 +3,11 @@
 exports[`Application pkg actions Request actions close action 1`] = `
 Array [
   Object {
-    "error": false,
+    "error": undefined,
     "payload": Object {
       "force": true,
     },
-    "type": "REDUX_OPENFIN::APPLICATION_CLOSE",
+    "type": "REDUX_OPENFIN_REQ::APPLICATION_CLOSE",
   },
 ]
 `;

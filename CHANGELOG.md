@@ -1,3 +1,5 @@
+## [0.70.22] 2019-04-11
+- [hot-fix] fix CreateNotificationPayload type optional fields mismatch
 ## [0.70.20] 2019-04-10
 - Optimize action sharing mechanism
 - Enforce singleton to accommodate react hook solution

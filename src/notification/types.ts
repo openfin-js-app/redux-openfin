@@ -23,12 +23,12 @@ export interface CreateNotificationPayload extends BaseRequestPayload{
     message:any;
     timeout:string|number;
     opacity:number;
-    onClick:()=>void,
-    onClose:()=>void,
-    onDismiss:()=>void,
-    onError:(reason:string,errorObj)=>void,
-    onMessage:(message)=>void,
-    onShow:(successObj)=>void,
+    onClick?:()=>void,
+    onClose?:()=>void,
+    onDismiss?:()=>void,
+    onError?:(reason:string,errorObj)=>void,
+    onMessage?:(message)=>void,
+    onShow?:(successObj)=>void,
 }
 
 export interface CreateNotificationResPayload extends BaseResponsePayload, BaseNotificatoinEventResPayload{

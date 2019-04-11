@@ -1,4 +1,4 @@
-# Redux openfin in typescript
+# Redux Openfin
 [![version][version-badge]][CHANGELOG] [![license][license-badge]][LICENSE]
 [![Build Status](https://travis-ci.com/openfin-js-app/redux-openfin.svg?branch=master)](https://travis-ci.com/openfin-js-app/redux-openfin)
 [![Coverage Status](https://coveralls.io/repos/github/openfin-js-app/redux-openfin/badge.svg?branch=master)](https://coveralls.io/github/openfin-js-app/redux-openfin?branch=master)

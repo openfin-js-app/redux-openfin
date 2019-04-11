@@ -1,5 +1,7 @@
 # Redux openfin in typescript
 [![version][version-badge]][CHANGELOG] [![license][license-badge]][LICENSE]
+[![Build Status](https://travis-ci.com/openfin-js-app/redux-openfin.svg?branch=master)](https://travis-ci.com/openfin-js-app/redux-openfin)
+[![Coverage Status](https://coveralls.io/repos/github/openfin-js-app/redux-openfin/badge.svg?branch=master)](https://coveralls.io/github/openfin-js-app/redux-openfin?branch=master)
 
 
 Redux openfin is a wrapper allowing to call openfin js api via redux actions. 
@@ -137,5 +139,5 @@ sample index.tsx
 [LICENSE]: ./LICENSE.md
 [CHANGELOG]: ./CHANGELOG.md
 
-[version-badge]: https://img.shields.io/badge/version-0.70.10beta-blue.svg
-[license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
+[version-badge]: https://img.shields.io/badge/version-0.70.20-green.svg
+[license-badge]: https://img.shields.io/badge/license-MIT-green.svg

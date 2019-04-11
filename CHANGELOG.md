@@ -1,7 +1,8 @@
-## [0.70.10.beta] 2019-04-05
+## [0.70.20] 2019-04-10
 - Optimize action sharing mechanism
 - Enforce singleton to accommodate react hook solution
 - Separate request/response acitons
+- Integrated Travis CI
 
 ## [0.35.40] 2019-02-12
 - Support OpenFin API Application.getCurrent()

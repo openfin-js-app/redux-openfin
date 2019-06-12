@@ -13,6 +13,14 @@ export type ActionHandlerParams ={
     action:Action<any>,
 }
 
+export interface IFinIdentity {
+    uuid:string,
+    name:string,
+    batch?:boolean,
+    entityType?:string,
+    parentFrame?:string,
+}
+
 // start of window apis
 
 export type FinWindowState = 'minimized'|'maximized'|'restored';

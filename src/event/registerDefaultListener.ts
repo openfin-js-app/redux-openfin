@@ -1,7 +1,8 @@
-import {Store, Action, Middleware} from 'redux';
+import {Store} from 'redux';
 import { FinApplication, FinWindow } from '../GlobalTypes';
 import {appEvents, windowEvents} from './constants';
 import {getStateRes} from '../window/actions/handlerActionCreator';
+import asyncForEach from '../utils/asyncForEach';
 
 export default function registerDefaultListener(fin: any, store: Store<any>) {
 
@@ -21,13 +22,13 @@ export default function registerDefaultListener(fin: any, store: Store<any>) {
         }
     }
 
-    appEvents.forEach(async (oneEvent)=>{
+    asyncForEach(appEvents,async (oneEvent)=>{
         await finApplication.addListener(oneEvent.name, (event:any)=>{
             dispatch(oneEvent.actionCreator(event) as any)
         });
     });
 
-    windowEvents.forEach(async (oneEvent)=>{
+    asyncForEach(windowEvents,async (oneEvent)=>{
         const theName = oneEvent.name;
         if (
             theName == 'maximized'||
@@ -43,5 +44,5 @@ export default function registerDefaultListener(fin: any, store: Store<any>) {
                 dispatch(oneEvent.actionCreator(event) as any);
             })
         }
-    })
+    });
 }

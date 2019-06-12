@@ -62,9 +62,9 @@ function init(fin: any, config:IConfig, store?: Store<any>){
         }
         initState.fin = fin;
 
-        if(fin && fin.desktop){
-            initState.currentApplication = fin.desktop.Application.getCurrent();
-            initState.currentWindow = fin.desktop.Window.getCurrent();
+        if(fin && fin){
+            initState.currentApplication = fin.Application.getCurrentSync();
+            initState.currentWindow = fin.Window.getCurrentSync();
             if (config.autoDocking && config.channelType === ChannelType.PROVIDER){
                 const dockingOptions = config.dockingOptions?config.dockingOptions:{};
                 initDocking(fin,initState.currentWindow,dockingOptions);

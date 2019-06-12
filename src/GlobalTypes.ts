@@ -6,9 +6,6 @@ export const FIN_NOT_INJECTED_MSG = 'fin handler is not injected or initialized'
 // the action field name of the field name of the lib dispatch upon window object
 export const LIB_REDUX_DISPATCH_FIELD_NAME='REDUX_OPENFIN_LIB_REDUX_DISPATCH_FIELD_NAME';
 
-export type Noop = ()=> void;
-export type ErrorCallback = (error:Object) => void;
-
 export type ActionHandlerParams ={
     fin:any,
     store:Store<any>,
@@ -16,12 +13,11 @@ export type ActionHandlerParams ={
     action:Action<any>,
 }
 
-type FinCallback= (...args:any[])=>void;
-type FinErrCallback = (reason:string|Error)=>void;
-
 // start of window apis
 
-export type FinWindowEvent = Object;
+export type FinWindowState = 'minimized'|'maximized'|'restored';
+
+// export type FinWindowEvent = any;
 export type FinWindowBounds = {
     height:number,
     left:number,
@@ -96,36 +92,31 @@ export interface WindowOptions {
 
 export interface FinWindow{
     name:string;
-    constructor:(
-        options:{name:string},
-        callback?:()=>void,
-        errorCallback?:ErrorCallback,
-    )=>FinWindow,
-    addEventListener:(type:string,listener:(event?:any)=>void,callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
-    authenticate:(userName:string,password:string,callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
-    bringToFront:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    close:(force?:boolean,callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    disableFrame:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    enableFrame:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    focus:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    getGroup:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    getBounds:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    getState:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    getOptions:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    hide:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    joinGroup:(target:FinWindow,callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    leaveGroup:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    maximize:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    mergeGroups:(target:FinWindow,callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    minimize:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    moveBy:(deltaLeft:number, deltaTop:number,callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    moveTo:(left:number, top:number,callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    removeEventListener:(type:string,listener:(event?:any)=>void,callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
-    restore:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    show:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    setAsForeground:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    setBounds:(left:number, top:number, width:number, height:number,callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
-    updateOptions:(options:Partial<WindowOptions>,callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    addListener:(type:string,listener:(event?:any)=>void,options?:any)=>Promise<FinWindow>,
+    authenticate:(userName:string,password:string,)=>Promise<void>,
+    bringToFront:()=>Promise<void>;
+    close:(force?:boolean,)=>Promise<void>;
+    disableUserMovement:()=>Promise<void>;
+    enableUserMovement:()=>Promise<void>;
+    focus:()=>Promise<void>;
+    getGroup:()=>Promise<FinWindow[]>;
+    getBounds:()=>Promise<FinWindowBounds>;
+    getState:()=>Promise<FinWindowState>;
+    getOptions:()=>Promise<any>;
+    hide:()=>Promise<void>;
+    joinGroup:(target:FinWindow)=>Promise<void>;
+    leaveGroup:()=>Promise<void>;
+    maximize:()=>Promise<void>;
+    mergeGroups:(target:FinWindow,)=>Promise<void>;
+    minimize:()=>Promise<void>;
+    moveBy:(deltaLeft:number, deltaTop:number,)=>Promise<void>;
+    moveTo:(left:number, top:number,)=>Promise<void>;
+    removeListener:(type:string,listener:(event?:any)=>void,options?:any)=>Promise<void>,
+    restore:()=>Promise<void>;
+    show:(force?:boolean)=>Promise<void>;
+    setAsForeground:()=>Promise<void>;
+    setBounds:(bounds:{left:number, top:number, width:number, height:number}|Partial<FinWindowBounds>)=>Promise<void>;
+    updateOptions:(options:Partial<WindowOptions>,)=>Promise<void>;
 }
 
 export interface ISetShortCutsConfig{
@@ -146,15 +137,17 @@ export interface ITrayIconHoverEvent {
     },
     monitorInfo:any,
 }
-export interface ITrayIconClickEvent extends ITrayIconHoverEvent{
-    button:number,
-}
-export type SetTrayIconClickListener = (event:ITrayIconClickEvent)=>void;
-export interface ISetTrayIconDefaultListenerObj {
-    clickListener:SetTrayIconClickListener,
-    hoverListener:(event:ITrayIconHoverEvent)=>void,
-}
-export type SetTrayIconListener = ISetTrayIconDefaultListenerObj | SetTrayIconClickListener;
+
+
+// export interface ITrayIconClickEvent extends ITrayIconHoverEvent{
+//     button:number,
+// }
+// export type SetTrayIconClickListener = (event:ITrayIconClickEvent)=>void;
+// export interface ISetTrayIconDefaultListenerObj {
+//     clickListener:SetTrayIconClickListener,
+//     hoverListener:(event:ITrayIconHoverEvent)=>void,
+// }
+// export type SetTrayIconListener = ISetTrayIconDefaultListenerObj | SetTrayIconClickListener;
 
 export interface FinApplication{
     getWindow:()=>Promise<FinWindow>,

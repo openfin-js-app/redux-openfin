@@ -5,6 +5,17 @@ import {FIN_NOT_INJECTED_MSG, LIB_REDUX_DISPATCH_FIELD_NAME } from "../GlobalTyp
 
 declare const window:any;
 
+/**
+ * async wrapper creator for api v1
+ *
+ * @deprecated
+ * switch to use wrapAsyncFun instead
+ *
+ * @param action
+ * @param ERROR_MSG
+ * @param resActionCreator
+ * @param finCb
+ */
 export default function createAsyncFun<RequestPayloadType,ResponsePayloadType,>(
         action:Action<RequestPayloadType>,
         ERROR_MSG:string,

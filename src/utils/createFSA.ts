@@ -1,8 +1,6 @@
-import {createAction, ActionFunctionAny, Action} from 'redux-actions';
+import {createAction, Action} from 'redux-actions';
 
 import { LIB_REDUX_DISPATCH_FIELD_NAME } from '../GlobalTypes'
-
-import noop from './noop';
 
 interface IExtAction {
     [LIB_REDUX_DISPATCH_FIELD_NAME]:string,
@@ -14,14 +12,11 @@ export default function createFSA<T>(type:string, payloadCreator:(payload:T)=>T)
 
     const actionCreator = createAction<T,T>(type,payloadCreator);
 
-    return (payload:T, extAction:IExtAction) => {
+    return (payload:T, extAction?:IExtAction) => {
 
         let oriAction:Action<T> = actionCreator(payload);
 
         oriAction.payload = oriAction.payload?oriAction.payload:{} as T;
-
-        // oriPayload.payload.callback = oriPayload.payload.callback?oriPayload.payload.callback:noop;
-        // oriPayload.payload.errorCallback = oriPayload.payload.errorCallback?oriPayload.payload.errorCallback:noop;
 
         if (extAction){
             return <Action<T>> {

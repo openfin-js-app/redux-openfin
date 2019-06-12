@@ -15,17 +15,17 @@ export const AUTHENTICATE_RES = makeResType('AUTHENTICATE_RES');
 export const BRING_TO_FRONT = makeReqType('BRING_TO_FRONT');
 export const BRING_TO_FRONT_RES = makeResType('BRING_TO_FRONT_RES');
 
-export const NEW_WINDOWS = makeReqType('NEW_WINDOWS');
-export const NEW_WINDOWS_RES = makeResType('NEW_WINDOWS_RES');
+export const CREATE_WINDOW = makeReqType('CREATE_WINDOW');
+export const CREATE_WINDOW_RES = makeResType('CREATE_WINDOW_RES');
 
 export const CLOSE = makeReqType('CLOSE');
 export const CLOSE_RES = makeResType('CLOSE_RES');
 
-export const DISABLE_FRAME = makeReqType('DISABLE_FRAME');
-export const DISABLE_FRAME_RES = makeResType('DISABLE_FRAME_RES');
+export const DISABLE_USER_MOVEMENT = makeReqType('DISABLE_USER_MOVEMENT');
+export const DISABLE_USER_MOVEMENT_RES = makeResType('DISABLE_USER_MOVEMENT_RES');
 
-export const ENABLE_FRAME = makeReqType('ENABLE_FRAME');
-export const ENABLE_FRAME_RES = makeResType('ENABLE_FRAME_RES');
+export const ENABLE_USER_MOVEMENT = makeReqType('ENABLE_USER_MOVEMENT');
+export const ENABLE_USER_MOVEMENT_RES = makeResType('ENABLE_USER_MOVEMENT_RES');
 
 export const FOCUS = makeReqType('FOCUS');
 export const FOCUS_RES = makeResType('FOCUS_RES');

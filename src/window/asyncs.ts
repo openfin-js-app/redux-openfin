@@ -6,365 +6,238 @@ import { initState as dockingInitState } from '../docking/init';
 import * as types from "./types";
 import * as handlerActions from './actions/handlerActionCreator';
 
-import createAsyncFun from '../utils/createAsyncFun'
+import wrapAsyncFun from '../utils/wrapAsyncFun'
 
-import {
-    GET_CURRENT_ERROR_MSG,
-    WRAP_ERROR_MSG,
-    ADD_EVENT_LISTENER_ERROR_MSG,
-    AUTHENTICATE_ERROR_MSG,
-    BRING_TO_FRONT_ERROR_MSG,
-    NEW_WINDOW_ERROR_MSG,
-    CLOSE_ERROR_MSG,
-    DISABLE_FRAME_ERROR_MSG,
-    ENABLE_FRAME_ERROR_MSG,
-    FOCUS_ERROR_MSG,
-    GET_GROUP_ERROR_MSG,
-    GET_BOUNDS_ERROR_MSG,
-    GET_STATE_ERROR_MSG,
-    GET_OPTIONS_ERROR_MSG,
-    HIDE_ERROR_MSG,
-    JOIN_GROUP_ERROR_MSG,
-    LEAVE_GROUP_ERROR_MSG,
-    MAXIMIZE_ERROR_MSG,
-    MERGE_GROUPS_ERROR_MSG,
-    MINIMIZE_ERROR_MSG,
-    MOVE_BY_ERROR_MSG,
-    MOVE_TO_ERROR_MSG,
-    RETORE_ERROR_MSG,
-    SHOW_ERROR_MSG,
-    SET_AS_FOREGROUND_ERROR_MSG,
-    SET_BOUNDS_ERROR_MSG,
-    UPDATE_OPTIONS_ERROR_MSG,
-} from './types';
-
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#.getCurrent
 export async function getCurrent(action:Action<types.GetCurrentPayload>):Promise<Action<types.GetCurrentResPayload>>{
-    return createAsyncFun<types.GetCurrentPayload,types.GetCurrentResPayload>(
+    return wrapAsyncFun<types.GetCurrentPayload,types.GetCurrentResPayload>(
         action,
-        GET_CURRENT_ERROR_MSG,
         handlerActions.getCurrentRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
+        async (fin)=>{
             let current;
             if (initState.currentWindow){
                 current = initState.currentWindow;
             }else{
-                current = fin.desktop.Window.getCurrent();
+                current = fin.Window.getCurrentSync();
                 initState.currentWindow = current;
             }
-            const responseAction = resActionCreator({current});
-            succCb(responseAction);
+            return handlerActions.getCurrentRes({current});
         }
     );
 }
 
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#.wrap
 export async function wrap(action:Action<types.WrapPayload>):Promise<Action<types.WrapResPayload>>{
     const { appUuid, windowName } = action.payload;
-    return createAsyncFun<types.WrapPayload,types.WrapResPayload>(
+    return wrapAsyncFun<types.WrapPayload,types.WrapResPayload>(
         action,
-        WRAP_ERROR_MSG,
         handlerActions.wrapRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            let window = fin.desktop.Window.wrap(appUuid, windowName);
-            const responseAction = resActionCreator({window});
-            succCb(responseAction);
+        async (fin)=>{
+            let window = await fin.Window.wrap({uuid:appUuid, name:windowName});
+            return handlerActions.wrapRes({window});
         }
     );
 }
 
-
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#addEventListener
 export async function addEventListener(action:Action<types.AddEventListenerPayload>):Promise<Action<types.AddEventListenerResPayload>>{
-    const  { type, listener }  = action.payload;
-    return createAsyncFun<types.AddEventListenerPayload,types.AddEventListenerResPayload>(
+    const  { type, listener, options }  = action.payload;
+    return wrapAsyncFun<types.AddEventListenerPayload,types.AddEventListenerResPayload>(
         action,
-        ADD_EVENT_LISTENER_ERROR_MSG,
         handlerActions.addEventListenerRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.addEventListener(type, listener,
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentWindow.addListener(type, listener, options);
+            return handlerActions.addEventListenerRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#authenticate
 export async function authenticate(action:Action<types.AuthenticatePayload>):Promise<Action<types.AuthenticateResPayload>>{
     const  { userName, password }  = action.payload;
-    return createAsyncFun<types.AuthenticatePayload,types.AuthenticateResPayload>(
+    return wrapAsyncFun<types.AuthenticatePayload,types.AuthenticateResPayload>(
         action,
-        AUTHENTICATE_ERROR_MSG,
         handlerActions.authenticateRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.authenticate(
-                userName,
-                password,
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentWindow.authenticate(userName,password);
+            return handlerActions.authenticateRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#bringToFront
 export async function bringToFront(action:Action<types.BringToFrontPayload>):Promise<Action<types.BringToFrontResPayload>>{
-    return createAsyncFun<types.BringToFrontPayload,types.BringToFrontResPayload>(
+    return wrapAsyncFun<types.BringToFrontPayload,types.BringToFrontResPayload>(
         action,
-        BRING_TO_FRONT_ERROR_MSG,
         handlerActions.bringToFrontRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.bringToFront(
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentWindow.bringToFront();
+            return handlerActions.bringToFrontRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#Window
-export async function newWindow(action:Action<types.NewWindowPayload>):Promise<Action<types.NewWindowResPayload>>{
+export async function createWindow(action:Action<types.CreateWindowPayload>):Promise<Action<types.CreateWindowResPayload>>{
     const  options  = action.payload;
-    return createAsyncFun<types.NewWindowPayload,types.NewWindowResPayload>(
+    return wrapAsyncFun<types.CreateWindowPayload,types.CreateWindowResPayload>(
         action,
-        NEW_WINDOW_ERROR_MSG,
-        handlerActions.newWindowRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            let window = new fin.desktop.Window(options,
-                ()=>{
-                    const responseAction = resActionCreator({window});
-                    if (dockingInitState.dockingManager){
-                        dockingInitState.dockingManager.register(window);
-                    }
-                    succCb(responseAction);
-                },errCb);
+        handlerActions.createWindowRes,
+        async (fin)=>{
+            let window = await fin.Window.create(options);
+            if (dockingInitState.dockingManager){
+                dockingInitState.dockingManager.register(window);
+            }
+            return handlerActions.createWindowRes(window);
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#close
 export async function close(action:Action<types.ClosePayload>):Promise<Action<types.CloseResPayload>>{
     const { force } = action.payload;
-    return createAsyncFun<types.ClosePayload,types.CloseResPayload>(
+    return wrapAsyncFun<types.ClosePayload,types.CloseResPayload>(
         action,
-        CLOSE_ERROR_MSG,
         handlerActions.closeRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.close(force,
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentWindow.close(force);
+            return handlerActions.closeRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/tutorial-window.disableFrame.html
-export async function disableFrame(action:Action<types.DisableFramePayload>):Promise<Action<types.DisableFrameResPayload>>{
-    return createAsyncFun<types.DisableFramePayload,types.DisableFrameResPayload>(
+
+export async function disableUserMovement(action:Action<types.DisableUserMovementPayload>):Promise<Action<types.DisableUserMovementResPayload>>{
+    return wrapAsyncFun<types.DisableUserMovementPayload,types.DisableUserMovementResPayload>(
         action,
-        DISABLE_FRAME_ERROR_MSG,
         handlerActions.disableFrameRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.disableFrame(
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentWindow.disableUserMovement();
+            return handlerActions.disableFrameRes({});
         }
     )
     
 }
 
-//http://cdn.openfin.co/jsdocs/beta/tutorial-window.enableFrame.html
-export async function enableFrame(action:Action<types.EnableFramePayload>):Promise<Action<types.EnableFrameResPayload>>{
-    return createAsyncFun<types.EnableFramePayload,types.EnableFrameResPayload>(
+export async function enableUserMovement(action:Action<types.EnableUserMovementPayload>):Promise<Action<types.EnableUserMovementResPayload>>{
+    return wrapAsyncFun<types.EnableUserMovementPayload,types.EnableUserMovementResPayload>(
         action,
-        ENABLE_FRAME_ERROR_MSG,
         handlerActions.enableFrameRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.enableFrame(
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentWindow.enableUserMovement();
+            return handlerActions.enableFrameRes({});
         }
     )
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#focus
 export async function focus(action:Action<types.FocusPayload>):Promise<Action<types.FocusResPayload>>{
-    return createAsyncFun<types.FocusPayload,types.FocusResPayload>(
+    return wrapAsyncFun<types.FocusPayload,types.FocusResPayload>(
         action,
-        FOCUS_ERROR_MSG,
         handlerActions.focusRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.focus(
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentWindow.focus();
+            return handlerActions.focusRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#getGroup
 export async function getGroup(action:Action<types.GetGroupPayload>):Promise<Action<types.GetGroupResPayload>>{
-    return createAsyncFun<types.GetGroupPayload,types.GetGroupResPayload>(
+    return wrapAsyncFun<types.GetGroupPayload,types.GetGroupResPayload>(
         action,
-        GET_GROUP_ERROR_MSG,
         handlerActions.getGroupRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.getGroup(
-                (windows)=>{
-                    const responseAction = resActionCreator({windows});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            const windows = await initState.currentWindow.getGroup();
+            return handlerActions.getGroupRes({windows});
         }
     );
 }
 
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#getBounds
 export async function getBounds(action:Action<types.GetBoundsPayload>):Promise<Action<types.GetBoundsResPayload>>{
-    return createAsyncFun<types.GetBoundsPayload,types.GetBoundsResPayload>(
+    return wrapAsyncFun<types.GetBoundsPayload,types.GetBoundsResPayload>(
         action,
-        GET_BOUNDS_ERROR_MSG,
         handlerActions.getBoundsRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.getBounds(
-                (payload)=>{
-                    const responseAction = resActionCreator(payload);
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            const payload = await initState.currentWindow.getBounds();
+            return handlerActions.getBoundsRes(payload);
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#getState
 export async function getState(action:Action<types.GetStatePayload>):Promise<Action<types.GetStateResPayload>>{
-    return createAsyncFun<types.GetStatePayload,types.GetStateResPayload>(
+    return wrapAsyncFun<types.GetStatePayload,types.GetStateResPayload>(
         action,
-        GET_STATE_ERROR_MSG,
         handlerActions.getStateRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.getState(
-                (state:string)=>{
-                    const responseAction = resActionCreator({state});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            const state = await initState.currentWindow.getState();
+            return handlerActions.getStateRes({state});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#getOptions
 export async function getOptions(action:Action<types.GetOptionsPayload>):Promise<Action<types.GetOptionsResPayload>>{
-    return createAsyncFun<types.GetOptionsPayload,types.GetOptionsResPayload>(
+    return wrapAsyncFun<types.GetOptionsPayload,types.GetOptionsResPayload>(
         action,
-        GET_OPTIONS_ERROR_MSG,
         handlerActions.getOptionsRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.getOptions(
-                (options)=>{
-                    const responseAction = resActionCreator(options);
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            const options = await initState.currentWindow.getOptions();
+            return handlerActions.getOptionsRes(options);
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#hide
 export async function hide(action:Action<types.HidePayload>):Promise<Action<types.HideResPayload>>{
-    return createAsyncFun<types.HidePayload,types.HideResPayload>(
+    return wrapAsyncFun<types.HidePayload,types.HideResPayload>(
         action,
-        HIDE_ERROR_MSG,
         handlerActions.hideRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.hide(
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentWindow.hide();
+            return handlerActions.hideRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#joinGroup
 export async function joinGroup(action:Action<types.JoinGroupPayload>):Promise<Action<types.JoinGroupResPayload>> {
     const { currentWindow, targetWindow } = action.payload;
-    return createAsyncFun<types.JoinGroupPayload,types.JoinGroupResPayload>(
+    return wrapAsyncFun<types.JoinGroupPayload,types.JoinGroupResPayload>(
         action,
-        JOIN_GROUP_ERROR_MSG,
         handlerActions.joinGroupRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            currentWindow.joinGroup(targetWindow,
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await currentWindow.joinGroup(targetWindow);
+            return handlerActions.joinGroupRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#leaveGroup
 export async function leaveGroup(action:Action<types.LeaveGroupPayload>):Promise<Action<types.LeaveGroupResPayload>> {
     const { targetWindow } = action.payload;
-    return createAsyncFun<types.LeaveGroupPayload,types.LeaveGroupResPayload>(
+    return wrapAsyncFun<types.LeaveGroupPayload,types.LeaveGroupResPayload>(
         action,
-        LEAVE_GROUP_ERROR_MSG,
         handlerActions.leaveGroupRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
+        async (fin)=>{
             if (targetWindow){
-                targetWindow.leaveGroup(
-                    ()=>{
-                        const responseAction = resActionCreator({});
-                        succCb(responseAction);
-                    },errCb);
+                await targetWindow.leaveGroup();
             }else{
-                initState.currentWindow.leaveGroup(
-                    ()=>{
-                        const responseAction = resActionCreator({});
-                        succCb(responseAction);
-                    },errCb)
+                await initState.currentWindow.leaveGroup()
             }
+            return handlerActions.leaveGroupRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#maximize
 export async function maximize(action:Action<types.MaximizePayload>):Promise<Action<types.MaximizeResPayload>>{
-    return createAsyncFun<types.MaximizePayload,types.MaximizeResPayload>(
+    return wrapAsyncFun<types.MaximizePayload,types.MaximizeResPayload>(
         action,
-        MAXIMIZE_ERROR_MSG,
         handlerActions.maximizeRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.maximize(
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentWindow.maximize();
+            return handlerActions.maximizeRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#mergeGroups
 export async function mergeGroups(action:Action<types.MergeGroupsPayload>):Promise<Action<types.MergeGroupsResPayload>>{
     const { currentWindow, targetWindow } = action.payload;
-    return createAsyncFun<types.MergeGroupsPayload,types.MergeGroupsResPayload>(
+    return wrapAsyncFun<types.MergeGroupsPayload,types.MergeGroupsResPayload>(
         action,
-        MERGE_GROUPS_ERROR_MSG,
         handlerActions.mergeGroupsRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            currentWindow.mergeGroups(targetWindow,
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await currentWindow.mergeGroups(targetWindow);
+            return handlerActions.mergeGroupsRes({});
         }
     );
 }
@@ -372,138 +245,98 @@ export async function mergeGroups(action:Action<types.MergeGroupsPayload>):Promi
 
 
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#minimize
 export async function minimize(action:Action<types.MinimizePayload>):Promise<Action<types.MinimizeResPayload>>{
-    return createAsyncFun<types.MinimizePayload,types.MinimizeResPayload>(
+    return wrapAsyncFun<types.MinimizePayload,types.MinimizeResPayload>(
         action,
-        MINIMIZE_ERROR_MSG,
         handlerActions.minimizeRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.minimize(
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentWindow.minimize();
+            return handlerActions.minimizeRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#moveBy
 export async function moveBy(action:Action<types.MoveByPayload>):Promise<Action<types.MoveByResPayload>>{
     const { deltaLeft, deltaTop } = action.payload;
-    return createAsyncFun<types.MoveByPayload,types.MoveByResPayload>(
+    return wrapAsyncFun<types.MoveByPayload,types.MoveByResPayload>(
         action,
-        MOVE_BY_ERROR_MSG,
         handlerActions.moveByRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.moveBy(deltaLeft, deltaTop,
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentWindow.moveBy(deltaLeft, deltaTop);
+            return handlerActions.moveByRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#moveTo
 export async function moveTo(action:Action<types.MoveToPayload>):Promise<Action<types.MoveToResPayload>>{
     const { left, top } = action.payload;
-    return createAsyncFun<types.MoveToPayload,types.MoveToResPayload>(
+    return wrapAsyncFun<types.MoveToPayload,types.MoveToResPayload>(
         action,
-        MOVE_TO_ERROR_MSG,
         handlerActions.moveToRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.moveTo(left, top,
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentWindow.moveTo(left, top);
+            return handlerActions.moveToRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#restore
 export async function restore(action:Action<types.RestorePayload>):Promise<Action<types.RestoreResPayload>>{
-    return createAsyncFun<types.RestorePayload,types.RestoreResPayload>(
+    return wrapAsyncFun<types.RestorePayload,types.RestoreResPayload>(
         action,
-        RETORE_ERROR_MSG,
         handlerActions.restoreRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.restore(
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentWindow.restore();
+            return handlerActions.restoreRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#show
 export async function show(action:Action<types.ShowPayload>):Promise<Action<types.ShowResPayload>>{
-    return createAsyncFun<types.ShowPayload,types.ShowResPayload>(
+    return wrapAsyncFun<types.ShowPayload,types.ShowResPayload>(
         action,
-        SHOW_ERROR_MSG,
         handlerActions.showRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.show(
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentWindow.show();
+            return handlerActions.showRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#setAsForeground
 export async function setAsForeground(action:Action<types.SetAsForegroundPayload>):Promise<Action<types.SetAsForegroundResPayload>>{
-    return createAsyncFun<types.SetAsForegroundPayload,types.SetAsForegroundResPayload>(
+    return wrapAsyncFun<types.SetAsForegroundPayload,types.SetAsForegroundResPayload>(
         action,
-        SET_AS_FOREGROUND_ERROR_MSG,
         handlerActions.setAsForegroundRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.setAsForeground(
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentWindow.setAsForeground();
+            return handlerActions.setAsForegroundRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#setBounds
 export async function setBounds(action:Action<types.SetBoundsPayload>):Promise<Action<types.SetBoundsResPayload>>{
     const {
         top, left, height, width,
     } = action.payload;
-    return createAsyncFun<types.SetBoundsPayload,types.SetBoundsResPayload>(
+    return wrapAsyncFun<types.SetBoundsPayload,types.SetBoundsResPayload>(
         action,
-        SET_BOUNDS_ERROR_MSG,
         handlerActions.setBoundsRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.setBounds( left, top, width, height,
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentWindow.setBounds( {left, top, width, height});
+            return handlerActions.setBoundsRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#updateOptions
 export async function updateOptions(action:Action<types.UpdateOptionsPayload>):Promise<Action<types.UpdateOptionsResPayload>>{
     const {
         options,
     } = action.payload;
-    return createAsyncFun<types.UpdateOptionsPayload,types.UpdateOptionsResPayload>(
+    return wrapAsyncFun<types.UpdateOptionsPayload,types.UpdateOptionsResPayload>(
         action,
-        UPDATE_OPTIONS_ERROR_MSG,
         handlerActions.updateOptionsRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentWindow.updateOptions( options,
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentWindow.updateOptions( options);
+            return handlerActions.updateOptionsRes({});
         }
     );
 }

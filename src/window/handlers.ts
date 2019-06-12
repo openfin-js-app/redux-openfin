@@ -1,7 +1,7 @@
 import {ActionHandlerParams} from "../GlobalTypes";
 import * as asyncs from './asyncs';
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#.getCurrent
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#.getCurrent
 export const getCurrentHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.getCurrent(action).catch((e)=>{
@@ -9,7 +9,7 @@ export const getCurrentHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#.wrap
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#.wrap
 export const wrapHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.wrap(action).catch((e)=>{
@@ -18,7 +18,7 @@ export const wrapHandler = (params:ActionHandlerParams) => {
 };
 
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#addEventListener
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#addEventListener
 export const addEventListenerHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.addEventListener(action).catch((e)=>{
@@ -26,7 +26,7 @@ export const addEventListenerHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#authenticate
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#authenticate
 export const authenticateHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.authenticate(action).catch((e)=>{
@@ -34,7 +34,7 @@ export const authenticateHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#bringToFront
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#bringToFront
 export const bringToFrontHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.bringToFront(action).catch((e)=>{
@@ -42,15 +42,15 @@ export const bringToFrontHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#Window
-export const newWindowHandler = (params:ActionHandlerParams) => {
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#Window
+export const createWindowHandler = (params:ActionHandlerParams) => {
     const { action }=params;
-    asyncs.newWindow(action).catch((e)=>{
+    asyncs.createWindow(action).catch((e)=>{
         // eat the exception
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#close
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#close
 export const closeHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.close(action).catch((e)=>{
@@ -59,22 +59,22 @@ export const closeHandler = (params:ActionHandlerParams) => {
 };
 
 //http://cdn.openfin.co/jsdocs/beta/tutorial-window.disableFrame.html
-export const disableFrameHandler = (params:ActionHandlerParams) => {
+export const disableUserMovementHandler = (params:ActionHandlerParams) => {
     const { action }=params;
-    asyncs.disableFrame(action).catch((e)=>{
+    asyncs.disableUserMovement(action).catch((e)=>{
         // eat the exception
     });
 };
 
 //http://cdn.openfin.co/jsdocs/beta/tutorial-window.enableFrame.html
-export const enableFrameHandler = (params:ActionHandlerParams) => {
+export const enableUserMovementHandler = (params:ActionHandlerParams) => {
     const { action }=params;
-    asyncs.enableFrame(action).catch((e)=>{
+    asyncs.enableUserMovement(action).catch((e)=>{
         // eat the exception
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#focus
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#focus
 export const focusHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.focus(action).catch((e)=>{
@@ -82,7 +82,7 @@ export const focusHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#getGroup
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#getGroup
 export const getGroupHandler =(params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.getGroup(action).catch((e)=>{
@@ -90,7 +90,7 @@ export const getGroupHandler =(params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#getBounds
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#getBounds
 export const getBoundsHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.getBounds(action).catch((e)=>{
@@ -98,7 +98,7 @@ export const getBoundsHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#getState
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#getState
 export const getStateHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.getState(action).catch((e)=>{
@@ -106,7 +106,7 @@ export const getStateHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#getOptions
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#getOptions
 export const getOptionsHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.getOptions(action).catch((e)=>{
@@ -114,7 +114,7 @@ export const getOptionsHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#hide
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#hide
 export const hideHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.hide(action).catch((e)=>{
@@ -122,7 +122,7 @@ export const hideHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#joinGroup
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#joinGroup
 export const joinGroupHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.joinGroup(action).catch((e)=>{
@@ -130,7 +130,7 @@ export const joinGroupHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#leaveGroup
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#leaveGroup
 export const leaveGroupHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.leaveGroup(action).catch((e)=>{
@@ -138,7 +138,7 @@ export const leaveGroupHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#maximize
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#maximize
 export const maximizeHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.maximize(action).catch((e)=>{
@@ -146,7 +146,7 @@ export const maximizeHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#mergeGroups
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#mergeGroups
 export const mergeGroupsHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.mergeGroups(action).catch((e)=>{
@@ -154,7 +154,7 @@ export const mergeGroupsHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#minimize
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#minimize
 export const minimizeHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.minimize(action).catch((e)=>{
@@ -162,7 +162,7 @@ export const minimizeHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#moveBy
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#moveBy
 export const moveByHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.moveBy(action).catch((e)=>{
@@ -170,7 +170,7 @@ export const moveByHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#moveTo
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#moveTo
 export const moveToHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.moveTo(action).catch((e)=>{
@@ -178,7 +178,7 @@ export const moveToHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#restore
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#restore
 export const restoreHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.restore(action).catch((e)=>{
@@ -186,7 +186,7 @@ export const restoreHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#show
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#show
 export const showHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.show(action).catch((e)=>{
@@ -194,7 +194,7 @@ export const showHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#setAsForeground
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#setAsForeground
 export const setAsForegroundHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.setAsForeground(action).catch((e)=>{
@@ -202,7 +202,7 @@ export const setAsForegroundHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#setBounds
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#setBounds
 export const setBoundsHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.setBounds(action).catch((e)=>{
@@ -210,7 +210,7 @@ export const setBoundsHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Window.html#updateOptions
+//http://cdn.openfin.co/jsdocs/beta/fin.Window.html#updateOptions
 export const updateOptionsHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.updateOptions(action).catch((e)=>{

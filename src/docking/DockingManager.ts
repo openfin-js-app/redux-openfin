@@ -65,13 +65,13 @@ export default class DockingManager implements IDockingOptions{
         if (existingWindowIdx > -1) {
             const [removedDockableWindow] = this.windows.splice(existingWindowIdx, 1);
             // purge from DockableGroup etc., otherwise it will still influence other DockableWindows
-            removedDockableWindow.leaveDockingGroup(true);
+            removedDockableWindow.leaveDockingGroup(true).catch(e => {});
         }
     }
 
     undockAll = () => {
         for (const dockingWindow of this.windows) {
-            dockingWindow.leaveDockingGroup();
+            dockingWindow.leaveDockingGroup().catch(e => {});
         }
     }
 
@@ -81,10 +81,10 @@ export default class DockingManager implements IDockingOptions{
     bringWindowOrGroupToFront = (dockingWindow:DockingWindow)=>{
         if (dockingWindow.group) {
             for (const groupDockingWindow of dockingWindow.group.children) {
-                groupDockingWindow.openfinWindow.bringToFront();
+                groupDockingWindow.openfinWindow.bringToFront().catch(e => {});
             }
         }
-        dockingWindow.openfinWindow.bringToFront();
+        dockingWindow.openfinWindow.bringToFront().catch(e => {});
     };
     handleWindowRestore = (dockingWindow:DockingWindow)=>{
         if (!dockingWindow.group) {
@@ -135,7 +135,7 @@ export default class DockingManager implements IDockingOptions{
                 const pos = getSnappedCoordinates(windowInfo, currentWindow, dockableWindow, snapDirection, this.range, this.spacing);
                 this.bringWindowOrGroupToFront(dockableWindow);
                 // make sure current window remains on top / in focus
-                currentWindow.openfinWindow.bringToFront();
+                currentWindow.openfinWindow.bringToFront().catch(e => {});
 
                 if (!position.x) {
                     position.x = pos.x;
@@ -171,7 +171,7 @@ export default class DockingManager implements IDockingOptions{
     undockWindow = (windowName:string) => {
         const existingWindow = DockingWindow.getWindowByName(this.windows, windowName);
         if (existingWindow) {
-            existingWindow.leaveDockingGroup(true);
+            existingWindow.leaveDockingGroup(true).catch(e => {});
         }
     };
     addWindowToTheGroup = (snappedWindow:DockingWindow,groupedWindow:DockingWindow) => {

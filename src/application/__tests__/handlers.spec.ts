@@ -24,7 +24,7 @@ describe('Application handlers',()=>{
     });
 
     it('newApplicatoinHandler',()=>{
-        handlers.newApplicatoinHandler(blankActionHandlerParams);
+        handlers.startApplicatoinHandler(blankActionHandlerParams);
         expect(asyncs.newApplication).toHaveBeenCalled();
     })
 
@@ -34,7 +34,7 @@ describe('Application handlers',()=>{
     })
 
     it('closeHandler',()=>{
-        handlers.closeHandler(blankActionHandlerParams);
+        handlers.quitHandler(blankActionHandlerParams);
         expect(asyncs.close).toHaveBeenCalled();
     })
 });

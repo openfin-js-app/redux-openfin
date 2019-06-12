@@ -11,7 +11,7 @@ describe('Application pkg actions',()=>{
     describe('Request actions',()=>{
 
         it('close action',()=>{
-            store.dispatch(Actions.close({force:true}));
+            store.dispatch(Actions.quit({force:true}));
             expect(store.getActions()).toMatchSnapshot();
         })
 

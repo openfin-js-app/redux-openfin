@@ -1,31 +1,10 @@
 import {
     ISetShortCutsConfig,ITrayIconHoverEvent,
-    SetTrayIconListener,
     WindowOptions, FinApplication, FinWindow
 } from '../GlobalTypes';
 import {BaseRequestPayload, BaseResponsePayload} from '../base/BasePayload';
 
-export const NEW_APPLICAITON_ERROR_MSG = 'OpenFin API call Application.constructor failed.';
-export const APPLICATION_GET_CURRENT_ERROR_MSG = 'OpenFin API call Application.getCurrent() failed.';
-export const APPLICATION_GET_WINDOW_ERROR_MSG = 'OpenFin API call Application.getWindow() failed.';
-export const APPLICATION_WRAP_ERROR_MSG = 'OpenFin API call Application.wrap() failed.';
-export const APPLICATION_ADD_EVENT_LISTENER_ERROR_MSG = 'OpenFin API call Application.addEventListener() failed.';
-export const CLOSE_ERROR_MSG = 'OpenFin API call Application.close() failed.';
-export const APPLICATION_GET_CHILD_WINDOWS_ERROR_MSG = 'OpenFin API call Application.getChildWindows() failed.';
-export const APPLICATION_GET_INFO_ERROR_MSG = 'OpenFin API call Application.getInfo() failed.';
-export const APPLICATION_GET_SHORTCUTS_ERROR_MSG = 'OpenFin API call Application.getShortcuts() failed.';
-export const APPLICATION_GET_TRAY_ICON_INFO_ERROR_MSG = 'OpenFin API call Application.getTrayIconInfo() failed.';
-export const APPLICATION_GET_ZOOM_LEVEL_ERROR_MSG = 'OpenFin API call Application.getZoomLevel() failed.';
-export const APPLICATION_IS_RUNNING_ERROR_MSG = 'OpenFin API call Application.isRunning() failed.';
-export const APPLICATION_REMOVE_EVENT_LISTENER_ERROR_MSG = 'OpenFin API call Application.removeEventListener() failed.';
-export const RESTART_ERROR_MSG = 'OpenFin API call Application.restart() failed.';
-export const APPLICATION_SCHEDULE_RESTART_ERROR_MSG = 'OpenFin API call Application.scheduleRestart() failed.';
-export const APPLICATION_SET_SHORTCUTS_ERROR_MSG = 'OpenFin API call Application.setShortcuts() failed.';
-export const APPLICATION_SET_TRAY_ICON_ERROR_MSG = 'OpenFin API call Application.setTrayIcon() failed.';
-export const APPLICATION_SET_ZOOM_LEVEL_ERROR_MSG = 'OpenFin API call Application.setZoomLevel() failed.';
-export const APPLICATION_TERMINATE_ERROR_MSG = 'OpenFin API call Application.terminate() failed.';
-
-export interface NewApplicationPayload extends BaseRequestPayload{
+export interface StartApplicationPayload extends BaseRequestPayload{
     uuid:string;
     name:string;
     url?:string;
@@ -37,7 +16,7 @@ export interface NewApplicationPayload extends BaseRequestPayload{
     webSecurity?:boolean;
 }
 
-export interface NewApplicationResPayload extends BaseResponsePayload{
+export interface StartApplicationResPayload extends BaseResponsePayload{
     app?:FinApplication,
 }
 
@@ -62,19 +41,20 @@ export interface WrapResPayload extends BaseResponsePayload{
     application?:FinApplication,
 }
 
-export interface AddEventListenerPayload extends BaseRequestPayload{
+export interface AddListenerPayload extends BaseRequestPayload{
     type:string,
     listener:(...args:any[])=>void,
+    options?:any,
 }
 
-export interface AddEventListenerResPayload extends BaseResponsePayload{
+export interface AddListenerResPayload extends BaseResponsePayload{
 }
 
-export interface ClosePayload extends BaseResponsePayload{
+export interface QuitPayload extends BaseResponsePayload{
     force:boolean;
 }
 
-export interface CloseResPayload extends BaseResponsePayload{
+export interface QuitResPayload extends BaseResponsePayload{
 
 }
 
@@ -114,11 +94,12 @@ export interface IsRunningResPayload extends BaseResponsePayload{
     running?:boolean,
 }
 
-export interface RemoveEventListenerPayload extends BaseRequestPayload{
+export interface RemoveListenerPayload extends BaseRequestPayload{
     type:string,
     listener:(...args:any[])=>void,
+    options?:any,
 }
-export interface RemoveEventListenerResPayload extends BaseResponsePayload{
+export interface RemoveListenerResPayload extends BaseResponsePayload{
 }
 
 export interface RestartPayload extends BaseRequestPayload{
@@ -141,7 +122,6 @@ export interface SetShortcutsResPayload extends BaseResponsePayload{
 
 export interface SetTrayIconPayload extends BaseRequestPayload{
     iconUrl:string,
-    listeners:SetTrayIconListener,
 }
 export interface SetTrayIconResPayload extends BaseResponsePayload{
 }

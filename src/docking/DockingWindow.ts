@@ -147,12 +147,14 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
         this.name = finWindow.name;
         this.openfinWindow = finWindow;
 
-        this.openfinWindow.getOptions(
-            this.hanldeWindowOptions,
-            ()=>{
-                this.openfinWindow.addEventListener('initialized',()=>{this.handleWindowInitialized()})
-            }
-        )
+        (async ()=>{
+            const winOptions = await this.openfinWindow.getOptions();
+            this.hanldeWindowOptions(winOptions);
+            // todo dbl check, we should not need ot init the window listener again, since they have already been done in hanldeWindowOptions
+            // await this.openfinWindow.addListener('initialized',()=>{this.handleWindowInitialized()})
+        })().catch(e=>{
+            // eat the exception
+        })
 
         this.range = options.range;
         this.spacing = options.spacing;
@@ -181,22 +183,25 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
     hanldeWindowOptions = (windowOptions:WindowOptions)=>{
         // make note of opacity for this existing window, set as original
         this.originalOpacity = windowOptions && windowOptions.opacity ?windowOptions.opacity:this.originalOpacity;
-        this.handleWindowInitialized();
+        this.handleWindowInitialized().catch(e=> {});
     }
 
-    handleWindowInitialized = ()=>{
+    handleWindowInitialized = async ()=>{
         // OpenFin window close triggers a 'hidden' event, so do not tie minimize action to this event
-        this.openfinWindow.getBounds(this.completeInitialization);
-        this.openfinWindow.disableFrame();
-        this.openfinWindow.addEventListener('disabled-frame-bounds-changing', this.handleBoundsChanging);
-        this.openfinWindow.addEventListener('disabled-frame-bounds-changed', this.handleBoundsChanged);
-        this.openfinWindow.addEventListener('bounds-changed', this.handleBoundsUpdate);
-        this.openfinWindow.addEventListener('closed', this.handleClosed);
-        this.openfinWindow.addEventListener('minimized', this.handleMinimized);
-        this.openfinWindow.addEventListener('restored', this.handleRestored);
-        this.openfinWindow.addEventListener('shown', this.handleRestored);
-        this.openfinWindow.addEventListener('focused', this.handleFocused);
-        this.openfinWindow.addEventListener('group-changed', this.handleGroupChanged);
+
+        const bounds = await this.openfinWindow.getBounds();
+        this.completeInitialization(bounds);
+
+        await this.openfinWindow.disableUserMovement();
+        await this.openfinWindow.addListener('disabled-frame-bounds-changing', this.handleBoundsChanging);
+        await this.openfinWindow.addListener('disabled-frame-bounds-changed', this.handleBoundsChanged);
+        await this.openfinWindow.addListener('bounds-changed', this.handleBoundsUpdate);
+        await this.openfinWindow.addListener('closed', this.handleClosed);
+        await this.openfinWindow.addListener('minimized', this.handleMinimized);
+        await this.openfinWindow.addListener('restored', this.handleRestored);
+        await this.openfinWindow.addListener('shown', this.handleRestored);
+        await this.openfinWindow.addListener('focused', this.handleFocused);
+        await this.openfinWindow.addListener('group-changed', this.handleGroupChanged);
     }
 
     completeInitialization = (initialWindowBounds)=>{
@@ -232,27 +237,27 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
     setOpacity = (value)=>{
         this.openfinWindow.updateOptions({
             opacity: value
-        });
+        }).catch((e)=>{});
     }
 
     resetOpacity = ()=>{
         this.openfinWindow.updateOptions({
             opacity: this.originalOpacity
-        });
+        }).catch((e)=>{});
     }
 
     minimize = ()=>{
         if (this.minimized) {
             return;
         }
-        this.openfinWindow.minimize();
+        this.openfinWindow.minimize().catch((e)=>{});
     }
 
     restore = ()=>{
         if (!this.minimized) {
             return;
         }
-        this.openfinWindow.restore();
+        this.openfinWindow.restore().catch((e)=>{});
     }
 
     handleBoundsChanging = (bounds) => {
@@ -290,8 +295,13 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
         this.width = width || this.width;
         this.height = height || this.height;
 
-        this.openfinWindow.removeEventListener('disabled-frame-bounds-changing', this.handleBoundsChanging);
-        this.openfinWindow.setBounds(x, y, this.width, this.height, this.handleMoved);
+        this.openfinWindow.removeListener('disabled-frame-bounds-changing', this.handleBoundsChanging)
+            .catch(e => {})
+        ;
+        this.openfinWindow.setBounds({left:x, top:y, width:this.width, height:this.height})
+            .then(()=>{
+                this.handleMoved()
+            });
     }
 
     handleBoundsChanged = ()=>{
@@ -302,7 +312,9 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
     }
 
     handleMoved = ()=>{
-        this.openfinWindow.addEventListener('disabled-frame-bounds-changing', this.handleBoundsChanging);
+        this.openfinWindow.addListener('disabled-frame-bounds-changing', this.handleBoundsChanging)
+            .catch(e => {})
+        ;
     }
 
     handleClosed = ()=>{
@@ -371,19 +383,27 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
 
         // openfin operations: frame and grouping
         // if both ungrouped, this will set up the initial group with both windows as members
-        this.openfinWindow.enableFrame();
-        snappedPartnerWindow.openfinWindow.enableFrame();
-        this.openfinWindow.joinGroup(snappedPartnerWindow.openfinWindow);
+        this.openfinWindow.enableUserMovement()
+            .catch(e => {})
+        ;
+        snappedPartnerWindow.openfinWindow.enableUserMovement()
+            .catch(e => {})
+        ;
+        this.openfinWindow.joinGroup(snappedPartnerWindow.openfinWindow)
+            .catch(e => {})
+        ;
 
         if (!this.group && !snappedPartnerWindow.group) {
             // both ungrouped .. set partner up with new group
             const dockingGroup = new DockingGroup();
             dockingGroup.add(snappedPartnerWindow);
-            globalInitState.fin.desktop.InterApplicationBus.publish('window-docked', {windowName: snappedPartnerWindow.name});
+            globalInitState.fin.InterApplicationBus.publish('window-docked', {windowName: snappedPartnerWindow.name})
+                .catch(e => {})
         }
 
         snappedPartnerWindow.group.add(this);
-        globalInitState.fin.desktop.InterApplicationBus.publish('window-docked', {windowName: this.name});
+        globalInitState.fin.InterApplicationBus.publish('window-docked', {windowName: this.name})
+            .catch(e => {})
 
         initState.persistenceService.createRelationshipsBetween(this.name, snappedPartnerWindow.name);
     }
@@ -398,22 +418,19 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
         // any interference in leaveGroup handling
         group.remove(this);
 
-        this.openfinWindow.disableFrame();
+        await this.openfinWindow.disableUserMovement();
         // detach window from OpenFin runtime group
         try {
-            await new Promise((resolve, reject) => this.openfinWindow.leaveGroup(
-                () => resolve(),
-                (err) => reject(err)
-            ));
+            await this.openfinWindow.leaveGroup();
         } catch (err) {
             // do not need further action here, this is likely due to a close, and window is gone
         }
 
-        globalInitState.fin.desktop.InterApplicationBus.publish('window-undocked', {windowName: this.name});
+        await globalInitState.fin.InterApplicationBus.publish('window-undocked', {windowName: this.name});
 
         if (isInitiator) {
             // if this window initiated the undock procedure, move apart slightly from group
-            this.openfinWindow.moveBy(this.undockOffsetX, this.undockOffsetY);
+            await this.openfinWindow.moveBy(this.undockOffsetX, this.undockOffsetY);
         }
         else if (!isInView(this, initState.monitors)) {
             // if indirectly undocked e.g. last window in group

@@ -71,11 +71,11 @@ export default (fin,mainFinWindow:FinWindow,dockingOptions:Partial<IDockingOptio
     initState.dockingManager = new DockingManager(options);
 
     // register global unDockAll hot key
-    fin.desktop.GlobalHotkey.register("Shift+CommandOrControl+U",()=>{
+    fin.GlobalHotkey.register("Shift+CommandOrControl+U",()=>{
         if (initState.dockingManager){
             initState.dockingManager.undockAll();
         }
-    });
+    }).catch(e => {throw e});
 
     initState.dockingManager.register(mainFinWindow,false)
 

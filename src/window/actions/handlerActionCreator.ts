@@ -13,9 +13,9 @@ export const wrapRes:ActionCreator<types.WrapResPayload> = createFSA<types.WrapR
     (options:types.WrapResPayload) => <any> options
 );
 
-export const addEventListenerRes:ActionCreator<types.AddEventListenerResPayload> = createFSA<types.AddEventListenerResPayload>(
-    actionTypes.ADD_EVENT_LISTENER_RES,
-    (options:types.AddEventListenerResPayload) => <any> options
+export const addListenerRes:ActionCreator<types.AddListenerResPayload> = createFSA<types.AddListenerResPayload>(
+    actionTypes.ADD_LISTENER_RES,
+    (options:types.AddListenerResPayload) => <any> options
 );
 
 export const authenticateRes:ActionCreator<types.AuthenticateResPayload> = createFSA<types.AuthenticateResPayload>(

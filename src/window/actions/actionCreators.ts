@@ -13,9 +13,9 @@ export const wrap:ActionCreator<types.WrapPayload> = createFSA<types.WrapPayload
     (options:types.WrapPayload) => <any> options
 );
 
-export const addEventListener:ActionCreator<types.AddEventListenerPayload> = createFSA<types.AddEventListenerPayload>(
-    actionTypes.ADD_EVENT_LISTENER,
-    (options:types.AddEventListenerPayload) => <any> options
+export const addListener:ActionCreator<types.AddListenerPayload> = createFSA<types.AddListenerPayload>(
+    actionTypes.ADD_LISTENER,
+    (options:types.AddListenerPayload) => <any> options
 );
 
 export const authenticate:ActionCreator<types.AuthenticatePayload> = createFSA<types.AuthenticatePayload>(

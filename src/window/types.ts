@@ -15,12 +15,12 @@ export interface WrapResPayload extends BaseResponsePayload{
     window:any,
 }
 
-export interface AddEventListenerPayload extends BaseRequestPayload, Partial<WindowOptions>{
+export interface AddListenerPayload extends BaseRequestPayload, Partial<WindowOptions>{
     type:string,
     listener: (event?:any)=>void,
     options?:any,
 }
-export interface AddEventListenerResPayload extends BaseResponsePayload{
+export interface AddListenerResPayload extends BaseResponsePayload{
 }
 
 export interface AuthenticatePayload extends BaseRequestPayload{

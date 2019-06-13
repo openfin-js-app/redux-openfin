@@ -6,8 +6,8 @@ export const GET_CURRENT_RES = makeResType('GET_CURRENT_RES');
 export const WRAP = makeReqType('WRAP');
 export const WRAP_RES = makeResType('WRAP_RES');
 
-export const ADD_EVENT_LISTENER = makeReqType('ADD_EVENT_LISTENER');
-export const ADD_EVENT_LISTENER_RES = makeResType('ADD_EVENT_LISTENER_RES');
+export const ADD_LISTENER = makeReqType('ADD_EVENT_LISTENER');
+export const ADD_LISTENER_RES = makeResType('ADD_EVENT_LISTENER_RES');
 
 export const AUTHENTICATE = makeReqType('AUTHENTICATE');
 export const AUTHENTICATE_RES = makeResType('AUTHENTICATE_RES');

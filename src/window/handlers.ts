@@ -19,9 +19,9 @@ export const wrapHandler = (params:ActionHandlerParams) => {
 
 
 //http://cdn.openfin.co/jsdocs/beta/fin.Window.html#addEventListener
-export const addEventListenerHandler = (params:ActionHandlerParams) => {
+export const addListenerHandler = (params:ActionHandlerParams) => {
     const { action }=params;
-    asyncs.addEventListener(action).catch((e)=>{
+    asyncs.addListener(action).catch((e)=>{
         // eat the exception
     });
 };

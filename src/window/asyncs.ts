@@ -38,14 +38,14 @@ export async function wrap(action:Action<types.WrapPayload>):Promise<Action<type
     );
 }
 
-export async function addEventListener(action:Action<types.AddEventListenerPayload>):Promise<Action<types.AddEventListenerResPayload>>{
+export async function addListener(action:Action<types.AddListenerPayload>):Promise<Action<types.AddListenerResPayload>>{
     const  { type, listener, options }  = action.payload;
-    return wrapAsyncFun<types.AddEventListenerPayload,types.AddEventListenerResPayload>(
+    return wrapAsyncFun<types.AddListenerPayload,types.AddListenerResPayload>(
         action,
-        handlerActions.addEventListenerRes,
+        handlerActions.addListenerRes,
         async (fin)=>{
             await initState.currentWindow.addListener(type, listener, options);
-            return handlerActions.addEventListenerRes({});
+            return handlerActions.addListenerRes({});
         }
     );
 }

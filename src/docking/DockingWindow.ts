@@ -39,7 +39,7 @@ async function regroup(
     // if this is a lone window, then leave group
     // do not trigger any additional split-checking, normal checks for off-screen etc.
     if (!previousWindow && partnerWindowNames.length === 0) {
-        currentWindow.leaveDockingGroup();
+        await currentWindow.leaveDockingGroup();
         return;
     }
 
@@ -438,7 +438,7 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
         }
 
         if (group.children.length === 1) {
-            group.children[0].leaveDockingGroup();
+            await group.children[0].leaveDockingGroup();
         }
 
         if (group.children.length > 0 && !isGroupInView(group.children, initState.monitors)) {
@@ -448,7 +448,7 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
         initState.persistenceService.removeAllRelationships(this.name);
 
         if (isInitiator) {
-            checkForSplitGroup(initState.persistenceService, group);
+            await checkForSplitGroup(initState.persistenceService, group);
         }
     }
 

@@ -99,6 +99,7 @@ export interface WindowOptions {
 }
 
 export interface FinWindow{
+    nativeWindow?:any;
     name:string;
     addListener:(type:string,listener:(event?:any)=>void,options?:any)=>Promise<FinWindow>,
     authenticate:(userName:string,password:string,)=>Promise<void>,

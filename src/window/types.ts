@@ -12,7 +12,7 @@ export interface WrapPayload extends BaseRequestPayload{
     windowName:string,
 }
 export interface WrapResPayload extends BaseResponsePayload{
-    window:any,
+    window:FinWindow,
 }
 
 export interface AddListenerPayload extends BaseRequestPayload, Partial<WindowOptions>{

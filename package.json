@@ -1,6 +1,6 @@
 {
   "name": "redux-openfin",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.3",
   "description": "redux middleware for openfin in typescript",
   "homepage": "https://www.albertli90.com/openfin-react-latest",
   "keywords": [

@@ -113,6 +113,7 @@ export interface FinWindow{
     getState:()=>Promise<FinWindowState>;
     getOptions:()=>Promise<any>;
     hide:()=>Promise<void>;
+    isShowing:()=>Promise<boolean>;
     joinGroup:(target:FinWindow)=>Promise<void>;
     leaveGroup:()=>Promise<void>;
     maximize:()=>Promise<void>;

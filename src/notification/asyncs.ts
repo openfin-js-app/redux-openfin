@@ -45,6 +45,7 @@ export async function createNotification(action:Action<types.CreateNotificationP
         handlerActions.createNotificationRes,
         async (fin)=>{
             let notification = await fin.Notification.create(finOptions);
+            await notification.show();
             return handlerActions.createNotificationRes({
                 userId,
                 notification

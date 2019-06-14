@@ -83,7 +83,7 @@ export async function createWindow(action:Action<types.CreateWindowPayload>):Pro
             if (dockingInitState.dockingManager){
                 dockingInitState.dockingManager.register(window);
             }
-            return handlerActions.createWindowRes(window);
+            return handlerActions.createWindowRes({window});
         }
     );
 }

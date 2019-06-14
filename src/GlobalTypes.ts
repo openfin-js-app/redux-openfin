@@ -98,6 +98,48 @@ export interface WindowOptions {
     waitForPageLoad:boolean;
 }
 
+
+export type ErrorCallback = (error:Object) => void;
+
+type FinCallback= (...args:any[])=>void;
+type FinErrCallback = (reason:string|Error)=>void;
+
+export interface LegacyFinWindow{
+    name:string;
+    constructor:(
+        options:{name:string},
+        callback?:()=>void,
+        errorCallback?:ErrorCallback,
+    )=>LegacyFinWindow,
+    addEventListener:(type:string,listener:(event?:any)=>void,callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    authenticate:(userName:string,password:string,callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    bringToFront:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    close:(force?:boolean,callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    disableFrame:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    enableFrame:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    focus:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    getGroup:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    getBounds:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    getState:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    getOptions:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    hide:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    joinGroup:(target:LegacyFinWindow,callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    leaveGroup:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    maximize:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    mergeGroups:(target:LegacyFinWindow,callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    minimize:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    moveBy:(deltaLeft:number, deltaTop:number,callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    moveTo:(left:number, top:number,callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    removeEventListener:(type:string,listener:(event?:any)=>void,callback?:FinCallback,errorCallback?:FinErrCallback)=>void,
+    restore:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    show:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    setAsForeground:(callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    setBounds:(left:number, top:number, width:number, height:number,callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+    updateOptions:(options:Partial<WindowOptions>,callback?:FinCallback,errorCallback?:FinErrCallback)=>void;
+}
+
+
+
 export interface FinWindow{
     nativeWindow?:any;
     name:string;

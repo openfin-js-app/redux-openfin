@@ -1,4 +1,4 @@
-import {FinWindow, WindowOptions } from '../GlobalTypes';
+import {LegacyFinWindow, WindowOptions } from '../GlobalTypes';
 
 import { initState as globalInitState } from '../init';
 
@@ -138,12 +138,12 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
     dockableToOthers:boolean;
     unregisterOnClose:boolean;
     minimized:boolean= false;
-    openfinWindow:FinWindow;
+    openfinWindow:LegacyFinWindow;
 
     group:DockingGroup = null;
 
 
-    constructor(finWindow:FinWindow, options:IDockingOptions) {
+    constructor(finWindow:LegacyFinWindow, options:IDockingOptions) {
         this.name = finWindow.name;
         this.openfinWindow = finWindow;
 

@@ -1,4 +1,4 @@
-import {FinWindow} from '../GlobalTypes'
+import {LegacyFinWindow} from '../GlobalTypes'
 
 import
     DockingWindow,
@@ -33,7 +33,7 @@ export default class DockingManager implements IDockingOptions{
         Object.assign(this,dockingOptions);
     }
 
-    register = (window:FinWindow, dockableToOthers?:boolean)=>{
+    register = (window:LegacyFinWindow, dockableToOthers?:boolean)=>{
         if (this.windows.some(registeredWindow => registeredWindow.name === window.name)) {
             return;
         }

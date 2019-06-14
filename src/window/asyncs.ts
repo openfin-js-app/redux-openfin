@@ -3,6 +3,8 @@ import {Action} from 'redux-actions';
 import { initState } from '../init';
 import { initState as dockingInitState } from '../docking/init';
 
+import toLegacyFinWindow from '../utils/toLegacyFinWindow';
+
 import * as types from "./types";
 import * as handlerActions from './actions/handlerActionCreator';
 
@@ -81,7 +83,7 @@ export async function createWindow(action:Action<types.CreateWindowPayload>):Pro
         async (fin)=>{
             let window = await fin.Window.create(options);
             if (dockingInitState.dockingManager){
-                dockingInitState.dockingManager.register(window);
+                dockingInitState.dockingManager.register(toLegacyFinWindow(window));
             }
             return handlerActions.createWindowRes({window});
         }

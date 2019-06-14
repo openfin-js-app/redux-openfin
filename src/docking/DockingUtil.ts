@@ -6,7 +6,7 @@ import {
 
 export function getAppId(fin) {
     if (fin){
-        return fin.Application.getCurrentSync().uuid;
+        return fin.desktop.Application.getCurrent().uuid;
     }else{
         return null;
     }
@@ -26,8 +26,10 @@ function handleMonitorInfo(openfinMonitorInfo):IRectangle[] {
 }
 
 export async function requestMonitorInfo(fin):Promise<IRectangle[]> {
-    const monitorData = await fin.System.getMonitorInfo();
-    return handleMonitorInfo(monitorData);
+    return new Promise<IRectangle[]>((resolve, reject) => fin.desktop.System.getMonitorInfo(
+        monitorData => resolve(handleMonitorInfo(monitorData)),
+        err => reject(err)
+    ));
 }
 
 export function parsePositiveInt(option:number, defaultOption:number):number {

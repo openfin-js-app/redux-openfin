@@ -289,19 +289,15 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
         this.moveTo(bounds.left, bounds.top, bounds.width, bounds.height);
     }
 
-    moveTo = (x:number, y:number, width?:number, height?:number) => {
+    moveTo = async (x:number, y:number, width?:number, height?:number) => {
         this.x = x;
         this.y = y;
         this.width = width || this.width;
         this.height = height || this.height;
 
-        this.openfinWindow.removeListener('disabled-frame-bounds-changing', this.handleBoundsChanging)
-            .catch(e => {})
-        ;
-        this.openfinWindow.setBounds({left:x, top:y, width:this.width, height:this.height})
-            .then(()=>{
-                this.handleMoved()
-            });
+        await this.openfinWindow.removeListener('disabled-frame-bounds-changing', this.handleBoundsChanging);
+        await this.openfinWindow.setBounds({left:x, top:y, width:this.width, height:this.height});
+        this.handleMoved();
     }
 
     handleBoundsChanged = ()=>{
@@ -434,7 +430,7 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
         }
         else if (!isInView(this, initState.monitors)) {
             // if indirectly undocked e.g. last window in group
-            this.moveTo(0, 0, this.width, this.height);
+            await this.moveTo(0, 0, this.width, this.height);
         }
 
         if (group.children.length === 1) {
@@ -442,7 +438,7 @@ export default class DockingWindow implements IRectangle, IDockingOptions {
         }
 
         if (group.children.length > 0 && !isGroupInView(group.children, initState.monitors)) {
-            group.children[0].moveTo(0, 0);
+            await group.children[0].moveTo(0, 0);
         }
 
         initState.persistenceService.removeAllRelationships(this.name);

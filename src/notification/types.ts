@@ -1,5 +1,11 @@
 import {BaseRequestPayload, BaseResponsePayload} from '../base/BasePayload';
 
+export const CREATE_NOTIFICATION_ERROR_MSG = 'OpenFin API call Notification.constructor failed.';
+export const NOTIFICATION_GET_CURRENT_ERROR_MSG = 'OpenFin API call Notification.getCurrent failed.';
+export const NOTIFICATION_CLOSE_ERROR_MSG = 'OpenFin API call Notification.close failed.';
+export const NOTIFICATION_SEND_MSG_ERROR_MSG = 'OpenFin API call Notification.sendMessage failed.';
+export const NOTIFICATION_SEND_MSG_TO_APP_ERROR_MSG = 'OpenFin API call Notification.sendMessageToApplication failed.';
+
 export interface BaseNotificatoinEventResPayload {
     userId:any
 }

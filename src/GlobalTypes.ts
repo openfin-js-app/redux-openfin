@@ -142,7 +142,7 @@ export interface LegacyFinWindow{
 
 export interface FinWindow{
     nativeWindow?:any;
-    name:string;
+    identity:IFinIdentity;
     addListener:(type:string,listener:(event?:any)=>void,options?:any)=>Promise<FinWindow>,
     authenticate:(userName:string,password:string,)=>Promise<void>,
     bringToFront:()=>Promise<void>;

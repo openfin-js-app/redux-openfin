@@ -5,6 +5,8 @@ import {
     initState,
 } from './init';
 
+import { IFinIdentity } from './GlobalTypes';
+
 export const sharedActionDict = new Set();
 export const DEFAULT_SHARED_ACTION_CHANNEL_NAME = 'ALBERTLI90_REDUX_OPENFIN_SHARED_ACTIONS';
 export const SHARED_ACTION_ORIGIN_TAG = '_albertli90_redux_openfin_origin';
@@ -14,13 +16,18 @@ let channel;
 let stackedChannel:Array<Action<any>> = [];
 let channelUp:number = 0;
 let dispatch;
+// let channelConfig:IConfig = void 0;
 
 declare const window:any;
 
 // listener is response to consume the action from channel
-const sharedActionListener = (type:string)=>(action:Action<any>,src:any)=>{
+const sharedActionListener = (type:string)=>(action:Action<any>,identity:IFinIdentity)=>{
 
-    console.log('[redux-openfin]channel::sharedActionListener',type,action,src);
+    if (!('identity' in action)){
+        action['identity'] = identity;
+    }
+
+    console.log('[redux-openfin]channel::sharedActionListener',type,action,identity);
 
     if (channelType === ChannelType.PROVIDER){
         channel.publish(type,action);
@@ -66,7 +73,7 @@ export default async (fin:any,config:IConfig,store?: Store<any>) => {
 
     if (config.channelType != ChannelType.STANDALONE && store){
 
-        const Channel = fin.desktop.InterApplicationBus.Channel;
+        const Channel = fin.InterApplicationBus.Channel;
         let ChannelName = config.channelName?config.channelName:
             (   config.channelRandomSuffix?
                     DEFAULT_SHARED_ACTION_CHANNEL_NAME+'-'+ new Date().getTime()
@@ -116,6 +123,8 @@ export default async (fin:any,config:IConfig,store?: Store<any>) => {
         config.sharedActions.forEach((oneAction:string)=>{
             channel.register(oneAction,sharedActionListener(oneAction))
         });
+
+        // channelConfig = config;
 
     }
 

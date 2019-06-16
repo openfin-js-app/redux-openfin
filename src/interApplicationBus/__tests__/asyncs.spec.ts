@@ -1,7 +1,14 @@
 jest.mock('../../utils/createAsyncFun');
-const createAsyncFun = require('../../utils/createAsyncFun');
+const wrapAsyncFun = require('../../utils/wrapAsyncFun');
+
 import * as actions from '../actions';
 import * as asyncs  from '../asyncs';
+
+const getDefaultPromise = ()=>{
+    return new Promise(((resolve, reject) => {
+        resolve({});
+    }))
+}
 
 describe('InterApplication asyncs',()=>{
 
@@ -12,20 +19,14 @@ describe('InterApplication asyncs',()=>{
     it('publish',async ()=>{
 
         const fin = {
-            desktop:{
-                InterApplicationBus : {
-                    publish:jest.fn((topic,message,succCb,errCb)=>{
-                        succCb();
-                    })
-                }
+            InterApplicationBus : {
+                publish:jest.fn(getDefaultPromise),
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
 
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
 
@@ -34,29 +35,22 @@ describe('InterApplication asyncs',()=>{
             message:'message',
         }));
 
-        expect(fin.desktop.InterApplicationBus.publish).toHaveBeenCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(fin.InterApplicationBus.publish).toHaveBeenCalled();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
 
     })
 
     it('subscribe',async ()=>{
 
         const fin = {
-            desktop:{
-                InterApplicationBus : {
-                    subscribe:jest.fn((senderUuid,name,topic,listener,succCb,errCb)=>{
-                        succCb();
-                    })
-                }
+            InterApplicationBus : {
+                subscribe:jest.fn(getDefaultPromise),
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
 
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
 
@@ -64,11 +58,10 @@ describe('InterApplication asyncs',()=>{
             senderUuid:'senderUuid',
             topic:'topic',
             listener:(message,uuid,name)=>{},
-        }));
+        } as any));
 
-        expect(fin.desktop.InterApplicationBus.subscribe).toHaveBeenCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(fin.InterApplicationBus.subscribe).toHaveBeenCalled();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
 
     })
 

@@ -1,5 +1,7 @@
 import {FinWindow} from '../GlobalTypes';
 
+import toLegacyFinWindow from '../utils/toLegacyFinWindow';
+
 import {
     IDockingOptions, IRectangle
 } from './DockingType'
@@ -77,6 +79,6 @@ export default (fin,mainFinWindow:FinWindow,dockingOptions:Partial<IDockingOptio
         }
     });
 
-    initState.dockingManager.register(mainFinWindow,false)
+    initState.dockingManager.register(toLegacyFinWindow(mainFinWindow),false)
 
 }

@@ -1,3 +1,6 @@
+## [1.0.0] 2019-06-14
+- Refactor to switch to use api v2 provided by openfin
+
 ## [0.70.22] 2019-04-11
 - [hot-fix] fix CreateNotificationPayload type optional fields mismatch
 ## [0.70.20] 2019-04-10

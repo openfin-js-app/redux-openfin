@@ -10,7 +10,7 @@ exports[`Event::registerDefaultListener register by default 1`] = `
   ],
   "results": Array [
     Object {
-      "isThrow": false,
+      "type": "return",
       "value": undefined,
     },
   ],
@@ -24,90 +24,10 @@ exports[`Event::registerDefaultListener register by default 2`] = `
       "blurred",
       [Function],
     ],
-    Array [
-      "bounds-changed",
-      [Function],
-    ],
-    Array [
-      "bounds-changing",
-      [Function],
-    ],
-    Array [
-      "close-requested",
-      [Function],
-    ],
-    Array [
-      "focused",
-      [Function],
-    ],
-    Array [
-      "group-changed",
-      [Function],
-    ],
-    Array [
-      "hidden",
-      [Function],
-    ],
-    Array [
-      "maximized",
-      [Function],
-    ],
-    Array [
-      "minimized",
-      [Function],
-    ],
-    Array [
-      "restored",
-      [Function],
-    ],
-    Array [
-      "shown",
-      [Function],
-    ],
   ],
   "results": Array [
     Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
+      "type": "return",
       "value": undefined,
     },
   ],
@@ -131,169 +51,14 @@ exports[`Event::registerDefaultListener register by default 3`] = `
         "type": "REDUX_OPENFIN_RES::WIND_EVENT::BLURRED",
       },
     ],
-    Array [
-      Object {
-        "error": undefined,
-        "payload": Object {},
-        "type": "REDUX_OPENFIN_RES::WIND_EVENT::BOUNDS_CHANGED",
-      },
-    ],
-    Array [
-      Object {
-        "error": undefined,
-        "payload": Object {},
-        "type": "REDUX_OPENFIN_RES::WIND_EVENT::BOUNDS_CHANGING",
-      },
-    ],
-    Array [
-      Object {
-        "error": undefined,
-        "payload": Object {},
-        "type": "REDUX_OPENFIN_RES::WIND_EVENT::CLOSE_REQUESTED",
-      },
-    ],
-    Array [
-      Object {
-        "error": undefined,
-        "payload": Object {},
-        "type": "REDUX_OPENFIN_RES::WIND_EVENT::FOCUSED",
-      },
-    ],
-    Array [
-      Object {
-        "error": undefined,
-        "payload": Object {},
-        "type": "REDUX_OPENFIN_RES::WIND_EVENT::GROUP_CHANGED",
-      },
-    ],
-    Array [
-      Object {
-        "error": undefined,
-        "payload": Object {},
-        "type": "REDUX_OPENFIN_RES::WIND_EVENT::HIDDEN",
-      },
-    ],
-    Array [
-      Object {
-        "error": undefined,
-        "payload": Object {
-          "state": "maximized",
-        },
-        "type": "REDUX_OPENFIN_RES::GET_STATE_RES",
-      },
-    ],
-    Array [
-      Object {
-        "error": undefined,
-        "payload": Object {
-          "type": "maximized",
-        },
-        "type": "REDUX_OPENFIN_RES::WIND_EVENT::MAXIMIZED",
-      },
-    ],
-    Array [
-      Object {
-        "error": undefined,
-        "payload": Object {
-          "state": "minimized",
-        },
-        "type": "REDUX_OPENFIN_RES::GET_STATE_RES",
-      },
-    ],
-    Array [
-      Object {
-        "error": undefined,
-        "payload": Object {
-          "type": "minimized",
-        },
-        "type": "REDUX_OPENFIN_RES::WIND_EVENT::MINIMIZED",
-      },
-    ],
-    Array [
-      Object {
-        "error": undefined,
-        "payload": Object {
-          "state": "normal",
-        },
-        "type": "REDUX_OPENFIN_RES::GET_STATE_RES",
-      },
-    ],
-    Array [
-      Object {
-        "error": undefined,
-        "payload": Object {
-          "type": "restored",
-        },
-        "type": "REDUX_OPENFIN_RES::WIND_EVENT::RESTORED",
-      },
-    ],
-    Array [
-      Object {
-        "error": undefined,
-        "payload": Object {},
-        "type": "REDUX_OPENFIN_RES::WIND_EVENT::SHOWN",
-      },
-    ],
   ],
   "results": Array [
     Object {
-      "isThrow": false,
+      "type": "return",
       "value": undefined,
     },
     Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
-      "value": undefined,
-    },
-    Object {
-      "isThrow": false,
+      "type": "return",
       "value": undefined,
     },
   ],

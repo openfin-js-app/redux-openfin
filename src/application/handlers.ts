@@ -1,15 +1,15 @@
 import {ActionHandlerParams} from "../GlobalTypes";
 import * as asyncs from './asyncs';
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#Application
-export const newApplicatoinHandler = (params:ActionHandlerParams)=>{
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#Application
+export const startApplicatoinHandler = (params:ActionHandlerParams)=>{
   const { action }=params;
-  asyncs.newApplication(action).catch(e =>{
+  asyncs.start(action).catch(e =>{
       // eat the exception
   });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#.getCurrent
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#.getCurrent
 export const getCurrentHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.getCurrent(action).catch(e =>{
@@ -17,7 +17,7 @@ export const getCurrentHandler = (params:ActionHandlerParams)=>{
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#getWindow
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#getWindow
 export const getWindowHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.getWindow(action).catch(e =>{
@@ -25,7 +25,7 @@ export const getWindowHandler = (params:ActionHandlerParams)=>{
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#.wrap
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#.wrap
 export const wrapHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.wrap(action).catch(e =>{
@@ -33,23 +33,23 @@ export const wrapHandler = (params:ActionHandlerParams)=>{
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#addEventListener
-export const addEventListenerHandler = (params:ActionHandlerParams)=>{
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#addEventListener
+export const addListenerHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
-    asyncs.addEventListener(action).catch(e =>{
+    asyncs.addListener(action).catch(e =>{
         // eat the exception
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#close
-export const closeHandler = (params: ActionHandlerParams) =>{
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#close
+export const quitHandler = (params: ActionHandlerParams) =>{
     const { action }=params;
-    asyncs.close(action).catch(e =>{
+    asyncs.quit(action).catch(e =>{
         // eat the exception
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#getChildWindows
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#getChildWindows
 export const getChildWindowsHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.getChildWindows(action).catch(e =>{
@@ -57,7 +57,7 @@ export const getChildWindowsHandler = (params:ActionHandlerParams)=>{
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#getInfo
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#getInfo
 export const getInfoHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.getInfo(action).catch(e =>{
@@ -65,7 +65,7 @@ export const getInfoHandler = (params:ActionHandlerParams)=>{
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#getShortcuts
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#getShortcuts
 export const getShortcutsHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.getShortcuts(action).catch(e =>{
@@ -73,7 +73,7 @@ export const getShortcutsHandler = (params:ActionHandlerParams)=>{
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#getTrayIconInfo
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#getTrayIconInfo
 export const getTrayIconInfoHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.getTrayIconInfo(action).catch(e =>{
@@ -81,7 +81,7 @@ export const getTrayIconInfoHandler = (params:ActionHandlerParams)=>{
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#getZoomLevel
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#getZoomLevel
 export const getZoomLevelHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.getZoomLevel(action).catch(e =>{
@@ -89,7 +89,7 @@ export const getZoomLevelHandler = (params:ActionHandlerParams)=>{
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#isRunning
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#isRunning
 export const isRunningHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.isRunning(action).catch(e =>{
@@ -97,15 +97,15 @@ export const isRunningHandler = (params:ActionHandlerParams)=>{
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#removeEventListener
-export const removeEventListenerHandler = (params:ActionHandlerParams)=>{
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#removeEventListener
+export const removeListenerHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
-    asyncs.removeEventListener(action).catch(e =>{
+    asyncs.removeListener(action).catch(e =>{
         // eat the exception
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#restart
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#restart
 export const restartHandler = (params:ActionHandlerParams) =>{
     const { action }=params;
     asyncs.restart(action).catch(e =>{
@@ -113,7 +113,7 @@ export const restartHandler = (params:ActionHandlerParams) =>{
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#scheduleRestart
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#scheduleRestart
 export const scheduleRestartHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.scheduleRestart(action).catch(e =>{
@@ -121,7 +121,7 @@ export const scheduleRestartHandler = (params:ActionHandlerParams)=>{
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#setShortcuts
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#setShortcuts
 export const setShortcutsHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.setShortcuts(action).catch(e =>{
@@ -129,7 +129,7 @@ export const setShortcutsHandler = (params:ActionHandlerParams)=>{
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#setTrayIcon
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#setTrayIcon
 export const setTrayIconHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.setTrayIcon(action).catch(e =>{
@@ -137,7 +137,7 @@ export const setTrayIconHandler = (params:ActionHandlerParams)=>{
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#setZoomLevel
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#setZoomLevel
 export const setZoomLevelHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.setZoomLevel(action).catch(e =>{
@@ -145,7 +145,7 @@ export const setZoomLevelHandler = (params:ActionHandlerParams)=>{
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#terminate
+//http://cdn.openfin.co/jsdocs/beta/fin.Application.html#terminate
 export const terminateHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.terminate(action).catch(e =>{

@@ -13,9 +13,9 @@ export const wrapRes:ActionCreator<types.WrapResPayload> = createFSA<types.WrapR
     (options:types.WrapResPayload) => <any> options
 );
 
-export const addEventListenerRes:ActionCreator<types.AddEventListenerResPayload> = createFSA<types.AddEventListenerResPayload>(
-    actionTypes.ADD_EVENT_LISTENER_RES,
-    (options:types.AddEventListenerResPayload) => <any> options
+export const addListenerRes:ActionCreator<types.AddListenerResPayload> = createFSA<types.AddListenerResPayload>(
+    actionTypes.ADD_LISTENER_RES,
+    (options:types.AddListenerResPayload) => <any> options
 );
 
 export const authenticateRes:ActionCreator<types.AuthenticateResPayload> = createFSA<types.AuthenticateResPayload>(
@@ -28,9 +28,9 @@ export const bringToFrontRes:ActionCreator<types.BringToFrontResPayload> = creat
     (options:types.BringToFrontResPayload) => <any> options
 );
 
-export const newWindowRes:ActionCreator<types.NewWindowResPayload> = createFSA<types.NewWindowResPayload>(
-    actionTypes.NEW_WINDOWS_RES,
-    (options:types.NewWindowResPayload) => <any> options
+export const createWindowRes:ActionCreator<types.CreateWindowResPayload> = createFSA<types.CreateWindowResPayload>(
+    actionTypes.CREATE_WINDOW_RES,
+    (options:types.CreateWindowResPayload) => <any> options
 );
 
 export const closeRes:ActionCreator<types.CloseResPayload> = createFSA<types.CloseResPayload>(
@@ -38,14 +38,14 @@ export const closeRes:ActionCreator<types.CloseResPayload> = createFSA<types.Clo
     (options:types.CloseResPayload) => <any> options
 );
 
-export const disableFrameRes:ActionCreator<types.DisableFrameResPayload> = createFSA<types.DisableFrameResPayload>(
-    actionTypes.DISABLE_FRAME_RES,
-    (options:types.DisableFrameResPayload) => <any> options
+export const disableFrameRes:ActionCreator<types.DisableUserMovementResPayload> = createFSA<types.DisableUserMovementResPayload>(
+    actionTypes.DISABLE_USER_MOVEMENT_RES,
+    (options:types.DisableUserMovementResPayload) => <any> options
 );
 
-export const enableFrameRes:ActionCreator<types.EnableFrameResPayload> = createFSA<types.EnableFrameResPayload>(
-    actionTypes.ENABLE_FRAME_RES,
-    (options:types.EnableFrameResPayload) => <any> options
+export const enableFrameRes:ActionCreator<types.EnableUserMovementResPayload> = createFSA<types.EnableUserMovementResPayload>(
+    actionTypes.ENABLE_USER_MOVEMENT_RES,
+    (options:types.EnableUserMovementResPayload) => <any> options
 );
 
 export const focusRes:ActionCreator<types.FocusResPayload> = createFSA<types.FocusResPayload>(

@@ -1,11 +1,13 @@
-import {Store, Action, Middleware} from 'redux';
+import {Store} from 'redux';
+import { FinApplication, FinWindow } from '../GlobalTypes';
 import {appEvents, windowEvents} from './constants';
 import {getStateRes} from '../window/actions/handlerActionCreator';
+import asyncForEach from '../utils/asyncForEach';
 
 export default function registerDefaultListener(fin: any, store: Store<any>) {
 
-    const finApplication = fin.desktop.Application.getCurrent();
-    const finWindow = fin.desktop.Window.getCurrent();
+    const finApplication:FinApplication = fin.Application.getCurrentSync();
+    const finWindow:FinWindow = fin.Window.getCurrentSync();
     const {dispatch} = store;
 
     function _dispatch_getStateRes(event:any) {
@@ -20,27 +22,27 @@ export default function registerDefaultListener(fin: any, store: Store<any>) {
         }
     }
 
-    appEvents.forEach((oneEvent)=>{
-        finApplication.addEventListener(oneEvent.name, (event:any)=>{
+    asyncForEach(appEvents,async (oneEvent)=>{
+        await finApplication.addListener(oneEvent.name, (event:any)=>{
             dispatch(oneEvent.actionCreator(event) as any)
         });
     });
 
-    windowEvents.forEach((oneEvent)=>{
+    asyncForEach(windowEvents,async (oneEvent)=>{
         const theName = oneEvent.name;
         if (
             theName == 'maximized'||
             theName == 'minimized'||
             theName == 'restored'
         ){
-            finWindow.addEventListener(theName, (event:any)=>{
+            await finWindow.addListener(theName, (event:any)=>{
                 _dispatch_getStateRes(event);
                 dispatch(oneEvent.actionCreator(event) as any);
             })
         }else{
-            finWindow.addEventListener(theName, (event:any)=>{
+            await finWindow.addListener(theName, (event:any)=>{
                 dispatch(oneEvent.actionCreator(event) as any);
             })
         }
-    })
+    });
 }

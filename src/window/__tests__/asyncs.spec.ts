@@ -1,8 +1,11 @@
 jest.mock('../../utils/createAsyncFun');
+jest.mock('../../utils/wrapAsyncFun');
+jest.mock('../../utils/toLegacyFinWindow');
 jest.mock('../../init');
 jest.mock('../../docking/init');
 
-const createAsyncFun = require('../../utils/createAsyncFun');
+const wrapAsyncFun = require('../../utils/wrapAsyncFun');
+const toLegacyFinWindow = require('../../utils/toLegacyFinWindow');
 const init = require('../../init');
 const dockingInit = require('../../docking/init');
 
@@ -12,6 +15,12 @@ import * as actions from '../actions';
 import * as asyncs  from '../asyncs';
 
 jest.useFakeTimers();
+
+const getDefaultPromise = ()=>{
+    return new Promise(((resolve, reject) => {
+        resolve({});
+    }))
+}
 
 describe('Window asyncs',()=>{
 
@@ -28,28 +37,24 @@ describe('Window asyncs',()=>{
         init.initState.currentWindow = null;
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {};
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(getDefaultPromise),
+                getCurrentSync: jest.fn(()=>{
+                    return {};
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
 
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.getCurrent(
             actions.getCurrent({})
         );
-        expect(fin.desktop.Window.getCurrent).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(fin.Window.getCurrentSync).toHaveBeenCalled();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('getCurrent with init',async ()=>{
@@ -57,164 +62,127 @@ describe('Window asyncs',()=>{
         init.initState.currentWindow = {};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return init.initState.currentWindow;
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(getDefaultPromise),
+                getCurrentSync: jest.fn(()=>{
+                    return {};
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.getCurrent(
             actions.getCurrent({})
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(fin.Window.getCurrentSync).not.toBeCalled();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('addEventListener',async ()=>{
-        const addEventListener = jest.fn((type,listener,succCb,errCb)=>{
-            succCb();
-        });
+        const addListener = jest.fn(getDefaultPromise);
 
-        init.initState.currentWindow = {addEventListener};
+        init.initState.currentWindow = {addListener};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            addEventListener
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        addListener,
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
-        await asyncs.addEventListener(
-            actions.addEventListener({
+        await asyncs.addListener(
+            actions.addListener({
                 type:'type',
                 listener:()=>{}
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
-        expect(addEventListener).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(fin.Window.getCurrent).not.toBeCalled();
+        expect(addListener).toHaveBeenCalled();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('bringToFront',async ()=>{
-        const bringToFront = jest.fn((succCb,errCb)=>{
-            succCb();
-        });
+        const bringToFront = jest.fn(getDefaultPromise);
 
         init.initState.currentWindow = {bringToFront};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            bringToFront
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        bringToFront
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.bringToFront(
             actions.bringToFront({
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(bringToFront).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
 
     it('newWindow',async ()=>{
 
         dockingInit.initState.dockingManager = {
-            register:jest.fn(),
+           register:jest.fn(),
         }
 
+        toLegacyFinWindow.default = (one)=>one;
+
         const fin = {
-            desktop:{
-                Window:jest.fn((options,succCb,errCb)=>{
-                    setTimeout(()=>{
-                        succCb();
-                    },0);
-                    return {};
-                })
+            Window:{
+                create:jest.fn(getDefaultPromise)
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
-        await asyncs.newWindow(
-            actions.newWindow({
+        await asyncs.createWindow(
+            actions.createWindow({
             })
         );
-        jest.runAllTimers();
-        expect(fin.desktop.Window).toBeCalled();
-        // expect(dockingInit.initState.dockingManager.register).toHaveBeenCalled();
-        // expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(fin.Window.create).toBeCalled();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('close',async ()=>{
-        const close = jest.fn((force,succCb,errCb)=>{
-            succCb();
-        });
+        const close = jest.fn(getDefaultPromise);
 
         init.initState.currentWindow = {close};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            close
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        close
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.close(
@@ -222,320 +190,250 @@ describe('Window asyncs',()=>{
                 force:false,
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
-        expect(close).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(fin.Window.getCurrent).not.toBeCalled();
+        expect(close).toHaveBeenCalled();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('disableFrame',async ()=>{
-        const disableFrame = jest.fn((succCb,errCb)=>{
-            succCb();
-        });
+        const disableUserMovement = jest.fn(getDefaultPromise);
 
-        init.initState.currentWindow = {disableFrame};
+        init.initState.currentWindow = {disableUserMovement};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            disableFrame
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        disableUserMovement
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
-        await asyncs.disableFrame(
-            actions.disableFrame({
+        await asyncs.disableUserMovement(
+            actions.disableUserMovement({
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
-        expect(disableFrame).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(fin.Window.getCurrent).not.toBeCalled();
+        expect(disableUserMovement).toBeCalled();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('enableFrame',async ()=>{
-        const enableFrame = jest.fn((succCb,errCb)=>{
-            succCb();
-        });
+        const enableUserMovement = jest.fn(getDefaultPromise);
 
-        init.initState.currentWindow = {enableFrame};
+        init.initState.currentWindow = {enableUserMovement};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            enableFrame
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        enableUserMovement
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
-        await asyncs.enableFrame(
-            actions.enableFrame({
+        await asyncs.enableUserMovement(
+            actions.enableUserMovement({
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
-        expect(enableFrame).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(fin.Window.getCurrent).not.toBeCalled();
+        expect(enableUserMovement).toBeCalled();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('focus',async ()=>{
-        const focus = jest.fn((succCb,errCb)=>{
-            succCb();
-        });
+        const focus = jest.fn(getDefaultPromise);
 
         init.initState.currentWindow = {focus};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            focus
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        focus
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.focus(
             actions.focus({
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(focus).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('getGroup',async ()=>{
-        const getGroup = jest.fn((succCb,errCb)=>{
-            succCb();
-        });
+        const getGroup = jest.fn(getDefaultPromise);
 
         init.initState.currentWindow = {getGroup};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            getGroup
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        getGroup
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.getGroup(
             actions.getGroup({
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(getGroup).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('getBounds',async ()=>{
-        const getBounds = jest.fn((succCb,errCb)=>{
-            succCb({});
-        });
+        const getBounds = jest.fn(getDefaultPromise);
 
         init.initState.currentWindow = {getBounds};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            getBounds
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        getBounds
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.getBounds(
             actions.getBounds({
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(getBounds).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('getState',async ()=>{
-        const getState = jest.fn((succCb,errCb)=>{
-            succCb();
-        });
+        const getState = jest.fn(getDefaultPromise);
 
         init.initState.currentWindow = {getState};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            getState
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        getState
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.getState(
             actions.getState({
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(getState).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('getOptions',async ()=>{
-        const getOptions = jest.fn((succCb,errCb)=>{
-            succCb({});
-        });
+        const getOptions = jest.fn(getDefaultPromise);
 
         init.initState.currentWindow = {getOptions};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            getOptions
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        getOptions
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.getOptions(
             actions.getOptions({
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(getOptions).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('hide',async ()=>{
-        const hide = jest.fn((succCb,errCb)=>{
-            succCb();
-        });
+        const hide = jest.fn(getDefaultPromise);
 
         init.initState.currentWindow = {hide};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            hide
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        hide
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.hide(
             actions.hide({
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(hide).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('joinGroup',async ()=>{
-        const joinGroup = jest.fn((targetWindow,succCb,errCb)=>{
-            succCb();
+        const joinGroup = jest.fn(async (targetWindow)=>{
+            return await getDefaultPromise();
         });
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
 
@@ -547,32 +445,24 @@ describe('Window asyncs',()=>{
                 targetWindow:{} as FinWindow,
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(joinGroup).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('leaveGroup',async ()=>{
-        const leaveGroup = jest.fn((succCb,errCb)=>{
-            succCb();
-        });
+        const leaveGroup = jest.fn(getDefaultPromise);
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
 
@@ -583,68 +473,54 @@ describe('Window asyncs',()=>{
                 targetWindow:currentWindow as FinWindow,
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(leaveGroup).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('maximize',async ()=>{
-        const maximize = jest.fn((succCb,errCb)=>{
-            succCb();
-        });
+        const maximize = jest.fn(getDefaultPromise);
 
         init.initState.currentWindow = {maximize};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            maximize
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        maximize
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.maximize(
             actions.maximize({
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(maximize).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('mergeGroups',async ()=>{
-        const mergeGroups = jest.fn((targetWindow,succCb,errCb)=>{
-            succCb();
+        const mergeGroups = jest.fn(async (targetWindow)=>{
+            return await getDefaultPromise();
         });
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
 
@@ -656,72 +532,56 @@ describe('Window asyncs',()=>{
                 targetWindow:{} as FinWindow,
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(mergeGroups).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('minimize',async ()=>{
-        const minimize = jest.fn((succCb,errCb)=>{
-            succCb();
-        });
+        const minimize = jest.fn(getDefaultPromise);
 
         init.initState.currentWindow = {minimize};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            minimize
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        minimize
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.minimize(
             actions.minimize({
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(minimize).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('moveBy',async ()=>{
-        const moveBy = jest.fn((deltaLeft, deltaTop,succCb,errCb)=>{
-            succCb();
-        });
+        const moveBy = jest.fn(getDefaultPromise);
 
         init.initState.currentWindow = {moveBy};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            moveBy
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        moveBy
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.moveBy(
@@ -730,36 +590,28 @@ describe('Window asyncs',()=>{
                 deltaTop:1,
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(moveBy).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('moveTo',async ()=>{
-        const moveTo = jest.fn((left, top, succCb,errCb)=>{
-            succCb();
-        });
+        const moveTo = jest.fn(getDefaultPromise);
 
         init.initState.currentWindow = {moveTo};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            moveTo
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        moveTo
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.moveTo(
@@ -768,72 +620,56 @@ describe('Window asyncs',()=>{
                 top:1,
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(moveTo).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('restore',async ()=>{
-        const restore = jest.fn((succCb,errCb)=>{
-            succCb();
-        });
+        const restore = jest.fn(getDefaultPromise);
 
         init.initState.currentWindow = {restore};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            restore
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        restore
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.restore(
             actions.restore({
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(restore).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('show',async ()=>{
-        const show = jest.fn((succCb,errCb)=>{
-            succCb();
-        });
+        const show = jest.fn(getDefaultPromise);
 
         init.initState.currentWindow = {show};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            show
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        show
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.show(
@@ -841,72 +677,56 @@ describe('Window asyncs',()=>{
                 force:true,
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(show).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('setAsForeground',async ()=>{
-        const setAsForeground = jest.fn((succCb,errCb)=>{
-            succCb();
-        });
+        const setAsForeground = jest.fn(getDefaultPromise);
 
         init.initState.currentWindow = {setAsForeground};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            setAsForeground
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        setAsForeground
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.setAsForeground(
             actions.setAsForeground({
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(setAsForeground).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('setBounds',async ()=>{
-        const setBounds = jest.fn((left, top, width, height,succCb,errCb)=>{
-            succCb();
-        });
+        const setBounds = jest.fn(getDefaultPromise);
 
         init.initState.currentWindow = {setBounds};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            setBounds
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        setBounds
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.setBounds(
@@ -917,36 +737,28 @@ describe('Window asyncs',()=>{
                 width:4,
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(setBounds).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('updateOptions',async ()=>{
-        const updateOptions = jest.fn((options,succCb,errCb)=>{
-            succCb();
-        });
+        const updateOptions = jest.fn(getDefaultPromise);
 
         init.initState.currentWindow = {updateOptions};
 
         const fin = {
-            desktop:{
-                Window:{
-                    getCurrent: jest.fn(()=>{
-                        return {
-                            updateOptions
-                        };
-                    })
-                }
+            Window:{
+                getCurrent: jest.fn(()=>{
+                    return {
+                        updateOptions
+                    };
+                })
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
         await asyncs.updateOptions(
@@ -954,10 +766,9 @@ describe('Window asyncs',()=>{
                 options:{}
             })
         );
-        expect(fin.desktop.Window.getCurrent).not.toBeCalled();
+        expect(fin.Window.getCurrent).not.toBeCalled();
         expect(updateOptions).toBeCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
 })

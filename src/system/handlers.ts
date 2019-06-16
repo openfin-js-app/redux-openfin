@@ -1,7 +1,7 @@
 import {ActionHandlerParams} from "../GlobalTypes";
 import * as asyncs from './asyncs';
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getMachineId
+//http://cdn.openfin.co/jsdocs/beta/fin.System.html#.getMachineId
 export const getMachineIdHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.getMachineId(action).catch((e)=>{
@@ -9,7 +9,7 @@ export const getMachineIdHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getDeviceUserId
+//http://cdn.openfin.co/jsdocs/beta/fin.System.html#.getDeviceUserId
 export const getDeviceUserIdHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.getDeviceUserId(action).catch((e)=>{
@@ -17,7 +17,7 @@ export const getDeviceUserIdHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getMonitorInfo
+//http://cdn.openfin.co/jsdocs/beta/fin.System.html#.getMonitorInfo
 export const getMonitorInfoHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.getMonitorInfo(action).catch((e)=>{
@@ -25,7 +25,7 @@ export const getMonitorInfoHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getVersion
+//http://cdn.openfin.co/jsdocs/beta/fin.System.html#.getVersion
 export const getVersionHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.getVersion(action).catch((e)=>{
@@ -33,7 +33,7 @@ export const getVersionHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getHostSpecs
+//http://cdn.openfin.co/jsdocs/beta/fin.System.html#.getHostSpecs
 export const getHostSpecsHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.getHostSpecs(action).catch((e)=>{
@@ -41,7 +41,7 @@ export const getHostSpecsHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.getEnvironmentVariable
+//http://cdn.openfin.co/jsdocs/beta/fin.System.html#.getEnvironmentVariable
 export const getEnvironmentVariableHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.getEnvironmentVariable(action).catch((e)=>{
@@ -49,7 +49,7 @@ export const getEnvironmentVariableHandler = (params:ActionHandlerParams) => {
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.System.html#.clearCache
+//http://cdn.openfin.co/jsdocs/beta/fin.System.html#.clearCache
 export const clearCacheHandler = (params:ActionHandlerParams) => {
     const { action }=params;
     asyncs.clearCache(action).catch((e)=>{

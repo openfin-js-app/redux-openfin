@@ -13,9 +13,9 @@ export const wrap:ActionCreator<types.WrapPayload> = createFSA<types.WrapPayload
     (options:types.WrapPayload) => <any> options
 );
 
-export const addEventListener:ActionCreator<types.AddEventListenerPayload> = createFSA<types.AddEventListenerPayload>(
-    actionTypes.ADD_EVENT_LISTENER,
-    (options:types.AddEventListenerPayload) => <any> options
+export const addListener:ActionCreator<types.AddListenerPayload> = createFSA<types.AddListenerPayload>(
+    actionTypes.ADD_LISTENER,
+    (options:types.AddListenerPayload) => <any> options
 );
 
 export const authenticate:ActionCreator<types.AuthenticatePayload> = createFSA<types.AuthenticatePayload>(
@@ -28,9 +28,9 @@ export const bringToFront:ActionCreator<types.BringToFrontPayload> = createFSA<t
     (options:types.BringToFrontPayload) => <any> options
 );
 
-export const newWindow:ActionCreator<types.NewWindowPayload> = createFSA<types.NewWindowPayload>(
-    actionTypes.NEW_WINDOWS,
-    (options:types.NewWindowPayload) => <any> options
+export const createWindow:ActionCreator<types.CreateWindowPayload> = createFSA<types.CreateWindowPayload>(
+    actionTypes.CREATE_WINDOW,
+    (options:types.CreateWindowPayload) => <any> options
 );
 
 export const close:ActionCreator<types.ClosePayload> = createFSA<types.ClosePayload>(
@@ -38,14 +38,14 @@ export const close:ActionCreator<types.ClosePayload> = createFSA<types.ClosePayl
     (options:types.ClosePayload) => <any> options
 );
 
-export const disableFrame:ActionCreator<types.DisableFramePayload> = createFSA<types.DisableFramePayload>(
-    actionTypes.DISABLE_FRAME,
-    (options:types.DisableFramePayload) => <any> options
+export const disableUserMovement:ActionCreator<types.DisableUserMovementPayload> = createFSA<types.DisableUserMovementPayload>(
+    actionTypes.DISABLE_USER_MOVEMENT,
+    (options:types.DisableUserMovementPayload) => <any> options
 );
 
-export const enableFrame:ActionCreator<types.EnableFramePayload> = createFSA<types.EnableFramePayload>(
-    actionTypes.ENABLE_FRAME,
-    (options:types.EnableFramePayload) => <any> options
+export const enableUserMovement:ActionCreator<types.EnableUserMovementPayload> = createFSA<types.EnableUserMovementPayload>(
+    actionTypes.ENABLE_USER_MOVEMENT,
+    (options:types.EnableUserMovementPayload) => <any> options
 );
 
 export const focus:ActionCreator<types.FocusPayload> = createFSA<types.FocusPayload>(

@@ -20,12 +20,12 @@ describe('Window handlers',()=>{
     beforeAll(()=>{
         asyncs.getCurrent=jest.fn(blankRejectPromiseImpl);
         asyncs.wrap=jest.fn(blankRejectPromiseImpl);
-        asyncs.addEventListener=jest.fn(blankRejectPromiseImpl);
+        asyncs.addListener=jest.fn(blankRejectPromiseImpl);
         asyncs.bringToFront=jest.fn(blankRejectPromiseImpl);
-        asyncs.newWindow=jest.fn(blankRejectPromiseImpl);
+        asyncs.createWindow=jest.fn(blankRejectPromiseImpl);
         asyncs.close=jest.fn(blankRejectPromiseImpl);
-        asyncs.disableFrame=jest.fn(blankRejectPromiseImpl);
-        asyncs.enableFrame=jest.fn(blankRejectPromiseImpl);
+        asyncs.disableUserMovement=jest.fn(blankRejectPromiseImpl);
+        asyncs.enableUserMovement=jest.fn(blankRejectPromiseImpl);
         asyncs.focus=jest.fn(blankRejectPromiseImpl);
         asyncs.getGroup=jest.fn(blankRejectPromiseImpl);
         asyncs.getBounds=jest.fn(blankRejectPromiseImpl);
@@ -57,8 +57,8 @@ describe('Window handlers',()=>{
     })
 
     it('addEventListenerHandler',()=>{
-        handlers.addEventListenerHandler(blankActionHandlerParams);
-        expect(asyncs.addEventListener).toHaveBeenCalled();
+        handlers.addListenerHandler(blankActionHandlerParams);
+        expect(asyncs.addListener).toHaveBeenCalled();
     })
 
     it('bringToFrontHandler',()=>{
@@ -67,8 +67,8 @@ describe('Window handlers',()=>{
     })
 
     it('newWindowHandler',()=>{
-        handlers.newWindowHandler(blankActionHandlerParams);
-        expect(asyncs.newWindow).toHaveBeenCalled();
+        handlers.createWindowHandler(blankActionHandlerParams);
+        expect(asyncs.createWindow).toHaveBeenCalled();
     })
 
     it('closeHandler',()=>{
@@ -77,13 +77,13 @@ describe('Window handlers',()=>{
     })
 
     it('disableFrameHandler',()=>{
-        handlers.disableFrameHandler(blankActionHandlerParams);
-        expect(asyncs.disableFrame).toHaveBeenCalled();
+        handlers.disableUserMovementHandler(blankActionHandlerParams);
+        expect(asyncs.disableUserMovement).toHaveBeenCalled();
     })
 
     it('enableFrameHandler',()=>{
-        handlers.enableFrameHandler(blankActionHandlerParams);
-        expect(asyncs.enableFrame).toHaveBeenCalled();
+        handlers.enableUserMovementHandler(blankActionHandlerParams);
+        expect(asyncs.enableUserMovement).toHaveBeenCalled();
     })
 
     it('focusHandler',()=>{

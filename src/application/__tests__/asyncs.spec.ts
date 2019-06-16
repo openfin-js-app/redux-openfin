@@ -1,9 +1,15 @@
 jest.mock('../../utils/createAsyncFun');
-const createAsyncFun = require('../../utils/createAsyncFun');
+const wrapAsyncFun = require('../../utils/wrapAsyncFun');
 
 import {initState} from '../../init';
 import * as actions from '../actions';
 import * as asyncs  from '../asyncs';
+
+const getDefaultPromise = ()=>{
+    return new Promise(((resolve, reject) => {
+        resolve({});
+    }))
+}
 
 describe('Application asyncs',()=>{
 
@@ -13,81 +19,59 @@ describe('Application asyncs',()=>{
 
     it('newApplication',async ()=>{
         const fin = {
-            desktop:{
-                Application : jest.fn((options,succCb,errCb)=>{
-                    succCb();
-                })
+            Application :{
+                start:jest.fn(getDefaultPromise)
             }
         };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
 
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb(fin,action,resActionCreator);
             }
         );
-        await asyncs.newApplication(
-            actions.newApplication({
+        await asyncs.start(
+            actions.startApplication({
                 uuid:'uuid',
                 name:'name',
                 mainWindowOptions:{},
             })
         );
-        expect(fin.desktop.Application).toHaveBeenCalled();
-        expect(succCb).toHaveBeenCalled();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(fin.Application.start).toHaveBeenCalled();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('restart',async ()=>{
-        const restart = jest.fn((succCb,errCb)=>{
-            succCb();
-        });
+        const restart = jest.fn(getDefaultPromise);
         initState.currentApplication = {
             restart
         } as any;
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb({},action,resActionCreator,succCb,errCb);
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb({},action,resActionCreator);
             }
         );
         await asyncs.restart(
             actions.restart({})
         );
-        expect(restart).toMatchSnapshot();
-        expect(succCb).toMatchSnapshot();
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(restart).toHaveBeenCalled();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
     it('close',async ()=>{
-        const close = jest.fn((force,succCb,errCb)=>{
-            succCb();
-        });
-        const fin = {
-            desktop:{
-                Application:{
-                    getCurrent:()=>{
-                        return {
-                            close
-                        }
-                    }
-                }
-            }
-        };
-        const succCb = jest.fn();
-        const errCb = jest.fn();
-        createAsyncFun.default=jest.fn(
-            (action,ERROR_MSG,resActionCreator,finCb)=>{
-                finCb(fin,action,resActionCreator,succCb,errCb);
+        const terminate = jest.fn(getDefaultPromise);
+        initState.currentApplication = {
+            terminate
+        } as any;
+        wrapAsyncFun.default=jest.fn(
+            async (action,resActionCreator,finCb)=>{
+                return await finCb({},action,resActionCreator);
             }
         );
-
-        await asyncs.close(
-            actions.close({force:true})
+        await asyncs.terminate(
+            actions.terminate({force:true})
         );
-        expect(createAsyncFun).toMatchSnapshot();
+        expect(terminate).toHaveBeenCalled();
+        expect(wrapAsyncFun.default).toHaveBeenCalled();
     });
 
 });

@@ -41,12 +41,12 @@ export const sendMessageToApplicationRes:ActionCreator<types.NotificationSendMsg
 
 
 // ----------------------notification events
-// http://cdn.openfin.co/jsdocs/beta/fin.desktop.Notification.html#~onClick
-// http://cdn.openfin.co/jsdocs/beta/fin.desktop.Notification.html#~onClose
-// http://cdn.openfin.co/jsdocs/beta/fin.desktop.Notification.html#~onDismiss
+// http://cdn.openfin.co/jsdocs/beta/fin.Notification.html#~onClick
+// http://cdn.openfin.co/jsdocs/beta/fin.Notification.html#~onClose
+// http://cdn.openfin.co/jsdocs/beta/fin.Notification.html#~onDismiss
 // http://cdn.openfin.co/jsdocs/beta/global.html#errorCallback
-// http://cdn.openfin.co/jsdocs/beta/fin.desktop.Notification.html#~onMessage
-// http://cdn.openfin.co/jsdocs/beta/fin.desktop.Notification.html#~onShow
+// http://cdn.openfin.co/jsdocs/beta/fin.Notification.html#~onMessage
+// http://cdn.openfin.co/jsdocs/beta/fin.Notification.html#~onShow
 
 export const notificationOnClickRes:ActionCreator<types.NotificationOnClickResPayload> = createFSA<types.NotificationOnClickResPayload>(
     actionTypes.NOTIFICATION_ON_CLICK_RES,

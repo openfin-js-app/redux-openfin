@@ -1,7 +1,7 @@
 import {ActionHandlerParams} from "../GlobalTypes";
 import * as asyncs from './asyncs';
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Notification.html#Notification
+//http://cdn.openfin.co/jsdocs/beta/fin.Notification.html#Notification
 export const createNotificationHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.createNotification(action).catch((e)=>{
@@ -9,7 +9,7 @@ export const createNotificationHandler = (params:ActionHandlerParams)=>{
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Notification.html#.getCurrent
+//http://cdn.openfin.co/jsdocs/beta/fin.Notification.html#.getCurrent
 export const getCurrentHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.getCurrent(action).catch((e)=>{
@@ -18,7 +18,7 @@ export const getCurrentHandler = (params:ActionHandlerParams)=>{
 };
 
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Notification.html#close
+//http://cdn.openfin.co/jsdocs/beta/fin.Notification.html#close
 export const closeHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.close(action).catch((e)=>{
@@ -26,7 +26,7 @@ export const closeHandler = (params:ActionHandlerParams)=>{
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Notification.html#sendMessage
+//http://cdn.openfin.co/jsdocs/beta/fin.Notification.html#sendMessage
 export const sendMessageHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.sendMessage(action).catch((e)=>{
@@ -34,7 +34,7 @@ export const sendMessageHandler = (params:ActionHandlerParams)=>{
     });
 };
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Notification.html#sendMessageToApplication
+//http://cdn.openfin.co/jsdocs/beta/fin.Notification.html#sendMessageToApplication
 export const sendMessageToApplicationHandler = (params:ActionHandlerParams)=>{
     const { action }=params;
     asyncs.sendMessageToApplication(action).catch((e)=>{

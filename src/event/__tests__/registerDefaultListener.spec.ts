@@ -21,17 +21,15 @@ describe('Event::registerDefaultListener',()=>{
             }
         });
         const fin = {
-            desktop:{
-                Application:{
-                    getCurrent:()=>({
-                        addEventListener:appAddEventListener,
-                    })
-                },
-                Window:{
-                    getCurrent:()=>({
-                        addEventListener:winAddEventListener,
-                    })
-                }
+            Application:{
+                getCurrentSync:()=>({
+                    addListener:appAddEventListener,
+                })
+            },
+            Window:{
+                getCurrentSync:()=>({
+                    addListener:winAddEventListener,
+                })
             }
         };
         const store:Store<any> = {

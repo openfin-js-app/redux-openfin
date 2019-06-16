@@ -5,355 +5,236 @@ import { initState } from '../init';
 import * as types from "./types";
 import * as handlerActions from './actions/handlerActionCreator';
 
-import createAsyncFun from '../utils/createAsyncFun'
+import wrapAsyncFun from '../utils/wrapAsyncFun'
 
-import {
-    NEW_APPLICAITON_ERROR_MSG,
-    APPLICATION_GET_CURRENT_ERROR_MSG,
-    APPLICATION_GET_WINDOW_ERROR_MSG,
-    APPLICATION_WRAP_ERROR_MSG,
-    APPLICATION_ADD_EVENT_LISTENER_ERROR_MSG,
-    CLOSE_ERROR_MSG,
-    APPLICATION_GET_CHILD_WINDOWS_ERROR_MSG,
-    APPLICATION_GET_INFO_ERROR_MSG,
-    APPLICATION_GET_SHORTCUTS_ERROR_MSG,
-    APPLICATION_GET_TRAY_ICON_INFO_ERROR_MSG,
-    APPLICATION_GET_ZOOM_LEVEL_ERROR_MSG,
-    APPLICATION_IS_RUNNING_ERROR_MSG,
-    APPLICATION_REMOVE_EVENT_LISTENER_ERROR_MSG,
-    RESTART_ERROR_MSG,
-    APPLICATION_SCHEDULE_RESTART_ERROR_MSG,
-    APPLICATION_SET_SHORTCUTS_ERROR_MSG,
-    APPLICATION_SET_TRAY_ICON_ERROR_MSG,
-    APPLICATION_SET_ZOOM_LEVEL_ERROR_MSG,
-    APPLICATION_TERMINATE_ERROR_MSG,
-} from './types';
+import {FinWindow, ISetShortCutsConfig, ITrayIconHoverEvent} from "../GlobalTypes";
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#Application
-export async function newApplication(action:Action<types.NewApplicationPayload>):Promise<Action<types.NewApplicationResPayload>>{
+/**
+ * Wrappered apis of Application package
+ * //https://cdn.openfin.co/docs/javascript/stable/Application.html
+ */
+
+
+export async function start(action:Action<types.StartApplicationPayload>):Promise<Action<types.StartApplicationResPayload>>{
     const  options  = action.payload;
-    return createAsyncFun<types.NewApplicationPayload,types.NewApplicationResPayload>(
+    return wrapAsyncFun<types.StartApplicationPayload,types.StartApplicationResPayload>(
         action,
-        NEW_APPLICAITON_ERROR_MSG,
-        handlerActions.newApplicationRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            let app = new fin.desktop.Application(options,
-                (app:any)=>{
-                    const responseAction = resActionCreator({app});
-                    succCb(responseAction);
-                },errCb);
+        handlerActions.startApplicationRes,
+        async (fin)=>{
+            let app = await fin.Application.start(options);
+            return handlerActions.startApplicationRes({app});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#.getCurrent
 export async function getCurrent(action:Action<types.GetCurrentPayload>):Promise<Action<types.GetCurrentResPayload>>{
-    const  options  = action.payload;
-    return createAsyncFun<types.GetCurrentPayload,types.GetCurrentResPayload>(
+    return await wrapAsyncFun<types.GetCurrentPayload,types.GetCurrentResPayload>(
         action,
-        APPLICATION_GET_CURRENT_ERROR_MSG,
         handlerActions.getCurrentRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
+        async(fin)=>{
             let application;
             if (initState.currentApplication){
                 application = initState.currentApplication;
             }else{
-                application = fin.desktop.Application.getCurrent();
+                application = await fin.Application.getCurrent();
                 initState.currentApplication = application;
             }
-            const responseAction = resActionCreator({application});
-            succCb(responseAction);
+            return handlerActions.getCurrentRes({application});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#getWindow
 export async function getWindow(action:Action<types.GetWindowPayload>):Promise<Action<types.GetWindowResPayload>>{
-    const  options  = action.payload;
-    return createAsyncFun<types.GetWindowPayload,types.GetWindowResPayload>(
+    return wrapAsyncFun<types.GetWindowPayload,types.GetWindowResPayload>(
         action,
-        APPLICATION_GET_WINDOW_ERROR_MSG,
         handlerActions.getWindowRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            const mainWindow = initState.currentApplication.getWindow();
-            const responseAction = resActionCreator({mainWindow});
-            succCb(responseAction);
+        async (fin)=>{
+            const mainWindow = await initState.currentApplication.getWindow();
+            return handlerActions.getWindowRes({mainWindow});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#.wrap
 export async function wrap(action:Action<types.WrapPayload>):Promise<Action<types.WrapResPayload>>{
     const  {uuid}  = action.payload;
-    return createAsyncFun<types.WrapPayload,types.WrapResPayload>(
+    return wrapAsyncFun<types.WrapPayload,types.WrapResPayload>(
         action,
-        APPLICATION_WRAP_ERROR_MSG,
         handlerActions.wrapRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            const application =  fin.desktop.Application.wrap(uuid);
-            const responseAction = resActionCreator({application});
-            succCb(responseAction);
+        async (fin)=>{
+            const application =  await fin.Application.wrap({uuid});
+            return  handlerActions.wrapRes({application});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#addEventListener
-export async function addEventListener(action:Action<types.AddEventListenerPayload>):Promise<Action<types.AddEventListenerResPayload>>{
-    const  { type , listener }  = action.payload;
-    return createAsyncFun<types.AddEventListenerPayload,types.AddEventListenerResPayload>(
+export async function addListener(action:Action<types.AddListenerPayload>):Promise<Action<types.AddListenerResPayload>>{
+    const  { type , listener, options }  = action.payload;
+    return wrapAsyncFun<types.AddListenerPayload,types.AddListenerResPayload>(
         action,
-        APPLICATION_ADD_EVENT_LISTENER_ERROR_MSG,
-        handlerActions.addEventListenerRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentApplication.addEventListener(type,listener,
-                ()=>{
-                    const responseAction  = resActionCreator({});
-                    succCb(responseAction);
-                },
-                errCb,
-            )
+        handlerActions.addListenerRes,
+        async (fin)=>{
+            await initState.currentApplication.addListener(type,listener, options);
+            return handlerActions.addListenerRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#close
-export async function close(action:Action<types.ClosePayload>):Promise<Action<types.CloseResPayload>>{
+export async function quit(action:Action<types.QuitPayload>):Promise<Action<types.QuitResPayload>>{
     const { force } = action.payload;
-    return createAsyncFun<types.ClosePayload,types.CloseResPayload>(
+    return wrapAsyncFun<types.QuitPayload,types.QuitResPayload>(
         action,
-        CLOSE_ERROR_MSG,
-        handlerActions.closeRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            let application = fin.desktop.Application.getCurrent();
-            application.close(force,
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        handlerActions.quitRes,
+        async (fin)=>{
+            let application = await fin.Application.getCurrent();
+            await application.quit(force);
+            return handlerActions.quitRes({})
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#getChildWindows
 export async function getChildWindows(action:Action<types.GetChildWindowsPayload>):Promise<Action<types.GetChildWindowsResPayload>>{
-    return createAsyncFun<types.GetChildWindowsPayload,types.GetChildWindowsResPayload>(
+    return wrapAsyncFun<types.GetChildWindowsPayload,types.GetChildWindowsResPayload>(
         action,
-        APPLICATION_GET_CHILD_WINDOWS_ERROR_MSG,
         handlerActions.getChildWindowsRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentApplication.getChildWindows(
-                (children)=>{
-                    const responseAction = resActionCreator({children});
-                    succCb(responseAction);
-                },errCb
-            );
+        async (fin)=>{
+            const children:FinWindow[] = await initState.currentApplication.getChildWindows();
+            return handlerActions.getChildWindowsRes({children});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#getInfo
 export async function getInfo(action:Action<types.GetInfoPayload>):Promise<Action<types.GetInfoResPayload>>{
-    return createAsyncFun<types.GetInfoPayload,types.GetInfoResPayload>(
+    return wrapAsyncFun<types.GetInfoPayload,types.GetInfoResPayload>(
         action,
-        APPLICATION_GET_INFO_ERROR_MSG,
         handlerActions.getInfoRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentApplication.getInfo(
-                (info)=>{
-                    const responseAction = resActionCreator({info});
-                    succCb(responseAction);
-                },errCb
-            );
+        async(fin)=>{
+            const info = await initState.currentApplication.getInfo();
+            return handlerActions.getInfoRes({info});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#getShortcuts
 export async function getShortcuts(action:Action<types.GetShortcutsPayload>):Promise<Action<types.GetShortcutsResPayload>>{
-    return createAsyncFun<types.GetShortcutsPayload,types.GetShortcutsResPayload>(
+    return wrapAsyncFun<types.GetShortcutsPayload,types.GetShortcutsResPayload>(
         action,
-        APPLICATION_GET_SHORTCUTS_ERROR_MSG,
         handlerActions.getShortcutsRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentApplication.getShortcuts(
-                (config)=>{
-                    const responseAction = resActionCreator({config});
-                    succCb(responseAction);
-                },errCb
-            );
+        async (fin)=>{
+            const config:ISetShortCutsConfig = await initState.currentApplication.getShortcuts();
+            return handlerActions.getShortcutsRes({config});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#getTrayIconInfo
 export async function getTrayIconInfo(action:Action<types.GetTrayIconInfoPayload>):Promise<Action<types.GetTrayIconInfoResPayload>>{
-    return createAsyncFun<types.GetTrayIconInfoPayload,types.GetTrayIconInfoResPayload>(
+    return wrapAsyncFun<types.GetTrayIconInfoPayload,types.GetTrayIconInfoResPayload>(
         action,
-        APPLICATION_GET_TRAY_ICON_INFO_ERROR_MSG,
         handlerActions.getTrayIconInfoRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentApplication.getTrayIconInfo(
-                (trayInfo)=>{
-                    const responseAction = resActionCreator({trayInfo});
-                    succCb(responseAction);
-                },errCb
-            );
+        async (fin)=>{
+            const trayInfo: ITrayIconHoverEvent = await initState.currentApplication.getTrayIconInfo();
+            return handlerActions.getTrayIconInfoRes({trayInfo});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#getZoomLevel
 export async function getZoomLevel(action:Action<types.GetZoomLevelPayload>):Promise<Action<types.GetZoomLevelResPayload>>{
-    return createAsyncFun<types.GetZoomLevelPayload,types.GetZoomLevelResPayload>(
+    return wrapAsyncFun<types.GetZoomLevelPayload,types.GetZoomLevelResPayload>(
         action,
-        APPLICATION_GET_ZOOM_LEVEL_ERROR_MSG,
         handlerActions.getZoomLevelRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentApplication.getZoomLevel(
-                (level)=>{
-                    const responseAction = resActionCreator({level});
-                    succCb(responseAction);
-                },errCb
-            );
+        async (fin)=>{
+            const level = await initState.currentApplication.getZoomLevel();
+            return handlerActions.getZoomLevelRes({level});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#isRunning
 export async function isRunning(action:Action<types.IsRunningPayload>):Promise<Action<types.IsRunningResPayload>>{
-    return createAsyncFun<types.IsRunningPayload,types.IsRunningResPayload>(
+    return wrapAsyncFun<types.IsRunningPayload,types.IsRunningResPayload>(
         action,
-        APPLICATION_IS_RUNNING_ERROR_MSG,
         handlerActions.isRunningRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentApplication.isRunning(
-                (running)=>{
-                    const responseAction = resActionCreator({running});
-                    succCb(responseAction);
-                },errCb
-            );
+        async (fin)=>{
+            const running = await initState.currentApplication.isRunning();
+            return handlerActions.isRunningRes({running});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#removeEventListener
-export async function removeEventListener(action:Action<types.RemoveEventListenerPayload>):Promise<Action<types.RemoveEventListenerResPayload>>{
-    const { type, listener } = action.payload;
-    return createAsyncFun<types.RemoveEventListenerPayload,types.RemoveEventListenerResPayload>(
+export async function removeListener(action:Action<types.RemoveListenerPayload>):Promise<Action<types.RemoveListenerResPayload>>{
+    const { type, listener, options } = action.payload;
+    return wrapAsyncFun<types.RemoveListenerPayload,types.RemoveListenerResPayload>(
         action,
-        APPLICATION_REMOVE_EVENT_LISTENER_ERROR_MSG,
-        handlerActions.removeEventListenerRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentApplication.removeEventListener(
-                type,listener,
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb
-            );
+        handlerActions.removeListenerRes,
+        async(fin)=>{
+            await initState.currentApplication.removeListener( type,listener, options);
+            return handlerActions.removeListenerRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#restart
 export async function restart(action:Action<types.RestartPayload>):Promise<Action<types.RestartResPayload>>{
-    return createAsyncFun<types.RestartPayload,types.NewApplicationResPayload>(
+    return wrapAsyncFun<types.RestartPayload,types.RestartResPayload>(
         action,
-        RESTART_ERROR_MSG,
         handlerActions.restartRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentApplication.restart(
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentApplication.restart();
+            return handlerActions.restartRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#scheduleRestart
 export async function scheduleRestart(action:Action<types.ScheduleRestartPayload>):Promise<Action<types.ScheduleRestartResPayload>>{
-    return createAsyncFun<types.ScheduleRestartPayload,types.ScheduleRestartResPayload>(
+    return wrapAsyncFun<types.ScheduleRestartPayload,types.ScheduleRestartResPayload>(
         action,
-        APPLICATION_SCHEDULE_RESTART_ERROR_MSG,
         handlerActions.scheduleRestartRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentApplication.scheduleRestart(
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentApplication.scheduleRestart();
+            return handlerActions.scheduleRestartRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#setShortcuts
 export async function setShortcuts(action:Action<types.SetShortcutsPayload>):Promise<Action<types.SetShortcutsResPayload>>{
     const { config } = action.payload;
-    return createAsyncFun<types.SetShortcutsPayload,types.SetShortcutsResPayload>(
+    return wrapAsyncFun<types.SetShortcutsPayload,types.SetShortcutsResPayload>(
         action,
-        APPLICATION_SET_SHORTCUTS_ERROR_MSG,
         handlerActions.setShortcutsRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentApplication.setShortcuts(
-                config,
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentApplication.setShortcuts(config);
+            return handlerActions.setShortcutsRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#setTrayIcon
 export async function setTrayIcon(action:Action<types.SetTrayIconPayload>):Promise<Action<types.SetTrayIconResPayload>>{
-    const { iconUrl, listeners } = action.payload;
-    return createAsyncFun<types.SetTrayIconPayload,types.SetTrayIconResPayload>(
+    const { iconUrl } = action.payload;
+    return wrapAsyncFun<types.SetTrayIconPayload,types.SetTrayIconResPayload>(
         action,
-        APPLICATION_SET_TRAY_ICON_ERROR_MSG,
         handlerActions.setTrayIconRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentApplication.setTrayIcon(
-                iconUrl,
-                listeners,
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentApplication.setTrayIcon(iconUrl);
+            return handlerActions.setTrayIconRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#setZoomLevel
 export async function setZoomLevel(action:Action<types.SetZoomLevelPayload>):Promise<Action<types.SetZoomLevelResPayload>>{
     const { level } = action.payload;
-    return createAsyncFun<types.SetZoomLevelPayload,types.SetZoomLevelResPayload>(
+    return wrapAsyncFun<types.SetZoomLevelPayload,types.SetZoomLevelResPayload>(
         action,
-        APPLICATION_SET_ZOOM_LEVEL_ERROR_MSG,
         handlerActions.setZoomLevelRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentApplication.setZoomLevel(
-                level,
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentApplication.setZoomLevel(level);
+            return handlerActions.setZoomLevelRes({});
         }
     );
 }
 
-//http://cdn.openfin.co/jsdocs/beta/fin.desktop.Application.html#terminate
 export async function terminate(action:Action<types.TerminatePayload>):Promise<Action<types.TerminateResPayload>>{
-    return createAsyncFun<types.TerminatePayload,types.TerminateResPayload>(
+    return wrapAsyncFun<types.TerminatePayload,types.TerminateResPayload>(
         action,
-        APPLICATION_TERMINATE_ERROR_MSG,
         handlerActions.terminateRes,
-        (fin,action,resActionCreator,succCb,errCb)=>{
-            initState.currentApplication.terminate(
-                ()=>{
-                    const responseAction = resActionCreator({});
-                    succCb(responseAction);
-                },errCb);
+        async (fin)=>{
+            await initState.currentApplication.terminate();
+            return handlerActions.terminateRes({});
         }
     );
 }

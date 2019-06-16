@@ -1,11 +1,10 @@
-import {Action} from 'redux-actions';
 import createFSA, {ActionCreator} from '../../utils/createFSA';
 import * as types from "../types";
 import * as actionTypes from "./actionTypes";
 
-export const newApplication:ActionCreator<types.NewApplicationPayload> = createFSA<types.NewApplicationPayload>(
-    actionTypes.NEW_APPLICATION,
-    (options:types.NewApplicationPayload) => <any> options
+export const startApplication:ActionCreator<types.StartApplicationPayload> = createFSA<types.StartApplicationPayload>(
+    actionTypes.START_APPLICATION,
+    (options:types.StartApplicationPayload) => <any> options
 );
 
 export const getCurrent:ActionCreator<types.GetCurrentPayload> = createFSA<types.GetCurrentPayload>(
@@ -23,14 +22,14 @@ export const wrap:ActionCreator<types.WrapPayload> = createFSA<types.WrapPayload
     (options:types.WrapPayload) => <any> options
 );
 
-export const addEventListener:ActionCreator<types.AddEventListenerPayload> = createFSA<types.AddEventListenerPayload>(
-    actionTypes.APPLICATION_ADD_EVENT_LISTENER,
-    (options:types.AddEventListenerPayload) => <any> options
+export const addEventListener:ActionCreator<types.AddListenerPayload> = createFSA<types.AddListenerPayload>(
+    actionTypes.APPLICATION_ADD_LISTENER,
+    (options:types.AddListenerPayload) => <any> options
 );
 
-export const close:ActionCreator<types.ClosePayload> = createFSA<types.ClosePayload>(
-    actionTypes.CLOSE,
-    (options:types.ClosePayload) => <any> options
+export const quit:ActionCreator<types.QuitPayload> = createFSA<types.QuitPayload>(
+    actionTypes.APPLICATION_QUIT,
+    (options:types.QuitPayload) => <any> options
 );
 
 export const getChildWindows:ActionCreator<types.GetChildWindowsPayload> = createFSA<types.GetChildWindowsPayload>(
@@ -63,9 +62,9 @@ export const isRunning:ActionCreator<types.IsRunningPayload> = createFSA<types.I
     (options:types.IsRunningPayload) => <any> options
 );
 
-export const removeEventListener:ActionCreator<types.RemoveEventListenerPayload> = createFSA<types.RemoveEventListenerPayload>(
-    actionTypes.APPLICATION_REMOVE_EVENT_LISTENER,
-    (options:types.RemoveEventListenerPayload) => <any> options
+export const removeListener:ActionCreator<types.RemoveListenerPayload> = createFSA<types.RemoveListenerPayload>(
+    actionTypes.APPLICATION_REMOVE_LISTENER,
+    (options:types.RemoveListenerPayload) => <any> options
 );
 
 export const restart:ActionCreator<types.RestartPayload> = createFSA<types.RestartPayload>(

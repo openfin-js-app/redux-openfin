@@ -3,9 +3,9 @@ import createFSA, {ActionCreator} from "../../utils/createFSA";
 import * as types from "../types";
 import * as actionTypes from "./actionTypes";
 
-export const newApplicationRes:ActionCreator<types.NewApplicationResPayload> = createFSA<types.NewApplicationResPayload>(
-    actionTypes.NEW_APPLICATION_RES,
-    (options:types.NewApplicationResPayload) => <any> options
+export const startApplicationRes:ActionCreator<types.StartApplicationResPayload> = createFSA<types.StartApplicationResPayload>(
+    actionTypes.START_APPLICATION_RES,
+    (options:types.StartApplicationResPayload) => <any> options
 );
 
 export const getCurrentRes:ActionCreator<types.GetCurrentResPayload> = createFSA<types.GetCurrentResPayload>(
@@ -23,14 +23,14 @@ export const wrapRes:ActionCreator<types.WrapResPayload> = createFSA<types.WrapR
     (options:types.WrapResPayload) => <any> options
 );
 
-export const addEventListenerRes:ActionCreator<types.AddEventListenerResPayload> = createFSA<types.AddEventListenerResPayload>(
-    actionTypes.APPLICATION_ADD_EVENT_LISTENER_RES,
-    (options:types.AddEventListenerResPayload) => <any> options
+export const addListenerRes:ActionCreator<types.AddListenerResPayload> = createFSA<types.AddListenerResPayload>(
+    actionTypes.APPLICATION_ADD_LISTENER_RES,
+    (options:types.AddListenerResPayload) => <any> options
 );
 
-export const closeRes:ActionCreator<types.CloseResPayload> = createFSA<types.CloseResPayload>(
-    actionTypes.CLOSE_RES,
-    (options:types.CloseResPayload) => <any> options
+export const quitRes:ActionCreator<types.QuitResPayload> = createFSA<types.QuitResPayload>(
+    actionTypes.APPLICATION_QUIT_RES,
+    (options:types.QuitResPayload) => <any> options
 );
 
 export const getChildWindowsRes:ActionCreator<types.GetChildWindowsResPayload> = createFSA<types.GetChildWindowsResPayload>(
@@ -63,9 +63,9 @@ export const isRunningRes:ActionCreator<types.IsRunningResPayload> = createFSA<t
     (options:types.IsRunningResPayload) => <any> options
 );
 
-export const removeEventListenerRes:ActionCreator<types.RemoveEventListenerResPayload> = createFSA<types.RemoveEventListenerResPayload>(
-    actionTypes.APPLICATION_REMOVE_EVENT_LISTENER_RES,
-    (options:types.RemoveEventListenerResPayload) => <any> options
+export const removeListenerRes:ActionCreator<types.RemoveListenerResPayload> = createFSA<types.RemoveListenerResPayload>(
+    actionTypes.APPLICATION_REMOVE_LISTENER_RES,
+    (options:types.RemoveListenerResPayload) => <any> options
 );
 
 export const restartRes:ActionCreator<types.RestartResPayload> = createFSA<types.RestartResPayload>(

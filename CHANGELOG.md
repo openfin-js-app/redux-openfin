@@ -1,4 +1,4 @@
-## [1.0.0] 2019-06-14
+## [1.0.0] 2019-06-16
 - Refactor to switch to use api v2 provided by openfin
 
 ## [0.70.22] 2019-04-11

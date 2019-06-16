@@ -7,7 +7,7 @@ Array [
     "payload": Object {
       "force": true,
     },
-    "type": "REDUX_OPENFIN_REQ::APPLICATION_CLOSE",
+    "type": "REDUX_OPENFIN_REQ::APPLICATION_QUIT",
   },
 ]
 `;

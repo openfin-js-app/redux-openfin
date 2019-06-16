@@ -1,5 +1,4 @@
 jest.mock('../../utils/createAsyncFun');
-const createAsyncFun = require('../../utils/createAsyncFun');
 const wrapAsyncFun = require('../../utils/wrapAsyncFun');
 
 import {initState} from '../../init';
@@ -8,7 +7,7 @@ import * as asyncs  from '../asyncs';
 
 const getDefaultPromise = ()=>{
     return new Promise(((resolve, reject) => {
-        resolve(void 0);
+        resolve({});
     }))
 }
 

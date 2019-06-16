@@ -21,7 +21,7 @@ export async function start(action:Action<types.StartApplicationPayload>):Promis
         action,
         handlerActions.startApplicationRes,
         async (fin)=>{
-            let app = await fin.start(options);
+            let app = await fin.Application.start(options);
             return handlerActions.startApplicationRes({app});
         }
     );
